@@ -33,7 +33,7 @@ public class Operations {
                 i--;
             }
             // if the token is "(" push it to the operation stack
-            else if (tokens[i] == '('){
+            else if (tokens[i] == '(') {
                 operations.push(tokens[i]);
             }
             // if the token is ")" calculate everything inside the brackets
@@ -82,8 +82,8 @@ public class Operations {
      * b is inserted first to make sure that the order of the operands is correct.
      *
      * @param op The operation to be applied.
-     * @param b The second operand.
-     * @param a The first operand.
+     * @param b  The second operand.
+     * @param a  The first operand.
      * @return The result of the operation.
      */
     private int applyOp(char op, int b, int a) {
@@ -109,23 +109,23 @@ public class Operations {
 
         String s = "1+2-3*4";
         System.out.println(operations.calculate(s));
-
-        String s1 = "123+456*61-7876";
-        System.out.println(operations.calculate(s1));
-
-        String s2 = "(1+2*3+4)*(5+6)*7+8*9";
-        System.out.println(operations.calculate(s2));
-
-        // should throw an exception
-        String s3 = "1/(10-10)";
-        System.out.println(operations.calculate(s3));
-
-        // should throw an exception
-        String s4 = "(1+2-3))*5";
-        System.out.println(operations.calculate(s4));
-
-        String s5 = "1 + 33";
-        System.out.println(operations.calculate(s5));
+        //
+//                String s1 = "123+456*61-7876";
+        //        System.out.println(operations.calculate(s1));
+        //
+        //        String s2 = "(1+2*3+4)*(5+6)*7+8*9";
+        //        System.out.println(operations.calculate(s2));
+        //
+        //        // should throw an exception
+        //        String s3 = "1/(10-10)";
+        //        System.out.println(operations.calculate(s3));
+        //
+        //        // should throw an exception
+        //        String s4 = "(1+2-3))*5";
+        //        System.out.println(operations.calculate(s4));
+        //
+        //        String s5 = "1 + 33";
+        //        System.out.println(operations.calculate(s5));
 
     }
 }
