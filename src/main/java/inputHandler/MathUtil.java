@@ -1,21 +1,26 @@
-public class BasicMath {
-    public static double add(double a, double b) {
-        return a + b;
+package inputHandler;
+
+import operation.Fraction;
+
+public class MathUtil {
+    public static Fraction add(Fraction a, Fraction b) {
+        return a.add(b);
     }
 
-    public static double subtract(double a, double b) {
-        return a - b;
+    public static Fraction subtract(Fraction a, Fraction b) {
+        return a.subtract(b);
     }
 
-    public static double multiply(double a, double b) {
-        return a * b;
+    public static Fraction multiply(Fraction a, Fraction b) {
+        return a.multiply(b);
     }
 
-    public static double divide(double a, double b) {
-        if (b == 0) {
-            throw new IllegalArgumentException("Cannot divide by zero");
-        }
-        return a / b;
+    public static Fraction divide(Fraction a, Fraction b) {
+//        if (b == 0) {
+//            throw new IllegalArgumentException("Cannot divide by zero");
+//        }
+//        return a / b;
+        return a.divide(b);
     }
 
     /**
@@ -24,7 +29,7 @@ public class BasicMath {
      * @param n
      * @return
      */
-    public static double RandomRoot (double num, double n) {
+    public static double root (double num, double n) {
         if (num == 0) {
             throw new IllegalArgumentException("Math error");
         }
@@ -40,6 +45,19 @@ public class BasicMath {
         else {
             throw new IllegalArgumentException("Math error");
         }
+    }
+
+    /**
+     * Căn bậc 2
+     * @param num
+     * @return
+     */
+    public static double squareRoot (double num) {
+        if (num < 0) {
+            throw new IllegalArgumentException("Math error");
+        }
+        double x = Math.sqrt(num);
+        return x;
     }
 
     /**
@@ -69,18 +87,7 @@ public class BasicMath {
         return x;
     }
 
-    /**
-     * Căn bậc 2
-     * @param num
-     * @return
-     */
-    public static double SquareRoot (double num) {
-        if (num < 0) {
-            throw new IllegalArgumentException("Math error");
-        }
-        double x = Math.sqrt(num);
-        return x;
-    }
+
 
     /**
      * Tính tổ hợp C
@@ -88,7 +95,7 @@ public class BasicMath {
      * @param n
      * @return Tổ hợp chập k của n
      */
-    public static int CoefficientBinomial (int k, int n) {
+    public static int coefficientBinomial (int k, int n) {
         if (n < k) {
             throw new IllegalArgumentException("Math error");
         }
@@ -100,7 +107,7 @@ public class BasicMath {
      * @param Degrees
      * @return
      */
-    public static double SinDegrees (double Degrees) {
+    public static double sinDegrees (double Degrees) {
         double x = Math.sin(Math.toRadians(Degrees));
         return x;
     }
@@ -110,7 +117,7 @@ public class BasicMath {
      * @param Radians
      * @return
      */
-    public static double SinRadians (double Radians) {
+    public static double sinRadians (double Radians) {
         double x = Math.sin(Radians);
         return x;
     }
@@ -120,7 +127,7 @@ public class BasicMath {
      * @param Degrees
      * @return
      */
-    public static double CosDegrees (double Degrees) {
+    public static double cosDegrees (double Degrees) {
         double x = Math.cos(Math.toRadians(Degrees));
         return x;
     }
@@ -130,13 +137,13 @@ public class BasicMath {
      * @param Radians Rad
      * @return cos
      */
-    public static double CosRadians (double Radians) {
+    public static double cosRadians (double Radians) {
         double x = Math.cos(Radians);
         return x;
     }
 
 
-    public static double TanDegrees (double Degrees) {
+    public static double tanDegrees (double Degrees) {
         if (Degrees % 180 == 90) {
             throw new IllegalArgumentException("Cannot divide by zero");
         }
@@ -144,7 +151,7 @@ public class BasicMath {
         return x;
     }
 
-    public static double TanRadians (double Radians) {
+    public static double tanRadians (double Radians) {
         if (Math.toDegrees(Radians) % 180 == 90) {
             throw new IllegalArgumentException("Cannot divide by zero");
         }
@@ -152,7 +159,7 @@ public class BasicMath {
         return x;
     }
 
-    public static double CotDegrees (double Degrees) {
+    public static double cotDegrees (double Degrees) {
         if (Degrees % 180 == 0) {
             throw new IllegalArgumentException("Cannot divide by zero");
         }
@@ -160,7 +167,7 @@ public class BasicMath {
         return x;
     }
 
-    public static double CotRadians (double Radians) {
+    public static double cotRadians (double Radians) {
         if (Math.toDegrees(Radians) % 180 == 0) {
             throw new IllegalArgumentException("Cannot divide by zero");
         }
@@ -170,19 +177,19 @@ public class BasicMath {
 
     public static void main(String[] args) {
 
-        System.out.println(BasicMath.RandomRoot(-2,3));
+        System.out.println(MathUtil.root(-2,3));
 
-        System.out.println(BasicMath.factorial(5));
+        System.out.println(MathUtil.factorial(5));
 
-        System.out.println(BasicMath.CoefficientBinomial(6,9));
+        System.out.println(MathUtil.coefficientBinomial(6,9));
 
-        System.out.println(BasicMath.power(6 ,7));
+        System.out.println(MathUtil.power(6 ,7));
 
-        System.out.println(BasicMath.SinRadians(45));
+        System.out.println(MathUtil.sinRadians(45));
 
-        System.out.println(BasicMath.SinDegrees(45));
+        System.out.println(MathUtil.sinDegrees(45));
 
-        System.out.println(BasicMath.TanRadians(Math.PI / 2));
+        System.out.println(MathUtil.tanRadians(Math.PI / 2));
 
 
     }
