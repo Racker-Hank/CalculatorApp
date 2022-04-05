@@ -18,7 +18,7 @@ public class Weight {
 //    public static final double shortTonsUS = 907184740;
 //    public static final double longTonUS = 1.01604691 * Math.pow(10,9);
 
-    public static final Unit carats = new Unit("", 200);
+    public static final Unit carats = new Unit("ct", 200);
     public static final Unit milligrams = new Unit("mg", 1);
     public static final Unit centigrams = new Unit("cg", Math.pow(10,1));
     public static final Unit decigrams = new Unit("dcg", Math.pow(10,2));
@@ -30,10 +30,10 @@ public class Weight {
     public static final Unit ounces = new Unit("oz", 28349.5231);
     public static final Unit pounds = new Unit("lb", 453592.37);
     public static final Unit stone = new Unit("st", 6350293.18);
-    public static final Unit shortTonsUS = new Unit("tn", 907184740);
-    public static final Unit longTonUS = new Unit("", 1.01604691 * Math.pow(10,9));
+    public static final Unit shortTonsUS = new Unit("Short Tons (US)", 907184740);
+    public static final Unit longTonsUS = new Unit("Long Tons (US)", 1.01604691 * Math.pow(10,9));
 
-    public static final ArrayList<Unit> Units = new ArrayList<Unit>(){
+    public static final ArrayList<Unit> weightUnits = new ArrayList<Unit>(){
         {
             add(carats);
             add(milligrams);
@@ -48,7 +48,7 @@ public class Weight {
             add(pounds);
             add(stone);
             add(shortTonsUS);
-            add(longTonUS);
+            add(longTonsUS);
         }
     };
 

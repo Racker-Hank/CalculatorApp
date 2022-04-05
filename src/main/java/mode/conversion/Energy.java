@@ -14,10 +14,10 @@ public class Energy {
     public static final Unit volts = new Unit("V", 1);
     public static final Unit joules = new Unit("J", 6.24150913 * Math.pow(10,18));
     public static final Unit kilojoules = new Unit("kJ", joules.toSmallestUnit * Math.pow(10,3));
-    public static final Unit thermalCalories = new Unit("", 2.61144742 * Math.pow(10,19));
-    public static final Unit foodCalories = new Unit("", thermalCalories.toSmallestUnit * Math.pow(10,3));
-    public static final Unit footPounds = new Unit("", 8.4623501 * Math.pow(10,18));
-    public static final Unit britishThermalUnits = new Unit("", 6.58514073 * Math.pow(10,21));
+    public static final Unit thermalCalories = new Unit("cal", 2.61144742 * Math.pow(10,19));
+    public static final Unit foodCalories = new Unit("kcal", thermalCalories.toSmallestUnit * Math.pow(10,3));
+    public static final Unit footPounds = new Unit("ft-lb", 8.4623501 * Math.pow(10,18));
+    public static final Unit britishThermalUnits = new Unit("BTU", 6.58514073 * Math.pow(10,21));
 
     public static final ArrayList<Unit> energyUnits = new ArrayList<Unit>(){
         {

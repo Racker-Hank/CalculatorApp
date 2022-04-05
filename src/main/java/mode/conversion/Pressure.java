@@ -9,13 +9,13 @@ public class Pressure {
 //    public static final double kilopascals = 9.86923267 * Math.pow(10,9);
 //    public static final double milimetersOfMercury = 0.00131578947;
 
-    public static final Unit Atmospheres = new Unit("", 1);
-    public static final Unit Bars = new Unit("", 0.986923);
-    public static final Unit pascals = new Unit("", 9.86923267 * Math.pow(10,6));
-    public static final Unit kilopascals = new Unit("", 9.86923267 * Math.pow(10,9));
-    public static final Unit milimetersOfMercury = new Unit("", 0.00131578947);
+    public static final Unit Atmospheres = new Unit("atm", 1);
+    public static final Unit Bars = new Unit("bar", 0.986923);
+    public static final Unit pascals = new Unit("Pa", 9.86923267 * Math.pow(10,6));
+    public static final Unit kilopascals = new Unit("kPa", 9.86923267 * Math.pow(10,9));
+    public static final Unit milimetersOfMercury = new Unit("mmHg", 0.00131578947);
 
-    public static final ArrayList<Unit> Units = new ArrayList<Unit>(){
+    public static final ArrayList<Unit> pressureUnits = new ArrayList<Unit>(){
         {
             add(Atmospheres);
             add(Bars);

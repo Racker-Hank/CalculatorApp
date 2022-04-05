@@ -19,7 +19,7 @@ public class Time {
     public static final Unit days = new Unit("days", 24 * hours.toSmallestUnit);
     public static final Unit weeks = new Unit("weeks", 7 * days.toSmallestUnit);
 
-    public static final ArrayList<Unit> Units = new ArrayList<Unit>(){
+    public static final ArrayList<Unit> timeUnits = new ArrayList<Unit>(){
         {
             add(microseconds);
             add(milliseconds);
