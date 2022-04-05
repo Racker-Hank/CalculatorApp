@@ -31,7 +31,7 @@ public class MathUtil {
      */
     public static double root (double num, double n) {
         if (num == 0) {
-            throw new IllegalArgumentException("Math error");
+            return 0;
         }
 
         if (n % 2 != 0 && num < 0) {
