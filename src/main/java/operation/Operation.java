@@ -25,18 +25,18 @@ public class Operation {
             } catch (Exception e) {
             }
         });
-    }
+}
 
     public Fraction calculate() {
         Fraction result = new Fraction();
         TextHandler.mathInputHandler(inputTextArea.getText() , result);
         try {
-            outputTextArea.setText(Double.toString(result.toDouble()));
+            outputTextArea.setText(String.valueOf(TextHandler.numberFormatter(result.toDouble())));
+            System.out.println(TextHandler.numberFormatter(result.toDouble()));
             return result;
         } catch (Exception e) {
             //            e.printStackTrace();
         }
-        //        System.out.println(Math.round(Math.sqrt(2)*Math.pow(10,9)) / Math.pow(10,9));
         return null;
     }
 }

@@ -1,6 +1,8 @@
 package operation;
 
-import error.Error;
+//import error.Error;
+
+import inputHandler.TextHandler;
 
 public class Fraction extends Operand {
     public String name = "Fraction";
@@ -61,10 +63,11 @@ public class Fraction extends Operand {
         return new Fraction(newNumerator, newDenominator);
     }
 
-    public void simplify() {
+    public Fraction simplify() {
         double gcd = gcd(numerator, denominator);
-        numerator /= gcd;
-        denominator /= gcd;
+        this.numerator /= gcd;
+        this.denominator /= gcd;
+        return this;
     }
 
     public double gcd(double a, double b) {
@@ -91,7 +94,7 @@ public class Fraction extends Operand {
     }
 
     public String toString() {
-        return numerator + "/" + denominator;
+        return TextHandler.numberFormatter(numerator) + "/" + TextHandler.numberFormatter(denominator);
     }
 
     public boolean equals(Fraction fraction) {
