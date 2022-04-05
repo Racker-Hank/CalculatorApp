@@ -14,10 +14,11 @@ public class FirstDegree extends Degree {
             System.out.println("a cannot be zero");
         }
         else {
-
             solutions.add((MathUtil.divide(MathUtil.multiply(new Fraction(-1),b), a)).simplify());
         }
     }
+
+
 
     public static void main(String[] args) {
         Fraction a = new Fraction(66);
