@@ -1,4 +1,4 @@
-package Conversion;
+package mode.conversion;
 
 public class Power {
     public static final double watts = 1;
