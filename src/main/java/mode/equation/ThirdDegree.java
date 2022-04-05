@@ -38,22 +38,20 @@ public class ThirdDegree extends Degree {
             Fraction ve3ofNum = MathUtil.multiply(MathUtil.multiply(new Fraction(27),d),hat(a.toDouble(),2));
             Fraction numeratorOfK = MathUtil.subtract(MathUtil.subtract(ve1ofNum,ve2ofNum),ve3ofNum);
 
-            Fraction k = MathUtil.divide(numeratorOfK,denominatorOfK);
-            System.out.println(Δ);
-            System.out.println(k.toDouble());
-            double kk = Math.toRadians(k.toDouble());
             if ( Δ.toDouble() > 0) {
+                Fraction k = MathUtil.divide(numeratorOfK, denominatorOfK);
                 if ( Math.abs(k.toDouble()) <= 1) {
-                    Fraction x1 = new Fraction((2 * Math.sqrt(Δ.toDouble())
-                            * (MathUtil.cosDegrees(Math.toDegrees(Math.acos(kk))/3) - b.toDouble())) / (3 * a.toDouble()));
-//                    Fraction x2 = new Fraction((2 * Math.sqrt(Δ.toDouble())
-//                            * (Math.cos(Math.acos(k.toDouble())/3 - (2 * Math.PI / 3))  - b.toDouble())) / (3 * a.toDouble()));
-//                    Fraction x3 = new Fraction((2 * Math.sqrt(Δ.toDouble())
-//                            * (Math.cos(Math.acos(k.toDouble())/3 + (2 * Math.PI / 3))  - b.toDouble())) / (3 * a.toDouble()));
+                    Fraction x1 = new Fraction ((2 * Math.sqrt(Δ.toDouble())
+                            * Math.cos(Math.acos(k.toDouble())/3)- b.toDouble()) / (3 * a.toDouble()));
+                    Fraction x2 = new Fraction((2 * Math.sqrt(Δ.toDouble())
+                            * Math.cos(Math.acos(k.toDouble())/3 - (2 * Math.PI / 3))  - b.toDouble()) / (3 * a.toDouble()));
+                    Fraction x3 = new Fraction((2 * Math.sqrt(Δ.toDouble())
+                            * Math.cos(Math.acos(k.toDouble())/3 + (2 * Math.PI / 3))  - b.toDouble()) / (3 * a.toDouble()));
                     solutions.add(x1);
-//                    solutions.add(x2);
-//                    solutions.add(x3);
+                    solutions.add(x2);
+                    solutions.add(x3);
                 }
+
                 else if (Math.abs(k.toDouble()) > 1) {
                     double leftx = (Math.sqrt(Δ.toDouble()) * Math.abs(k.toDouble())) / (3 * a.toDouble() * k.toDouble());
                     double middlex = MathUtil.root(Math.abs(k.toDouble())+ Math.sqrt((k.toDouble() * k.toDouble())-1),3)
@@ -63,17 +61,20 @@ public class ThirdDegree extends Degree {
                     solutions.add(no);
                 }
             }
+
             else if (Δ.toDouble() == 0) {
                 double n1 = (-b.toDouble() + MathUtil.root(b.toDouble() * b.toDouble() * b.toDouble()
                         - 27 * d.toDouble() * a.toDouble() * a.toDouble(),3)) / (3 *a.toDouble());
                 solutions.add( new Fraction(n1));
             }
+
             else if ( Δ.toDouble() < 0) {
-                double leftx = (Math.sqrt(Δ.toDouble())) / (3 * a.toDouble() );
-                double middlex = MathUtil.root(k.toDouble()+ Math.sqrt((k.toDouble() * k.toDouble()) + 1),3)
+                Fraction k = MathUtil.divide(numeratorOfK, denominatorOfK);
+                double leftx = Math.sqrt(Math.abs(Δ.toDouble())) / (3 * a.toDouble());
+                double middlex = MathUtil.root(k.toDouble() + Math.sqrt((k.toDouble() * k.toDouble()) + 1),3)
                         + MathUtil.root(k.toDouble() - Math.sqrt((k.toDouble() * k.toDouble())+1),3);
-                double rightx = -(b.toDouble()) / (3 * a.toDouble());
-                Fraction no1 = new Fraction((leftx * middlex) + rightx);
+                double rightx = b.toDouble() / (3 * a.toDouble());
+                Fraction no1 = new Fraction((leftx * middlex) - rightx);
                 solutions.add(no1);
             }
         }
@@ -81,7 +82,7 @@ public class ThirdDegree extends Degree {
 
     public static void main(String[] args) {
         ThirdDegree a = new ThirdDegree();
-        a.solveEqual(new Fraction(1),new Fraction(-6), new Fraction(11), new Fraction(-6));
+        a.solveEqual(new Fraction(1),new Fraction(3), new Fraction(3), new Fraction(1));
         for (Fraction solution: a.solutions) {
             System.out.println(solution.toDouble());
         }
