@@ -25,7 +25,7 @@ public class Area {
     public static final Unit hectares = new Unit("ha", Math.pow(10,10));
     public static final Unit acres = new Unit("acre", 4046856422.4);
 
-    public static final ArrayList<Unit> Units = new ArrayList<Unit>(){
+    public static final ArrayList<Unit> areaUnits = new ArrayList<Unit>(){
         {
             add(squareMillimeters);
             add(squareCentimeters);
