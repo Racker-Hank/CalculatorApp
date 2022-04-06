@@ -173,6 +173,12 @@ public class MathUtil {
         return x;
     }
 
+    public static double randInRange(double n , double m) {
+        double max = Math.max(n,m);
+        double min = Math.min(n,m);
+        return (Math.random()) * ((max - min) + 1) + min;
+    }
+
     public static void main(String[] args) {
 
         System.out.println(MathUtil.root(-2,3));
@@ -188,6 +194,7 @@ public class MathUtil {
         System.out.println(MathUtil.sinDegrees(45));
 
         System.out.println(MathUtil.tanRadians(Math.PI / 2));
+        System.out.println(MathUtil.randInRange(1,100));
 
 
     }
