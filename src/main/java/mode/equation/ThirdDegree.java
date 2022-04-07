@@ -195,13 +195,13 @@ public class ThirdDegree extends Degree {
                             System.out.println("(-∞, " + x3.toDouble() + ")");
                         } else {
 //                            System.out.println("(-∞, " + x3.toDouble() + ") U (" + x2.toDouble() + ", " + x1.toDouble() + ")");
-                            System.out.println("(-∞, " + x1.toDouble() + ") U (" + x2.toDouble() + ", " + x3.toDouble() + ")");
+                            System.out.println("(-∞, " + x3.toDouble() + ") U (" + x2.toDouble() + ", " + x1.toDouble() + ")");
                         }
                     } else {
                         if (x2.toDouble() == x3.toDouble()) {
                             System.out.println("(" + x1.toDouble() + ", +∞)");
                         } else {
-                            System.out.println("(" + x3.toDouble() + ", " + x2.toDouble() + ") U (" + x1.toDouble() + ", +∞)");
+                            System.out.println("(" + x1.toDouble() + ", " + x2.toDouble() + ") U (" + x3.toDouble() + ", +∞)");
                         }
                     }
                 }
@@ -260,10 +260,10 @@ public class ThirdDegree extends Degree {
             Fraction ve1ofNum = MathUtil.multiply(MathUtil.multiply(MathUtil.multiply(new Fraction(9),a),b),c);
             Fraction ve2ofNum = MathUtil.multiply(new Fraction(2),hat(b.toDouble(),3));
             Fraction ve3ofNum = MathUtil.multiply(MathUtil.multiply(new Fraction(27),d),hat(a.toDouble(),2));
-            Fraction numeratorOfK = MathUtil.subtract(MathUtil.subtract(ve1ofNum,ve2ofNum),ve3ofNum);
-
+            Fraction numeratorOfK = MathUtil.subtract(MathUtil.subtract(ve1ofNum,ve2ofNum),ve3ofNum);;
             if ( Δ.toDouble() > 0) {
                 Fraction k = MathUtil.divide(numeratorOfK, denominatorOfK);
+                System.out.println(k.toDouble());
                 if ( Math.abs(k.toDouble()) <= 1) {
                     Fraction x1 = new Fraction ((2 * Math.sqrt(Δ.toDouble())
                             * Math.cos(Math.acos(k.toDouble())/3) - b.toDouble()) / (3 * a.toDouble()));
@@ -272,15 +272,22 @@ public class ThirdDegree extends Degree {
                     Fraction x3 = new Fraction((2 * Math.sqrt(Δ.toDouble())
                             * Math.cos(Math.acos(k.toDouble())/3 + (2 * Math.PI / 3))  - b.toDouble()) / (3 * a.toDouble()));
                     if ( a.toDouble() > 0) {
-                        if (x2.toDouble() == x3.toDouble()) {
+                        if (x1.toDouble() == x2.toDouble()) {
+                            System.out.println("[" + x3.toDouble() + ", +∞)");
+                        }
+                        else if (x2.toDouble() == x3.toDouble()) {
                             System.out.println("[" + x1.toDouble() + ", +∞)");
-                        } else {
+                        } else  {
                             System.out.println("[" + x3.toDouble() + ", " + x2.toDouble() + "] U [" + x1.toDouble() + ", +∞)");
                         }
                     }
                     else {
                         if ( x1.toDouble() == x2.toDouble()) {
                             System.out.println("(-∞, " + x3.toDouble() + "]"  );
+                        }
+                        else if (x2.toDouble() == x3.toDouble()){
+//
+                            System.out.println("(-∞, " + x1.toDouble() + "]"  );
                         }
                         else {
                             System.out.println("(-∞, " + x1.toDouble() + "] U [" + x2.toDouble() + ", " + x3.toDouble() + "]" );
@@ -351,15 +358,23 @@ public class ThirdDegree extends Degree {
                     Fraction x3 = new Fraction((2 * Math.sqrt(Δ.toDouble())
                             * Math.cos(Math.acos(k.toDouble()) / 3 + (2 * Math.PI / 3)) - b.toDouble()) / (3 * a.toDouble()));
                     if (a.toDouble() > 0) {
-                        if (x1.toDouble() == x2.toDouble()) {
-                            System.out.println("(-∞, " + x3.toDouble() + "]");
-                        } else {
-                            System.out.println("(-∞, " + x1.toDouble() + "] U [" + x2.toDouble() + ", " + x3.toDouble() + "]");
+                        if ( x1.toDouble() == x2.toDouble()) {
+                            System.out.println("(-∞, " + x3.toDouble() + "]"  );
+                        }
+                        else if (x2.toDouble() == x3.toDouble()){
+//
+                            System.out.println("(-∞, " + x1.toDouble() + "]"  );
+                        }
+                        else {
+                            System.out.println("(-∞, " + x1.toDouble() + "] U [" + x2.toDouble() + ", " + x3.toDouble() + "]" );
                         }
                     } else {
-                        if (x2.toDouble() == x3.toDouble()) {
+                        if (x1.toDouble() == x2.toDouble()) {
+                            System.out.println("[" + x3.toDouble() + ", +∞)");
+                        }
+                        else if (x2.toDouble() == x3.toDouble()) {
                             System.out.println("[" + x1.toDouble() + ", +∞)");
-                        } else {
+                        } else  {
                             System.out.println("[" + x3.toDouble() + ", " + x2.toDouble() + "] U [" + x1.toDouble() + ", +∞)");
                         }
                     }
@@ -407,7 +422,7 @@ public class ThirdDegree extends Degree {
     
     public static void main(String[] args) {
         ThirdDegree a = new ThirdDegree();
-        a.notSmaller(new Fraction(-1),new Fraction(3), new Fraction(3), new Fraction(-2));
+        a.notSmaller(new Fraction(1),new Fraction(-5), new Fraction(8), new Fraction(-4));
 //        for (Fraction solution: a.solutions) {
 //            System.out.println(solution.toDouble());
 //        }
