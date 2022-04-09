@@ -1,8 +1,11 @@
 package operation;
 
-import error.Error;
+//import error.Error;
 
-public class Fraction extends Operand {
+import inputHandler.MathUtil;
+import inputHandler.TextHandler;
+
+public class Fraction extends Operand implements Comparable<Fraction> {
     public String name = "Fraction";
     public double numerator;
     public double denominator;
@@ -61,10 +64,11 @@ public class Fraction extends Operand {
         return new Fraction(newNumerator, newDenominator);
     }
 
-    public void simplify() {
+    public Fraction simplify() {
         double gcd = gcd(numerator, denominator);
-        numerator /= gcd;
-        denominator /= gcd;
+        this.numerator /= gcd;
+        this.denominator /= gcd;
+        return this;
     }
 
     public double gcd(double a, double b) {
@@ -72,6 +76,27 @@ public class Fraction extends Operand {
             return a;
         }
         return gcd(b, a % b);
+    }
+
+    public Fraction root (Fraction n) {
+        Fraction tmp = new Fraction(this);
+        tmp.numerator = MathUtil.root(this.numerator, n.toDouble());
+        tmp.denominator = MathUtil.root(this.denominator, n.toDouble());
+        return tmp;
+    }
+
+    public Fraction pow(Fraction n) {
+        Fraction tmp = new Fraction(this);
+        tmp.numerator = MathUtil.power(this.numerator, n.toDouble());
+        tmp.denominator = MathUtil.power(this.denominator, n.toDouble());
+        return tmp;
+    }
+
+    public Fraction abs () {
+        Fraction tmp = new Fraction(this);
+        tmp.numerator = Math.abs(this.numerator);
+        tmp.denominator = Math.abs(this.denominator);
+        return tmp;
     }
 
     public double getNumerator() {
@@ -91,7 +116,7 @@ public class Fraction extends Operand {
     }
 
     public String toString() {
-        return numerator + "/" + denominator;
+        return TextHandler.numberFormatter(numerator) + "/" + TextHandler.numberFormatter(denominator);
     }
 
     public boolean equals(Fraction fraction) {
@@ -108,9 +133,29 @@ public class Fraction extends Operand {
         this.denominator = other.denominator;
     }
 
+    public int compareTo(Fraction other) {
+        if (this.subtract(other).toDouble() > 0) {
+            return 1;
+        } else if (this.subtract(other).toDouble() < 0) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
     @Override
     public void display() {
 
     }
 
+    public static void main(String[] args) {
+//        Fraction a = new Fraction(1, 2);
+//        System.out.println(a.root(new Fraction(2)).toDouble());
+//        System.out.println(a.pow(new Fraction(2)).toDouble());
+
+        Fraction a = new Fraction(3, 4);
+        System.out.println(a.root(new Fraction(2)).toDouble());
+        System.out.println(a.pow(new Fraction(2)).toDouble());
+        System.out.println(Math.pow((Math.sqrt(0.5)),2));
+    }
 }

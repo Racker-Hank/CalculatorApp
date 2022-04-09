@@ -1,4 +1,4 @@
-package Conversion;
+package mode.conversion;
 
 public class Temperature {
     public static double Temperature_C_To_F_ (double x) {
@@ -30,7 +30,6 @@ public class Temperature {
     public static final double celsius = 1;
     public static final double fahreheit = 2;
     public static final double kelvin = 3;
-
 
     public static double a = kelvin;
     public static double b = fahreheit;

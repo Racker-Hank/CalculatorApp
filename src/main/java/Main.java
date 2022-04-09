@@ -8,7 +8,7 @@ import operation.Operation;
 
 import java.util.Objects;
 
-public class Main extends Application {
+public class    Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {

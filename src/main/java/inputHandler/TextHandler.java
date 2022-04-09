@@ -5,7 +5,7 @@ import operation.Fraction;
 import java.util.Stack;
 
 public class TextHandler {
-    public static void mathInputHandler(String expression, Fraction result) {
+    public static void mathInputHandler(String expression , Fraction result) {
         char[] tokens = expression.toCharArray();
 
         // use 2 stacks to store operators and operands
@@ -58,9 +58,9 @@ public class TextHandler {
             operands.push(calculate(operations.pop() , operands.pop() , operands.pop()));
         }
 
-//        return operands.pop();
-//        System.out.println(operands.pop().toDouble());
-        result.setValue(operands.pop());
+        //        return operands.pop();
+        //        System.out.println(operands.pop().toDouble());
+        result.setValue(operands.pop().simplify());
     }
 
     // pemdas:
@@ -105,9 +105,25 @@ public class TextHandler {
             case '-' -> MathUtil.subtract(a , b);
             case '*' -> MathUtil.multiply(a , b);
             case '/' -> MathUtil.divide(a , b);
-//            case '^' -> MathUtil.power(a , b);
+            //            case '^' -> MathUtil.power(a , b);
             default -> new Fraction(0);
         };
+    }
+
+    //    1.1234567891
+    public static Number numberFormatter(double number) {
+        Number result;
+        int decimalNumbers = 9;
+        if (number == (int) number) {
+            result = ((int) number);
+        } else if (Math.abs((number * Math.pow(10 , decimalNumbers))) - Math.abs(Math.round(number * Math.pow(10 , decimalNumbers))) < 1) {
+            result = (Math.round(number * Math.pow(10 , decimalNumbers)) / Math.pow(10 ,
+                    decimalNumbers));
+            System.out.println(result);
+        } else {
+            result = number;
+        }
+        return result;
     }
 
 }

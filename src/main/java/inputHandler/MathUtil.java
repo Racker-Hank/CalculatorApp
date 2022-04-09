@@ -31,7 +31,7 @@ public class MathUtil {
      */
     public static double root (double num, double n) {
         if (num == 0) {
-            throw new IllegalArgumentException("Math error");
+            return 0;
         }
 
         if (n % 2 != 0 && num < 0) {
@@ -87,15 +87,13 @@ public class MathUtil {
         return x;
     }
 
-
-
     /**
      * Tính tổ hợp C
      * @param k
      * @param n
      * @return Tổ hợp chập k của n
      */
-    public static int coefficientBinomial (int k, int n) {
+    public static int combination (int k, int n) {
         if (n < k) {
             throw new IllegalArgumentException("Math error");
         }
@@ -104,92 +102,112 @@ public class MathUtil {
 
     /**
      * Tính sin theo Deg
-     * @param Degrees
+     * @param degrees
      * @return
      */
-    public static double sinDegrees (double Degrees) {
-        double x = Math.sin(Math.toRadians(Degrees));
+    public static double sinDegrees (double degrees) {
+        double x = Math.sin(Math.toRadians(degrees));
         return x;
     }
 
     /**
      * Tính sin theo Rad
-     * @param Radians
+     * @param radians
      * @return
      */
-    public static double sinRadians (double Radians) {
-        double x = Math.sin(Radians);
+    public static double sinRadians (double radians) {
+        double x = Math.sin(radians);
         return x;
     }
 
     /**
      * Tính cos theo Deg
-     * @param Degrees
+     * @param degrees
      * @return
      */
-    public static double cosDegrees (double Degrees) {
-        double x = Math.cos(Math.toRadians(Degrees));
+    public static double cosDegrees (double degrees) {
+        double x = Math.cos(Math.toRadians(degrees));
         return x;
     }
 
     /**
      * Tính cos theo Rad
-     * @param Radians Rad
+     * @param radians Rad
      * @return cos
      */
-    public static double cosRadians (double Radians) {
-        double x = Math.cos(Radians);
+    public static double cosRadians (double radians) {
+        double x = Math.cos(radians);
         return x;
     }
 
 
-    public static double tanDegrees (double Degrees) {
-        if (Degrees % 180 == 90) {
+    public static double tanDegrees (double degrees) {
+        if (degrees % 180 == 90) {
             throw new IllegalArgumentException("Cannot divide by zero");
         }
-        double x = Math.tan(Math.toRadians(Degrees));
+        double x = Math.tan(Math.toRadians(degrees));
         return x;
     }
 
-    public static double tanRadians (double Radians) {
-        if (Math.toDegrees(Radians) % 180 == 90) {
+    public static double tanRadians (double radians) {
+        if (Math.toDegrees(radians) % 180 == 90) {
             throw new IllegalArgumentException("Cannot divide by zero");
         }
-        double x = Math.tan(Radians);
+        double x = Math.tan(radians);
         return x;
     }
 
-    public static double cotDegrees (double Degrees) {
-        if (Degrees % 180 == 0) {
+    public static double cotDegrees (double degrees) {
+        if (degrees % 180 == 0) {
             throw new IllegalArgumentException("Cannot divide by zero");
         }
-        double x = 1 / Math.tan(Math.toRadians(Degrees));
+        double x = 1 / Math.tan(Math.toRadians(degrees));
         return x;
     }
 
-    public static double cotRadians (double Radians) {
-        if (Math.toDegrees(Radians) % 180 == 0) {
+    public static double cotRadians (double radians) {
+        if (Math.toDegrees(radians) % 180 == 0) {
             throw new IllegalArgumentException("Cannot divide by zero");
         }
-        double x = 1 / Math.tan(Radians);
+        double x = 1 / Math.tan(radians);
         return x;
+    }
+
+    public static double randInRange(double n , double m, boolean isInt) {
+        double max = Math.max(n,m);
+        double min = Math.min(n,m);
+        return isInt ? (int)((Math.random()) * ((max - min) + 1) + min) : Math.random() * (max - min) + min;
+    }
+
+    public static double randInRange(double m) {
+        return randInRange(0,m,false);
+    }
+
+    public static double randIntInRange(int n , int m) {
+        return randInRange(n,m,true);
+    }
+
+    public static double randIntInRange(int m) {
+        return randInRange(0,m,true);
     }
 
     public static void main(String[] args) {
 
-        System.out.println(MathUtil.root(-2,3));
-
-        System.out.println(MathUtil.factorial(5));
-
-        System.out.println(MathUtil.coefficientBinomial(6,9));
-
-        System.out.println(MathUtil.power(6 ,7));
-
-        System.out.println(MathUtil.sinRadians(45));
-
-        System.out.println(MathUtil.sinDegrees(45));
-
-        System.out.println(MathUtil.tanRadians(Math.PI / 2));
+//        System.out.println(MathUtil.root(-2,3));
+//
+//        System.out.println(MathUtil.factorial(5));
+//
+//        System.out.println(MathUtil.combination(6,9));
+//
+//        System.out.println(MathUtil.power(6 ,7));
+//
+//        System.out.println(MathUtil.sinRadians(45));
+//
+//        System.out.println(MathUtil.sinDegrees(45));
+//
+//        System.out.println(MathUtil.tanRadians(Math.PI / 2));
+        System.out.println(MathUtil.randInRange(1,100, true));
+        System.out.println(MathUtil.randInRange(1,100, false));
 
 
     }

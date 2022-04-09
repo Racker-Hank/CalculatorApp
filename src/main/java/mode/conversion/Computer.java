@@ -1,4 +1,4 @@
-package Conversion;
+package mode.conversion;
 
 public class Computer {
     public static void Hex_To_other (String hexadecimal) {

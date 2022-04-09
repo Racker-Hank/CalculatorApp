@@ -1,3 +1,5 @@
+package UI;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TreeItem;
@@ -78,10 +80,12 @@ public class Controller implements Initializable {
     }
 
     public void selectItem() {
-        TreeItem<String> item = (TreeItem<String>) treeView.getSelectionModel().getSelectedItem();
-        System.out.println(item.getValue());
-        visiblePane.setVisible(false);
-        visiblePane = panes.get(item);
-        visiblePane.setVisible(true);
+        if (treeView.getSelectionModel().getSelectedItem() != null) {
+            TreeItem<String> item = (TreeItem<String>) treeView.getSelectionModel().getSelectedItem();
+            System.out.println(item.getValue());
+            visiblePane.setVisible(false);
+            visiblePane = panes.get(item);
+            visiblePane.setVisible(true);
+        }
     }
 }
