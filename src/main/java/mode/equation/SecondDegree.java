@@ -6,7 +6,8 @@ import operation.Fraction;
 public class SecondDegree extends Degree {
     public String name = "Second Degree";
 
-    public void solveEqual (Fraction a, Fraction b, Fraction c) {
+    public void equal (Fraction a, Fraction b, Fraction c) {
+        solutions.clear();
         if (a.toDouble() == 0) {
 //            throw Exception;
             System.out.println("a cannot be zero");
@@ -19,139 +20,102 @@ public class SecondDegree extends Degree {
             else if (Δ.toDouble() > 0) {
                 Fraction x = new Fraction(Δ.toDouble());
                 x.numerator = Math.sqrt(x.numerator);
-//                x.denominator = Math.sqrt(x.denominator);
-
                 solutions.add(MathUtil.divide(MathUtil.add(MathUtil.multiply(new Fraction(-1),b),x),MathUtil.multiply(new Fraction(2),a)));
                 solutions.add(MathUtil.divide(MathUtil.subtract(MathUtil.multiply(new Fraction(-1),b),x),MathUtil.multiply(new Fraction(2),a)));
             }
         }
     }
 
-    public void Smaller (Fraction a, Fraction b, Fraction c) {
-        if (a.toDouble() == 0) {
-//            throw Exception;
-            System.out.println("a cannot be zero");
+    public void smaller (Fraction a, Fraction b, Fraction c) {
+//        if (a.toDouble() == 0) {
+////            throw Exception;
+//            System.out.println("a cannot be zero");
+//        }
+//        else {
+//            Fraction Δ = MathUtil.subtract(MathUtil.multiply(b,b),MathUtil.multiply(MathUtil.multiply(new Fraction(4),a),c));
+
+        equal(a,b,c);
+        if (solutions.size() == 1) {
+            Fraction x = MathUtil.divide(MathUtil.multiply(new Fraction(-1),b),MathUtil.multiply(new Fraction(2),a));
+            System.out.println("x ∈ " + "(-∞," + x.toDouble() + ") U (" + x.toDouble() + ", +∞)");
         }
-        else {
-            Fraction Δ = MathUtil.subtract(MathUtil.multiply(b,b),MathUtil.multiply(MathUtil.multiply(new Fraction(4),a),c));
 
-            if (Δ.toDouble() == 0) {
-                Fraction x = MathUtil.divide(MathUtil.multiply(new Fraction(-1),b),MathUtil.multiply(new Fraction(2),a));
-                System.out.println("(-∞," + x.toDouble() + ") U (" + x.toDouble() + ", +∞)");
+        else if (solutions.size() > 1) {
+//            Fraction x = new Fraction(Δ.toDouble());
+//            x.numerator = Math.sqrt(x.numerator);
+//
+//            Fraction x2 = MathUtil.divide(MathUtil.add(MathUtil.multiply(new Fraction(-1),b),x),MathUtil.multiply(new Fraction(2),a));
+//            Fraction x1 = MathUtil.divide(MathUtil.subtract(MathUtil.multiply(new Fraction(-1),b),x),MathUtil.multiply(new Fraction(2),a));
+
+            Fraction x1 = solutions.get(1);
+            Fraction x2 = solutions.get(0);
+            if (a.toDouble() > 0) {
+                System.out.println("x ∈ " + "(" + x1.toDouble() + ", " + x2.toDouble() + ")");
             }
-
-            else if (Δ.toDouble() > 0) {
-                Fraction x = new Fraction(Δ.toDouble());
-                x.numerator = Math.sqrt(x.numerator);
-
-                Fraction x2 = MathUtil.divide(MathUtil.add(MathUtil.multiply(new Fraction(-1),b),x),MathUtil.multiply(new Fraction(2),a));
-                Fraction x1 = MathUtil.divide(MathUtil.subtract(MathUtil.multiply(new Fraction(-1),b),x),MathUtil.multiply(new Fraction(2),a));
-                if (a.toDouble() > 0) {
-                    System.out.println("(" + x1.toDouble() + ", " + x2.toDouble() + ")");
-                }
-                else {
-                    System.out.println("(-∞, " + x2.toDouble() + ") U (" + x1.toDouble() + ", +∞)");
-                }
+            else {
+                System.out.println("x ∈ " + "(-∞, " + x2.toDouble() + ") U (" + x1.toDouble() + ", +∞)");
             }
         }
     }
 
-    public void Greater (Fraction a, Fraction b, Fraction c) {
-        if (a.toDouble() == 0) {
-//            throw Exception;
-            System.out.println("a cannot be zero");
+    public void greater (Fraction a, Fraction b, Fraction c) {
+        equal(a,b,c);
+        if (solutions.size() == 1) {
+            Fraction x = MathUtil.divide(MathUtil.multiply(new Fraction(-1),b),MathUtil.multiply(new Fraction(2),a));
+            System.out.println("x ∈ " + "(-∞," + x.toDouble() + ") U (" + x.toDouble() + ", +∞)");
         }
-        else {
-            Fraction Δ = MathUtil.subtract(MathUtil.multiply(b,b),MathUtil.multiply(MathUtil.multiply(new Fraction(4),a),c));
-
-            if (Δ.toDouble() == 0) {
-                Fraction x = MathUtil.divide(MathUtil.multiply(new Fraction(-1),b),MathUtil.multiply(new Fraction(2),a));
-                System.out.println("(-∞," + x.toDouble() + ") U (" + x.toDouble() + ", +∞)");
+        else if (solutions.size() > 1) {
+            Fraction x1 = solutions.get(1);
+            Fraction x2 = solutions.get(0);
+            if (a.toDouble() > 0) {
+                System.out.println("x ∈ " + "(-∞, " + x1.toDouble() + ") U (" + x2.toDouble() + ", +∞)");
             }
-
-            else if (Δ.toDouble() > 0) {
-                Fraction x = new Fraction(Δ.toDouble());
-                x.numerator = Math.sqrt(x.numerator);
-
-                Fraction x2 = MathUtil.divide(MathUtil.add(MathUtil.multiply(new Fraction(-1),b),x),MathUtil.multiply(new Fraction(2),a));
-                Fraction x1 = MathUtil.divide(MathUtil.subtract(MathUtil.multiply(new Fraction(-1),b),x),MathUtil.multiply(new Fraction(2),a));
-                if (a.toDouble() > 0) {
-                    System.out.println("(-∞, " + x1.toDouble() + ") U (" + x2.toDouble() + ", +∞)");
-
-                }
-                else {
-                    System.out.println("(" + x2.toDouble() + ", " + x1.toDouble() + ")");
-                }
+            else {
+                System.out.println("x ∈ " + "(" + x2.toDouble() + ", " + x1.toDouble() + ")");
             }
         }
     }
 
     public void notSmaller (Fraction a, Fraction b, Fraction c) {
-        if (a.toDouble() == 0) {
-//            throw Exception;
-            System.out.println("a cannot be zero");
+        equal(a,b,c);
+        if (solutions.size() == 1) {
+            System.out.println("x ∈ " + "(-∞, +∞)");
         }
-        else {
-            Fraction Δ = MathUtil.subtract(MathUtil.multiply(b,b),MathUtil.multiply(MathUtil.multiply(new Fraction(4),a),c));
-
-            if (Δ.toDouble() == 0) {
-                Fraction x = MathUtil.divide(MathUtil.multiply(new Fraction(-1),b),MathUtil.multiply(new Fraction(2),a));
-                System.out.println("(-∞," + x.toDouble() + "] U [" + x.toDouble() + ", +∞)");
+        else if (solutions.size() > 1) {
+            Fraction x1 = solutions.get(1);
+            Fraction x2 = solutions.get(0);
+            if (a.toDouble() > 0) {
+                System.out.println("x ∈ " + "(-∞, " + x1.toDouble() + "] U [" + x2.toDouble() + ", +∞)");
             }
-
-            else if (Δ.toDouble() > 0) {
-                Fraction x = new Fraction(Δ.toDouble());
-                x.numerator = Math.sqrt(x.numerator);
-
-                Fraction x2 = MathUtil.divide(MathUtil.add(MathUtil.multiply(new Fraction(-1),b),x),MathUtil.multiply(new Fraction(2),a));
-                Fraction x1 = MathUtil.divide(MathUtil.subtract(MathUtil.multiply(new Fraction(-1),b),x),MathUtil.multiply(new Fraction(2),a));
-                if (a.toDouble() > 0) {
-                    System.out.println("(-∞, " + x1.toDouble() + "] U [" + x2.toDouble() + ", +∞)");
-
-                }
-                else {
-                    System.out.println("[" + x2.toDouble() + ", " + x1.toDouble() + "]");
-                }
+            else {
+                System.out.println("x ∈ " + "[" + x2.toDouble() + ", " + x1.toDouble() + "]");
             }
         }
     }
 
     public void notGreater (Fraction a, Fraction b, Fraction c) {
-        if (a.toDouble() == 0) {
-//            throw Exception;
-            System.out.println("a cannot be zero");
+        equal(a,b,c);
+        if (solutions.size() == 1) {
+            System.out.println("x = " + solutions.get(0).toDouble());
         }
-        else {
-            Fraction Δ = MathUtil.subtract(MathUtil.multiply(b,b),MathUtil.multiply(MathUtil.multiply(new Fraction(4),a),c));
-
-            if (Δ.toDouble() == 0) {
-                Fraction x = MathUtil.divide(MathUtil.multiply(new Fraction(-1),b),MathUtil.multiply(new Fraction(2),a));
-                System.out.println("(-∞," + x.toDouble() + "] U [" + x.toDouble() + ", +∞)");
+        else if (solutions.size() > 1) {
+            Fraction x1 = solutions.get(1);
+            Fraction x2 = solutions.get(0);
+            if (a.toDouble() > 0) {
+                System.out.println("x ∈ " + "[" + x1.toDouble() + ", " + x2.toDouble() + "]");
             }
-
-            else if (Δ.toDouble() > 0) {
-                Fraction x = new Fraction(Δ.toDouble());
-                x.numerator = Math.sqrt(x.numerator);
-
-                Fraction x2 = MathUtil.divide(MathUtil.add(MathUtil.multiply(new Fraction(-1),b),x),MathUtil.multiply(new Fraction(2),a));
-                Fraction x1 = MathUtil.divide(MathUtil.subtract(MathUtil.multiply(new Fraction(-1),b),x),MathUtil.multiply(new Fraction(2),a));
-                if (a.toDouble() > 0) {
-                    System.out.println("[" + x1.toDouble() + ", " + x2.toDouble() + "]");
-                }
-                else {
-                    System.out.println("(-∞, " + x2.toDouble() + "] U [" + x1.toDouble() + ", +∞)");
-                }
+            else {
+                System.out.println("x ∈ " + "(-∞, " + x2.toDouble() + "] U [" + x1.toDouble() + ", +∞)");
             }
         }
     }
 
     public static void main(String[] args) {
         SecondDegree x = new SecondDegree();
-        x.solveEqual(new Fraction(1),new Fraction(2),new Fraction(1));
+        x.equal(new Fraction(1),new Fraction(2),new Fraction(1));
         x.notGreater(new Fraction(1),new Fraction(-5),new Fraction(4));
-
-//        for (Fraction solution: x.solutions) {
-//            System.out.println(solution.toDouble());
-//        }
+        x.smaller(new Fraction(1),new Fraction(-5),new Fraction(4));
+        x.notSmaller(new Fraction(1),new Fraction(2),new Fraction(1));
+        x.notGreater(new Fraction(1),new Fraction(2),new Fraction(1));
     }
 }

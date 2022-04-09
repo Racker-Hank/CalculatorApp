@@ -173,28 +173,41 @@ public class MathUtil {
         return x;
     }
 
-    public static double randInRange(double n , double m) {
+    public static double randInRange(double n , double m, boolean isInt) {
         double max = Math.max(n,m);
         double min = Math.min(n,m);
-        return (Math.random()) * ((max - min) + 1) + min;
+        return isInt ? (int)((Math.random()) * ((max - min) + 1) + min) : Math.random() * (max - min) + min;
+    }
+
+    public static double randInRange(double m) {
+        return randInRange(0,m,false);
+    }
+
+    public static double randIntInRange(int n , int m) {
+        return randInRange(n,m,true);
+    }
+
+    public static double randIntInRange(int m) {
+        return randInRange(0,m,true);
     }
 
     public static void main(String[] args) {
 
-        System.out.println(MathUtil.root(-2,3));
-
-        System.out.println(MathUtil.factorial(5));
-
-        System.out.println(MathUtil.combination(6,9));
-
-        System.out.println(MathUtil.power(6 ,7));
-
-        System.out.println(MathUtil.sinRadians(45));
-
-        System.out.println(MathUtil.sinDegrees(45));
-
-        System.out.println(MathUtil.tanRadians(Math.PI / 2));
-        System.out.println(MathUtil.randInRange(1,100));
+//        System.out.println(MathUtil.root(-2,3));
+//
+//        System.out.println(MathUtil.factorial(5));
+//
+//        System.out.println(MathUtil.combination(6,9));
+//
+//        System.out.println(MathUtil.power(6 ,7));
+//
+//        System.out.println(MathUtil.sinRadians(45));
+//
+//        System.out.println(MathUtil.sinDegrees(45));
+//
+//        System.out.println(MathUtil.tanRadians(Math.PI / 2));
+        System.out.println(MathUtil.randInRange(1,100, true));
+        System.out.println(MathUtil.randInRange(1,100, false));
 
 
     }

@@ -5,7 +5,7 @@ import operation.Fraction;
 
 import java.util.ArrayList;
 
-public class Degree extends Mode {
+public abstract class Degree extends Mode {
     ArrayList<Fraction> solutions = new ArrayList<>();
 
 
