@@ -1,11 +1,18 @@
 package UI;
 
+import UI.components.PrimaryButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import mode.standard.Expressions;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -40,6 +47,25 @@ public class Controller implements Initializable {
 
     @FXML
     private AnchorPane financial;
+
+//    function buttons
+    @FXML
+    private VBox functionButtonsWrapper;
+
+    @FXML
+    private Button absButton;
+
+    @FXML
+    private Button combinationButton;
+
+    @FXML
+    private Button permutationButton;
+
+    @FXML
+    private Button rootButton;
+
+    @FXML
+    private Button sqrtButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -77,6 +103,8 @@ public class Controller implements Initializable {
 
         treeView.setRoot(root);
         treeView.setShowRoot(false);
+
+        addFunctionButtons();
     }
 
     public void selectItem() {
@@ -86,6 +114,27 @@ public class Controller implements Initializable {
             visiblePane.setVisible(false);
             visiblePane = panes.get(item);
             visiblePane.setVisible(true);
+        }
+    }
+
+    public void addFunctionButtons(){
+//        HBox functionButtonsContainer = new HBox();
+//        functionButtonsContainer.setSpacing(8);
+//        functionButtonsContainer.setAlignment(Pos.CENTER);
+////        PrimaryButton sin = new PrimaryButton(Expressions.Sin);
+//        PrimaryButton cos = new PrimaryButton();
+//        cos.setText("cos");
+//        functionButtonsContainer.getChildren().add(cos);
+////        functionButtonsContainer.getChildren().add(cos);
+//        functionButtonsWrapper.getChildren().add(functionButtonsContainer);
+
+        for (Node hBox : functionButtonsWrapper.getChildren()) {
+//            for (Node button : ((HBox) hBox).getChildren()) {
+            for (int i = 0; i < ((HBox) hBox).getChildren().size(); i++) {
+                Button button = (Button) (((HBox) hBox).getChildren().get(i));
+//                button.setStyle(PrimaryButton.style);
+                button = PrimaryButton.toPrimaryButton(button);
+            }
         }
     }
 }

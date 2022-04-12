@@ -1,38 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
-  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
-  All rights reserved. Use is subject to license terms.
-
-  This file is available and licensed under the following license:
-
-  Redistribution and use in source and binary forms, with or without
-  modification, are permitted provided that the following conditions
-  are met:
-
-  - Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
-  - Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in
-    the documentation and/or other materials provided with the distribution.
-  - Neither the name of Oracle Corporation nor the names of its
-    contributors may be used to endorse or promote products derived
-    from this software without specific prior written permission.
-
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -43,59 +13,91 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controller">
+<VBox prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controller">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
+      <GridPane minHeight="32.0" VBox.vgrow="NEVER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+            <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+          <MenuBar>
+            <menus>
+              <Menu mnemonicParsing="false" text="File">
+                <items>
+                  <MenuItem mnemonicParsing="false" text="New" />
+                  <MenuItem mnemonicParsing="false" text="Open…" />
+                  <Menu mnemonicParsing="false" text="Open Recent" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" text="Save" />
+                  <MenuItem mnemonicParsing="false" text="Save As…" />
+                  <MenuItem mnemonicParsing="false" text="Revert" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Preferences…" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Quit" />
+                </items>
+              </Menu>
+              <Menu mnemonicParsing="false" text="Edit">
+                <items>
+                  <MenuItem mnemonicParsing="false" text="Undo" />
+                  <MenuItem mnemonicParsing="false" text="Redo" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Cut" />
+                  <MenuItem mnemonicParsing="false" text="Copy" />
+                  <MenuItem mnemonicParsing="false" text="Paste" />
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Select All" />
+                  <MenuItem mnemonicParsing="false" text="Unselect All" />
+                </items>
+              </Menu>
+              <Menu mnemonicParsing="false" text="Help">
+                <items>
+                  <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+                </items>
+              </Menu>
+            </menus>
+          </MenuBar>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Standard" GridPane.columnIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" spacing="20.0" visible="false" GridPane.columnIndex="2">
+               <children>
+                  <FontAwesomeIcon glyphName="MINUS" size="1.25em" />
+                  <FontAwesomeIcon glyphName="ARROWS_ALT" size="1.25em" />
+                  <FontAwesomeIcon glyphName="CLOSE" size="2em" />
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
     <SplitPane dividerPositions="0.22617987533392694, 0.7638023152270703" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
-        <AnchorPane>
+        <AnchorPane minWidth="120.0" style="-fx-background-color: #202020;" SplitPane.resizableWithParent="false">
           <children>
-                  <TreeView fx:id="treeView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <TreeView fx:id="treeView" prefHeight="550.0" prefWidth="171.0" style="-fx-background-color: #202020;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="146.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="ANGLE_DOUBLE_LEFT" selectionStart="0" size="2em" />
+                     </graphic>
+                  </Button>
           </children>
         </AnchorPane>
             <StackPane prefHeight="551.0" prefWidth="298.0">
@@ -104,18 +106,113 @@
                      <children>
                         <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <content>
-                              <AnchorPane>
+                              <AnchorPane style="-fx-background-color: #080202;">
                                  <children>
-                                    <HBox alignment="CENTER">
+                                    <GridPane alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" vgap="16.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="500.0" minHeight="120.0" prefHeight="160.0" vgrow="ALWAYS" />
+                                        <RowConstraints maxHeight="500.0" minHeight="120.0" prefHeight="160.0" vgrow="ALWAYS" />
+                                        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" valignment="CENTER" vgrow="NEVER" />
+                                          <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
+                                      </rowConstraints>
                                        <children>
-                                          <Label alignment="CENTER" prefHeight="18.0" prefWidth="130.0" text="Standard" wrapText="true" HBox.hgrow="ALWAYS">
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </Label>
+                                          <HBox alignment="CENTER" spacing="16.0">
+                                             <children>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <TextArea prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font name="Noto Sans Math Regular" size="16.0" />
+                                                         </font>
+                                                      </TextArea>
+                                                   </children></AnchorPane>
+                                                <Button mnemonicParsing="false" text="PIN" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" spacing="16.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                                             <children>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <TextArea wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font name="Noto Sans Math Regular" size="16.0" />
+                                                         </font>
+                                                      </TextArea>
+                                                   </children>
+                                                </AnchorPane>
+                                                <Button mnemonicParsing="false" text="GO" />
+                                                <AnchorPane maxWidth="300.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <TextArea wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font name="Noto Sans Math Regular" size="16.0" />
+                                                         </font>
+                                                      </TextArea>
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
+                                             <children>
+                                                <Button mnemonicParsing="false" text="Refactor Result" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font name="Noto Sans Math Regular" size="14.0" />
+                                                   </font></Button>
+                                                <Button mnemonicParsing="false" text="Expressions" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font name="Noto Sans Math Regular" size="14.0" />
+                                                   </font></Button>
+                                                <Button mnemonicParsing="false" text="Special Functions" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font name="Noto Sans Math Regular" size="14.0" />
+                                                   </font></Button>
+                                                <Button mnemonicParsing="false" text="Constants" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font name="Noto Sans Math Regular" size="14.0" />
+                                                   </font></Button>
+                                             </children>
+                                          </HBox>
+                                          <VBox fx:id="functionButtonsWrapper" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
+                                             <children>
+                                                <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0" spacing="8.0" VBox.vgrow="NEVER">
+                                                   <children>
+                                                      <Button fx:id="absButton" mnemonicParsing="false" text="|x|">
+                                                         <font>
+                                                            <Font name="Noto Sans Math Regular" size="14.0" />
+                                                         </font>
+                                                      </Button>
+                                                      <Button fx:id="sqrtButton" mnemonicParsing="false" text="√x">
+                                                         <font>
+                                                            <Font name="Noto Sans Math Regular" size="14.0" />
+                                                         </font>
+                                                      </Button>
+                                                      <Button fx:id="rootButton" mnemonicParsing="false" text="ⁿ√x">
+                                                         <font>
+                                                            <Font name="Noto Sans Math Regular" size="14.0" />
+                                                         </font>
+                                                      </Button>
+                                                      <Button fx:id="combinationButton" mnemonicParsing="false" text="nCr">
+                                                         <font>
+                                                            <Font name="Noto Sans Math Regular" size="14.0" />
+                                                         </font>
+                                                      </Button>
+                                                      <Button fx:id="permutationButton" mnemonicParsing="false" text="nPr">
+                                                         <font>
+                                                            <Font name="Noto Sans Math Regular" size="14.0" />
+                                                         </font>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
                                        </children>
-                                    </HBox>
-                                    <TextArea layoutX="138.0" layoutY="430.0" prefHeight="200.0" prefWidth="200.0" />
+                                       <padding>
+                                          <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                       </padding>
+                                    </GridPane>
                                  </children>
                               </AnchorPane>
                            </content>
@@ -137,7 +234,24 @@
                   </AnchorPane>
                </children>
             </StackPane>
-        <AnchorPane prefHeight="551.0" prefWidth="229.0" />
+        <AnchorPane prefHeight="551.0" prefWidth="229.0" SplitPane.resizableWithParent="false">
+               <children>
+                  <SplitPane dividerPositions="0.55" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" SplitPane.resizableWithParent="false" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="ANGLE_DOUBLE_RIGHT" selectionStart="0" size="2em" />
+                     </graphic>
+                  </Button>
+               </children></AnchorPane>
       </items>
     </SplitPane>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
