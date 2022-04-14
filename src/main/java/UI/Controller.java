@@ -133,7 +133,7 @@ public class Controller implements Initializable {
             for (int i = 0; i < ((HBox) hBox).getChildren().size(); i++) {
                 Button button = (Button) (((HBox) hBox).getChildren().get(i));
 //                button.setStyle(PrimaryButton.style);
-                button = PrimaryButton.toPrimaryButton(button);
+                PrimaryButton.toPrimaryButton(button);
             }
         }
     }
