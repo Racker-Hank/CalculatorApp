@@ -6,6 +6,7 @@ public class Mode {
     public String name;
     public ArrayList <Mode> childModes = new ArrayList <>();
     public ArrayList <Function> functions = new ArrayList <>();
+    public Object sceneURL;
 
     public void display() {
 
