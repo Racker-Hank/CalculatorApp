@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="test" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controller2">
+   <children>
+      <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane>
+               <children>
+                  <GridPane alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" minWidth="500.0" vgap="16.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="500.0" minHeight="120.0" prefHeight="160.0" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="500.0" minHeight="120.0" prefHeight="160.0" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" valignment="CENTER" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
+                     </rowConstraints>
+                     <children>
+                        <HBox alignment="CENTER" spacing="16.0">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextArea prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font name="Noto Sans Math Regular" size="16.0" />
+                                       </font>
+                                    </TextArea>
+                                 </children>
+                              </AnchorPane>
+                              <Button mnemonicParsing="false" onAction="#killme" text="PIN" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="16.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #28F984; -fx-border-width: 2px; -fx-border-radius: 16; -fx-background-radius: 24;" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextArea disable="true" visible="false" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font name="Noto Sans Math Regular" size="16.0" />
+                                       </font>
+                                    </TextArea>
+                                    <HBox fx:id="mainInputPane" fillHeight="false" maxWidth="292.0" spacing="4.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="4.0">
+                                       <cursor>
+                                          <Cursor fx:constant="TEXT" />
+                                       </cursor>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                              <Button mnemonicParsing="false" text="GO" HBox.hgrow="NEVER">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
+                              <AnchorPane maxWidth="300.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextArea fx:id="tempOutputTextArea" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font name="Noto Sans Math Regular" size="16.0" />
+                                       </font>
+                                    </TextArea>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
+                           <children>
+                              <Button mnemonicParsing="false" text="Refactor Result" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font name="Noto Sans Math Regular" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" text="Expressions" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font name="Noto Sans Math Regular" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" text="Special Functions" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font name="Noto Sans Math Regular" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" text="Constants" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font name="Noto Sans Math Regular" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <VBox fx:id="functionButtonsWrapper" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
+                           <children>
+                              <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0" spacing="8.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <Button fx:id="absButton" mnemonicParsing="false" text="|x|">
+                                       <font>
+                                          <Font name="Noto Sans Math Regular" size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="sqrtButton" mnemonicParsing="false" text="√x">
+                                       <font>
+                                          <Font name="Noto Sans Math Regular" size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="rootButton" mnemonicParsing="false" text="ⁿ√x">
+                                       <font>
+                                          <Font name="Noto Sans Math Regular" size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="combinationButton" mnemonicParsing="false" text="nCr">
+                                       <font>
+                                          <Font name="Noto Sans Math Regular" size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="permutationButton" mnemonicParsing="false" text="nPr">
+                                       <font>
+                                          <Font name="Noto Sans Math Regular" size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                     </padding>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

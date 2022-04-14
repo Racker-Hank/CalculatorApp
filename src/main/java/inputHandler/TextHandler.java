@@ -119,11 +119,13 @@ public class TextHandler {
         } else if (Math.abs((number * Math.pow(10 , decimalNumbers))) - Math.abs(Math.round(number * Math.pow(10 , decimalNumbers))) < 1) {
             result = (Math.round(number * Math.pow(10 , decimalNumbers)) / Math.pow(10 ,
                     decimalNumbers));
-            System.out.println(result);
         } else {
             result = number;
         }
         return result;
     }
 
+    public static void main(String[] args) {
+        System.out.println(TextHandler.numberFormatter(Math.pow(Math.sin(Math.toRadians(45)),2)));
+    }
 }

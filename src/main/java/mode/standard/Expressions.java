@@ -2,16 +2,24 @@ package mode.standard;
 
 import inputHandler.MathUtil;
 import mode.Function;
+import mode.Function2;
+import mode.standard.expressions.Sin;
 import operation.Operand;
 
 import java.util.ArrayList;
 
 public class Expressions extends Operand {
-    public static ArrayList <Function> functions = new ArrayList <Function>();
+    public static ArrayList <Function2> functions = new ArrayList <Function2>();
+
+    public static Sin sin = new Sin();
 
     @Override
     public void display() {
 
+    }
+
+    public Expressions() {
+        functions.add(sin);
     }
 
     //    public static Function sin;
