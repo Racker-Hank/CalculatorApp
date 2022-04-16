@@ -17,15 +17,15 @@ public class UI extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-//        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Main2.fxml")));
+//       \ Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Main2.fxml")));
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Main3.fxml")));
         Scene scene = new Scene(root);
 
-//        Image icon = new Image("/images/icon.png");
-//        stage.getIcons().add(icon);
+        Image icon = new Image("images/Frame 42.png");
+        stage.getIcons().add(icon);
         stage.setTitle("Calculator");
 //        stage.setX(50);
-//        stage.setY(50);
+//        ]\stage.setY(50);
         stage.initStyle(StageStyle.DECORATED);
         stage.setScene(scene);
         UIConfig.primaryStage = stage;

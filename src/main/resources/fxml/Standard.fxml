@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="test" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controller2">
@@ -75,7 +74,7 @@
                               </AnchorPane>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
+                        <HBox fx:id="tabsButtonContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
                            <children>
                               <Button mnemonicParsing="false" text="Refactor Result" HBox.hgrow="ALWAYS">
                                  <font>
@@ -87,7 +86,7 @@
                                     <Font name="Noto Sans Math Regular" size="14.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" text="Special Functions" HBox.hgrow="ALWAYS">
+                              <Button mnemonicParsing="false" text="Specials" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Noto Sans Math Regular" size="14.0" />
                                  </font>
@@ -99,39 +98,14 @@
                               </Button>
                            </children>
                         </HBox>
-                        <VBox fx:id="functionButtonsWrapper" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
-                           <children>
-                              <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0" spacing="8.0" VBox.vgrow="NEVER">
-                                 <children>
-                                    <Button fx:id="absButton" mnemonicParsing="false" text="|x|">
-                                       <font>
-                                          <Font name="Noto Sans Math Regular" size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="sqrtButton" mnemonicParsing="false" text="√x">
-                                       <font>
-                                          <Font name="Noto Sans Math Regular" size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="rootButton" mnemonicParsing="false" text="ⁿ√x">
-                                       <font>
-                                          <Font name="Noto Sans Math Regular" size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="combinationButton" mnemonicParsing="false" text="nCr">
-                                       <font>
-                                          <Font name="Noto Sans Math Regular" size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="permutationButton" mnemonicParsing="false" text="nPr">
-                                       <font>
-                                          <Font name="Noto Sans Math Regular" size="14.0" />
-                                       </font>
-                                    </Button>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
+                        <GridPane fx:id="functionButtonsWrapper" GridPane.rowIndex="3">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
                      </children>
                      <padding>
                         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

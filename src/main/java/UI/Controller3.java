@@ -110,7 +110,8 @@ public class Controller3 implements Initializable {
             AnchorPane test = (AnchorPane) FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Standard" +
                     ".fxml")));
             mainStackPane.getChildren().add(test);
-            System.out.println(test.getId());
+//            System.out.println(test.getId());
+            System.out.println(test.getParent());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -144,7 +145,7 @@ public class Controller3 implements Initializable {
             for (int i = 0; i < ((HBox) hBox).getChildren().size(); i++) {
                 Button button = (Button) (((HBox) hBox).getChildren().get(i));
 //                button.setStyle(PrimaryButton.style);
-                button = PrimaryButton.toPrimaryButton(button);
+                button = new PrimaryButton().toPrimaryButton(button);
             }
         }
     }

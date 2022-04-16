@@ -24,7 +24,7 @@
 
 <VBox prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controller3">
   <children>
-      <GridPane minHeight="32.0" VBox.vgrow="NEVER">
+      <GridPane minHeight="32.0" style="-fx-background-color: #080202;" VBox.vgrow="NEVER">
          <columnConstraints>
             <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
             <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
@@ -34,13 +34,11 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-          <MenuBar>
+          <MenuBar style="-fx-background-color: #080202;">
             <menus>
-              <Menu mnemonicParsing="false" text="File">
+              <Menu mnemonicParsing="false" style="-fx-background-color: #080202; fx-text-fill: #fff;" text="File">
                 <items>
                   <MenuItem mnemonicParsing="false" text="New" />
-                  <MenuItem mnemonicParsing="false" text="Open…" />
-                  <Menu mnemonicParsing="false" text="Open Recent" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Close" />
                   <MenuItem mnemonicParsing="false" text="Save" />
@@ -52,7 +50,7 @@
                   <MenuItem mnemonicParsing="false" text="Quit" />
                 </items>
               </Menu>
-              <Menu mnemonicParsing="false" text="Edit">
+              <Menu mnemonicParsing="false" style="-fx-background-color: #080202; fx-text-fill: #fff;" text="Edit">
                 <items>
                   <MenuItem mnemonicParsing="false" text="Undo" />
                   <MenuItem mnemonicParsing="false" text="Redo" />
@@ -66,14 +64,14 @@
                   <MenuItem mnemonicParsing="false" text="Unselect All" />
                 </items>
               </Menu>
-              <Menu mnemonicParsing="false" text="Help">
+              <Menu mnemonicParsing="false" style="-fx-background-color: #080202; fx-text-fill: #fff;" text="Help">
                 <items>
                   <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
                 </items>
               </Menu>
             </menus>
           </MenuBar>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Standard" GridPane.columnIndex="1">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Standard" textFill="WHITE" GridPane.columnIndex="1">
                <font>
                   <Font size="14.0" />
                </font>
@@ -94,7 +92,18 @@
                   <TreeView fx:id="treeView" prefHeight="550.0" prefWidth="171.0" style="-fx-background-color: #202020;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <Button alignment="CENTER" contentDisplay="CENTER" layoutX="146.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <graphic>
-                        <FontAwesomeIcon glyphName="ANGLE_DOUBLE_LEFT" selectionStart="0" size="2em" />
+                        <GridPane alignment="CENTER">
+                          <columnConstraints>
+                            <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints valignment="CENTER" vgrow="NEVER" />
+                          </rowConstraints>
+                           <children>
+                              <FontAwesomeIcon glyphName="ANGLE_DOUBLE_LEFT" size="2em" />
+                              <FontAwesomeIcon glyphName="ANGLE_DOUBLE_RIGHT" size="2em" visible="false" />
+                           </children>
+                        </GridPane>
                      </graphic>
                   </Button>
           </children>
@@ -114,7 +123,18 @@
                   </SplitPane>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0">
                      <graphic>
-                        <FontAwesomeIcon glyphName="ANGLE_DOUBLE_RIGHT" selectionStart="0" size="2em" />
+                        <GridPane alignment="CENTER">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints valignment="CENTER" vgrow="NEVER" />
+                           </rowConstraints>
+                           <children>
+                              <FontAwesomeIcon glyphName="ANGLE_DOUBLE_RIGHT" size="2em" />
+                              <FontAwesomeIcon glyphName="ANGLE_DOUBLE_LEFT" size="2em" visible="false" />
+                           </children>
+                        </GridPane>
                      </graphic>
                   </Button>
                </children></AnchorPane>
