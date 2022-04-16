@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 public class UIConfig {
     public static Stage primaryStage;
 
-    public static int fontSize = 16;
+    public static int fontSize = 14;
 
     public static String fontFamily = "Noto Sans Math";
 

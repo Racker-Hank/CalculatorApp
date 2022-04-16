@@ -1,6 +1,7 @@
 package mode.standard.specials;
 
 import UI.UIConfig;
+import UI.components.InputPane;
 import UI.components.PrimaryButton;
 import inputHandler.MathUtil;
 import inputHandler.TextHandler;
@@ -35,11 +36,13 @@ public class RandInRangeN extends Function2 {
         String textFieldStyle = "-fx-font-family: Noto Sans Math;-fx-font-size: 14pt;-fx-font-fill: #FFFFFF;" +
                 "-fx-padding: " +
                 "0;";
-        TextField functionName0 = new TextField("");
-        functionName0.setStyle(textFieldStyle);
-        setTextFieldWidth(functionName0 , 8);
-        functionContainer.getChildren().add(functionName0);
-
+        InputPane functionName0Container = new InputPane();
+        //TextField functionName0 = new TextField("");
+        functionName0Container.defaultTextField.setText("");
+//        functionName0.setStyle(textFieldStyle);
+//        setTextFieldWidth(functionName0 , 8);
+//        functionContainer.getChildren().add(functionName0);
+        functionContainer.getChildren().add(functionName0Container);
         TextField functionName1 = new TextField("rand(");
         functionName1.setEditable(false);
         setTextFieldWidth(functionName1 , 44);
@@ -57,6 +60,8 @@ public class RandInRangeN extends Function2 {
         setTextFieldWidth(functionName5 , -1);
         functionContainer.getChildren().add(functionName5);
 
+        InputPane inputPane = new InputPane();
+        functionContainer.getChildren().add(inputPane);
         ((HBox) (parentPane)).getChildren().add(functionContainer);
 
         Parent traceNode = parentPane;
