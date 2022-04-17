@@ -2,7 +2,6 @@ package mode.standard.expressions;
 
 import UI.UIConfig;
 import UI.components.PrimaryButton;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import inputHandler.MathUtil;
 import inputHandler.TextHandler;
 import javafx.application.Platform;

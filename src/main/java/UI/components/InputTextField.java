@@ -2,21 +2,24 @@ package UI.components;
 
 import UI.UIConfig;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 
 public class InputTextField extends TextField {
-    String textfieldStyle;
+    String textFieldStyle = "fx-font-size: " + 14 + ";";
 
     public InputTextField() {
-        setStyle(textfieldStyle);
+        this.setStyle(textFieldStyle);
+        this.setAlignment(Pos.CENTER);
+//        System.out.println(this.getStyle());
         setTextFieldWidth(this, 0);
     }
 
     public void setTextFieldWidth(TextField textField , double prefWidth) {
         textField.setPrefWidth(prefWidth > 0 ? prefWidth : Math.max(UIConfig.fontSize ,
-                UIConfig.fontSize * (textField.getText().length() - 2) + textField.getPadding().getLeft() + textField.getPadding().getRight() + 4d));
+                UIConfig.fontSize * (textField.getText().length()) + textField.getPadding().getLeft() + textField.getPadding().getRight() + 4d));
         textField.textProperty().addListener((ov , prevText , currText) -> {
             // Do this in a Platform.runLater because of Textfield has no padding at first time and so on
             Platform.runLater(() -> {

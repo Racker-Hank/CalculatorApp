@@ -2,8 +2,14 @@ package operation;
 
 //import error.Error;
 
+import UI.UIConfig;
+import UI.components.InputPane;
 import inputHandler.MathUtil;
 import inputHandler.TextHandler;
+import javafx.geometry.Pos;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 public class Fraction extends Operand implements Comparable<Fraction> {
     public String name = "Fraction";
@@ -143,9 +149,45 @@ public class Fraction extends Operand implements Comparable<Fraction> {
         }
     }
 
-    @Override
-    public void display() {
+    public int Level = 0;
+    public Fraction children;
+    public InputPane fractionWrapper;
+    public VBox fractionContainer;
 
+    @Override
+    public void addToAnchorPane(Pane parentPane) {
+        fractionContainer = new VBox(2);
+        fractionContainer.setAlignment(Pos.CENTER);
+        fractionContainer.setFillWidth(true);
+
+        InputPane numeratorContainer = new InputPane();
+//        String numeratorText = defaultTextField.getText().substring(0 , defaultTextField.getText().indexOf("/"));
+//        numeratorContainer.defaultTextField.setText(numeratorText);
+        numeratorContainer.defaultTextField.setText(TextHandler.numberFormatter(numerator) + "");
+
+        AnchorPane fractionLine = new AnchorPane();
+        fractionLine.setPrefWidth(1 * parentPane.getWidth());
+        fractionLine.setPrefHeight(3);
+        fractionLine.setStyle("-fx-background-color: " + UIConfig.colorYellow);
+
+        InputPane denominatorContainer = new InputPane();
+//        String denominatorText = defaultTextField.getText().substring(defaultTextField.getText().indexOf("/") + 1);
+//        denominatorContainer.defaultTextField.setText(denominatorText);
+        denominatorContainer.defaultTextField.setText(TextHandler.numberFormatter(denominator) + "");
+
+//        this.getChildren().clear();
+
+        fractionContainer.getChildren().add(numeratorContainer);
+        fractionContainer.getChildren().add(fractionLine);
+        fractionContainer.getChildren().add(denominatorContainer);
+
+        AnchorPane.setTopAnchor(fractionContainer , 0.0);
+        AnchorPane.setLeftAnchor(fractionContainer , 0.0);
+        AnchorPane.setRightAnchor(fractionContainer , 0.0);
+        AnchorPane.setBottomAnchor(fractionContainer , 0.0);
+//        denominatorContainer.defaultTextField.requestFocus();
+//        this.getChildren().add(fractionContainer);
+        parentPane.getChildren().add(fractionContainer);
     }
 
     public static void main(String[] args) {

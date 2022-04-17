@@ -7,6 +7,7 @@ import inputHandler.MathUtil;
 import inputHandler.TextHandler;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
@@ -33,6 +34,8 @@ public class RandInRangeN extends Function2 {
     public void addToAnchorPane(Pane parentPane) {
         HBox functionContainer = new HBox();
         functionContainer.setSpacing(2);
+        functionContainer.setAlignment(Pos.CENTER_LEFT);
+        functionContainer.setFillHeight(false);
         String textFieldStyle = "-fx-font-family: Noto Sans Math;-fx-font-size: 14pt;-fx-font-fill: #FFFFFF;" +
                 "-fx-padding: " +
                 "0;";

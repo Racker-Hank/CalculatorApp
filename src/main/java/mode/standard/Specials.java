@@ -1,5 +1,6 @@
 package mode.standard;
 
+import javafx.scene.layout.Pane;
 import mode.Function2;
 import mode.standard.specials.RandInRangeMN;
 import mode.standard.specials.RandInRangeN;
@@ -14,7 +15,7 @@ public class Specials extends Operand {
     public static RandInRangeN randDoubleInRangeN = new RandInRangeN();
 
     @Override
-    public void display() {
+    public void addToAnchorPane(Pane parentPane) {
 
     }
 

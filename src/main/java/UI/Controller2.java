@@ -1,5 +1,6 @@
 package UI;
 
+import UI.components.InputPane;
 import UI.components.PrimaryButton;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -58,6 +59,8 @@ public class Controller2 {
     //    }
     public void initialize() {
         PrimaryButton.mainInputPane = mainInputPane;
+        InputPane test = new InputPane();
+        mainInputPane.getChildren().add(test);
         PrimaryButton.tempOutputTextArea = tempOutputTextArea;
         //        (Button) tabsButtonContainer.getChildren().get(0) =
         //        tabsButtonContainer.getChildren().add(PrimaryButton.toPrimaryButton((Button) tabsButtonContainer.getChildren().get(0) , 14,
@@ -87,9 +90,9 @@ public class Controller2 {
 
         for (int i = 0; i < tabsButtonContainer.getChildren().size(); i++) {
             Button button = (Button) tabsButtonContainer.getChildren().get(i);
-            button.setId(i + "");
+            button.setId("tabButton " + i);
             button.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED , event -> {
-                selectFunctionButtonsWrapper(Integer.parseInt(button.getId()));
+                selectFunctionButtonsWrapper(Integer.parseInt(button.getId().charAt(button.getId().length() - 1) + ""));
             });
         }
     }
@@ -154,5 +157,7 @@ public class Controller2 {
         }
         mainInputPane.getChildren().clear();
         tempOutputTextArea.clear();
+        InputPane test = new InputPane();
+        mainInputPane.getChildren().add(test);
     }
 }

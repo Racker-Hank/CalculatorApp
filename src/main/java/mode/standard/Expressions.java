@@ -1,6 +1,7 @@
 package mode.standard;
 
 import inputHandler.MathUtil;
+import javafx.scene.layout.Pane;
 import mode.Function;
 import mode.Function2;
 import mode.standard.expressions.Cos;
@@ -18,7 +19,7 @@ public class Expressions extends Operand {
     public static Tan tan = new Tan();
 
     @Override
-    public void display() {
+    public void addToAnchorPane(Pane parentPane) {
 
     }
 
