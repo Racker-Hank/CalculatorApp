@@ -2,19 +2,25 @@ package UI.components;
 
 import UI.UIConfig;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class InputTextField extends TextField {
-    String textFieldStyle = "fx-font-size: " + 14 + ";";
+    String textFieldStyle = "-fx-font-size: " + 14 + ";"
+//            + "-fx-background-color:transparent;"
+            ;
 
     public InputTextField() {
         this.setStyle(textFieldStyle);
+        //        this.setFont(Font.font("Noto Sans Math", 14));
         this.setAlignment(Pos.CENTER);
-//        System.out.println(this.getStyle());
-        setTextFieldWidth(this, 0);
+        //        System.out.println(this.getStyle());
+        setTextFieldWidth(this , 0);
     }
 
     public void setTextFieldWidth(TextField textField , double prefWidth) {
@@ -23,6 +29,7 @@ public class InputTextField extends TextField {
         textField.textProperty().addListener((ov , prevText , currText) -> {
             // Do this in a Platform.runLater because of Textfield has no padding at first time and so on
             Platform.runLater(() -> {
+                //                System.out.println(currText);
                 Text text = new Text(currText);
                 text.setFont(textField.getFont()); // Set the same font, so the size is the same
                 double width = text.getLayoutBounds().getWidth() // This big is the Text in the TextField
@@ -30,6 +37,10 @@ public class InputTextField extends TextField {
                         // TextField
                         + 2d; // Add some spacing
                 textField.setPrefWidth(width); // Set the width
+                // Set the width of parent
+//                if (textField.getParent() != null) {
+//                    ((InputPane) textField.getParent()).setPrefWidth(width);
+//                }
                 textField.positionCaret(textField.getCaretPosition()); // If you remove this line, it flashes a little bit
             });
         });

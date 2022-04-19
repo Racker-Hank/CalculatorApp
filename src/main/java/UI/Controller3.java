@@ -111,7 +111,7 @@ public class Controller3 implements Initializable {
                     ".fxml")));
             mainStackPane.getChildren().add(test);
 //            System.out.println(test.getId());
-            System.out.println(test.getParent());
+//            System.out.println(test.getParent());
         } catch (IOException e) {
             e.printStackTrace();
         }

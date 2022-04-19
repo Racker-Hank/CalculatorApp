@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="test" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controller2">
+<AnchorPane fx:id="test" style="-fx-background-color: #080202;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controller2">
    <children>
-      <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: #080202;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <AnchorPane>
+            <AnchorPane style="-fx-background-color: #080202;">
                <children>
                   <GridPane alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" minWidth="500.0" vgap="16.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columnConstraints>
@@ -47,16 +47,18 @@
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #28F984; -fx-border-width: 2px; -fx-border-radius: 16; -fx-background-radius: 24;" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <TextArea disable="true" visible="false" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <font>
-                                          <Font name="Noto Sans Math Regular" size="16.0" />
-                                       </font>
-                                    </TextArea>
-                                    <HBox fx:id="mainInputPane" fillHeight="false" maxWidth="292.0" spacing="4.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="4.0">
-                                       <cursor>
-                                          <Cursor fx:constant="TEXT" />
-                                       </cursor>
-                                    </HBox>
+                                    <ScrollPane layoutX="10.0" layoutY="6.0" maxHeight="160.0" style="-fx-border-radius: 16; -fx-background-radius: 16;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                       <content>
+                                          <HBox fx:id="mainInputPane" alignment="CENTER_LEFT" fillHeight="false" maxWidth="292.0" spacing="4.0">
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
+                                          </HBox>
+                                       </content>
+                                       <padding>
+                                          <Insets bottom="4.0" left="8.0" right="8.0" top="4.0" />
+                                       </padding>
+                                    </ScrollPane>
                                  </children>
                               </AnchorPane>
                               <Button mnemonicParsing="false" text="GO" HBox.hgrow="NEVER">
@@ -74,31 +76,8 @@
                               </AnchorPane>
                            </children>
                         </HBox>
-                        <HBox fx:id="tabsButtonContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
-                           <children>
-                              <Button mnemonicParsing="false" text="Refactor Result" HBox.hgrow="ALWAYS">
-                                 <font>
-                                    <Font name="Noto Sans Math Regular" size="14.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" text="Expressions" HBox.hgrow="ALWAYS">
-                                 <font>
-                                    <Font name="Noto Sans Math Regular" size="14.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" text="Specials" HBox.hgrow="ALWAYS">
-                                 <font>
-                                    <Font name="Noto Sans Math Regular" size="14.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" text="Constants" HBox.hgrow="ALWAYS">
-                                 <font>
-                                    <Font name="Noto Sans Math Regular" size="14.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </HBox>
-                        <GridPane fx:id="functionButtonsWrapper" GridPane.rowIndex="3">
+                        <HBox fx:id="tabsButtonContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
+                        <GridPane fx:id="functionButtonsWrapper" vgap="32.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                            </columnConstraints>

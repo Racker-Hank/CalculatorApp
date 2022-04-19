@@ -17,6 +17,7 @@ import operation.Fraction;
 
 public class InputPane extends AnchorPane {
     public InputTextField defaultTextField;
+    public double result;
 
     public InputPane() {
         defaultTextField = new InputTextField();
@@ -40,41 +41,42 @@ public class InputPane extends AnchorPane {
     }
 
     private void convertToFraction() {
-//        VBox fractionContainer = new VBox(2);
-//        fractionContainer.setAlignment(Pos.CENTER);
-//        fractionContainer.setFillWidth(true);
-//
-//        InputPane numeratorContainer = new InputPane();
-//        String numeratorText = defaultTextField.getText().substring(0 , defaultTextField.getText().indexOf("/"));
-//        numeratorContainer.defaultTextField.setText(numeratorText);
-////        numeratorContainer.defaultTextField.setPrefWidth(1 * this.defaultTextField.getWidth());
-//
-//        //        Rectangle rec = new Rectangle(1.5  * this.getWidth(), 2, Color.web(UIConfig.colorYellow));
-//        //        fractionContainer.getChildren().add(rec);
-//        AnchorPane fractionLine = new AnchorPane();
-//        fractionLine.setPrefWidth(1 * this.getWidth());
-////        fractionLine.setPrefWidth(14);
-//        fractionLine.setPrefHeight(3);
-//        fractionLine.setStyle("-fx-background-color: " + UIConfig.colorYellow);
-//
-//        InputPane denominatorContainer = new InputPane();
-//        String denominatorText = defaultTextField.getText().substring(defaultTextField.getText().indexOf("/") + 1);
-//        denominatorContainer.defaultTextField.setText(denominatorText);
-//
-//        this.getChildren().clear();
-////        this.setHeight(2.25 * defaultTextField.getHeight());
-//        //        this.setWidth(1.5 * defaultTextField.getWidth());
-////        fractionLine.setMaxWidth(1 * Math.max(numeratorContainer.defaultTextField.getPrefWidth() ,
-////                denominatorContainer.defaultTextField.getPrefWidth()));
-//        fractionContainer.getChildren().add(numeratorContainer);
-//        fractionContainer.getChildren().add(fractionLine);
-//        fractionContainer.getChildren().add(denominatorContainer);
-//        AnchorPane.setTopAnchor(fractionContainer , 0.0);
-//        AnchorPane.setLeftAnchor(fractionContainer , 0.0);
-//        AnchorPane.setRightAnchor(fractionContainer , 0.0);
-//        AnchorPane.setBottomAnchor(fractionContainer , 0.0);
-//        this.getChildren().add(fractionContainer);
-//        denominatorContainer.defaultTextField.requestFocus();
+        VBox fractionContainer = new VBox(2);
+        fractionContainer.setAlignment(Pos.CENTER);
+        fractionContainer.setFillWidth(true);
+
+        InputPane numeratorContainer = new InputPane();
+        String numeratorText = defaultTextField.getText().substring(0 , defaultTextField.getText().indexOf("/"));
+        numeratorContainer.defaultTextField.setText(numeratorText);
+//        numeratorContainer.defaultTextField.setPrefWidth(1 * this.defaultTextField.getWidth());
+
+        //        Rectangle rec = new Rectangle(1.5  * this.getWidth(), 2, Color.web(UIConfig.colorYellow));
+        //        fractionContainer.getChildren().add(rec);
+        AnchorPane fractionLine = new AnchorPane();
+        fractionLine.setPrefWidth(1 * this.getWidth());
+//        fractionLine.setPrefWidth(14);
+        fractionLine.setPrefHeight(3);
+        fractionLine.setStyle("-fx-background-color: " + UIConfig.colorYellow);
+        System.out.println(fractionLine.getPrefWidth());
+
+        InputPane denominatorContainer = new InputPane();
+        String denominatorText = defaultTextField.getText().substring(defaultTextField.getText().indexOf("/") + 1);
+        denominatorContainer.defaultTextField.setText(denominatorText);
+
+        this.getChildren().clear();
+//        this.setHeight(2.25 * defaultTextField.getHeight());
+        //        this.setWidth(1.5 * defaultTextField.getWidth());
+//        fractionLine.setMaxWidth(1 * Math.max(numeratorContainer.defaultTextField.getPrefWidth() ,
+//                denominatorContainer.defaultTextField.getPrefWidth()));
+        fractionContainer.getChildren().add(numeratorContainer);
+        fractionContainer.getChildren().add(fractionLine);
+        fractionContainer.getChildren().add(denominatorContainer);
+        AnchorPane.setTopAnchor(fractionContainer , 0.0);
+        AnchorPane.setLeftAnchor(fractionContainer , 0.0);
+        AnchorPane.setRightAnchor(fractionContainer , 0.0);
+        AnchorPane.setBottomAnchor(fractionContainer , 0.0);
+        this.getChildren().add(fractionContainer);
+        denominatorContainer.defaultTextField.requestFocus();
 ////        fractionContainer.setOn(new EventHandler <KeyEvent>() {
 ////            @Override
 ////            public void handle(KeyEvent keyEvent) {
@@ -100,24 +102,26 @@ public class InputPane extends AnchorPane {
 ////            run = (InputPane) ((VBox) this.getChildren().get(0)).getChildren().get(0);
 ////        }
 
-        try {
-            double numerator = Double.parseDouble(defaultTextField.getText().substring(0 ,
-                    defaultTextField.getText().indexOf("/")));
-            Fraction fraction;
-            if (defaultTextField.getText().substring(defaultTextField.getText().indexOf("/") + 1).equals("")){
-                fraction = new Fraction(numerator);
-            } else {
-                double denominator = Double.parseDouble(defaultTextField.getText().substring(defaultTextField.getText().indexOf("/") + 1));
-                fraction = new Fraction(numerator, denominator);
-            }
-//            fraction.parent =
-            this.getChildren().clear();
-            fraction.addToAnchorPane(this);
-            ((InputPane) fraction.fractionContainer.getChildren().get(2)).defaultTextField.requestFocus();
-            ((InputPane) fraction.fractionContainer.getChildren().get(2)).defaultTextField.positionCaret(Integer.MAX_VALUE);
-//            this = fraction.fractionWrapper;
-        } catch (Exception e) {
-//            e.printStackTrace();
-        }
+//        try {
+//            Fraction fraction;
+//            double numerator = Double.parseDouble(defaultTextField.getText().substring(0 ,
+//                    defaultTextField.getText().indexOf("/")));
+//            if (defaultTextField.getText().substring(defaultTextField.getText().indexOf("/") + 1).equals("")){
+//                fraction = new Fraction(numerator);
+//            } else {
+//                double denominator = Double.parseDouble(defaultTextField.getText().substring(defaultTextField.getText().indexOf("/") + 1));
+//                fraction = new Fraction(numerator, denominator);
+//            }
+////            fraction.parent =
+//            this.getChildren().clear();
+//            fraction.addToAnchorPane(this);
+//            fraction.fractionContainer.denominatorContainer.defaultTextField.requestFocus();
+//            fraction.fractionContainer.denominatorContainer.defaultTextField.positionCaret(Integer.MAX_VALUE);
+////            this.getParent().getChildrenUnmodifiable(). = fraction.fractionWrapper;
+////            this.getChildren().remove(0);
+////            this = fraction.fractionWrapper;
+//        } catch (Exception e) {
+////            e.printStackTrace();
+//        }
     }
 }

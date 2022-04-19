@@ -16,6 +16,9 @@ import java.lang.reflect.Method;
 public class PrimaryButton extends Button {
     public String defaultStyle;
     public String hoverStyle;
+    public String activeStyle;
+    public String inactiveStyle;
+    public boolean isActive;
     public static HBox mainInputPane;
     public static TextArea tempOutputTextArea;
     public static double tooltipDelay = 0.5;
@@ -64,6 +67,8 @@ public class PrimaryButton extends Button {
                 "-fx-border-radius:" + UIConfig.borderRadius + "px;" +
                 "-fx-background-insets:" + 1 + "px;" +
                 "-fx-background-radius:" + (UIConfig.borderRadius + 8) + "px;";
+        activeStyle = defaultStyle.replace("-fx-background-color: #202020;" , "-fx-background-color:"+ color +";");
+        inactiveStyle = defaultStyle.replace("-fx-text-fill: white; " , "-fx-text-fill: " + UIConfig.colorInactiveGrey +";");
     }
 
     public PrimaryButton() {
@@ -108,8 +113,9 @@ public class PrimaryButton extends Button {
 
     public Button toPrimaryButton(Button button) {
         setStyleString();
+        PrimaryButton primaryButton = (PrimaryButton) button;
         button.setStyle(defaultStyle);
-        return button;
+        return primaryButton;
     }
 
     public Button toPrimaryButton(Button button , String borderColor) {
@@ -118,39 +124,42 @@ public class PrimaryButton extends Button {
 
     public Button toPrimaryButton(Button button , int fontSize , String borderColor) {
         setStyleString(fontSize , borderColor);
+        PrimaryButton primaryButton = (PrimaryButton) button;
         button.setStyle(defaultStyle);
-        return button;
+        return primaryButton;
     }
 
     public void initializeButtonListener() {
-        setOnMousePressed(new EventHandler <MouseEvent>() {
-            public void handle(MouseEvent e) {
-                if (e.getButton().equals(MouseButton.PRIMARY)) {
-                    //                    setButtonPressedStyle();
-                    function.addToAnchorPane(mainInputPane);
+        if (function != null) {
+            setOnMousePressed(new EventHandler <MouseEvent>() {
+                public void handle(MouseEvent e) {
+                    if (e.getButton().equals(MouseButton.PRIMARY)) {
+                        //                    setButtonPressedStyle();
+                        function.addToAnchorPane(mainInputPane);
+                    }
                 }
-            }
 
-            ;
-        });
+                ;
+            });
 
-        //        hover
-        setOnMouseEntered(new EventHandler <MouseEvent>() {
-            public void handle(MouseEvent e) {
-                //                System.out.println(function.name);
-                //                Tooltip tooltip = new Tooltip(function.description);
-                //                Tooltip.install(PrimaryButton.this, tooltip);
-                function.button.setStyle(hoverStyle);
-            }
+            //        hover
+            setOnMouseEntered(new EventHandler <MouseEvent>() {
+                public void handle(MouseEvent e) {
+                    //                System.out.println(function.name);
+                    //                Tooltip tooltip = new Tooltip(function.description);
+                    //                Tooltip.install(PrimaryButton.this, tooltip);
+                    function.button.setStyle(hoverStyle);
+                }
 
-            ;
-        });
-        setOnMouseExited(new EventHandler <MouseEvent>() {
-            public void handle(MouseEvent e) {
-                function.button.setStyle(defaultStyle);
-            }
+                ;
+            });
+            setOnMouseExited(new EventHandler <MouseEvent>() {
+                public void handle(MouseEvent e) {
+                    function.button.setStyle(defaultStyle);
+                }
 
-            ;
-        });
+                ;
+            });
+        }
     }
 }

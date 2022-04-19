@@ -2,6 +2,7 @@ package inputHandler;
 
 import operation.Fraction;
 
+import java.math.BigDecimal;
 import java.util.Stack;
 
 public class TextHandler {
@@ -115,12 +116,12 @@ public class TextHandler {
         Number result;
         int decimalNumbers = 9;
         if (number == (int) number) {
-            result = ((int) number);
+            result = ((int) number);    
         } else if (Math.abs((number * Math.pow(10 , decimalNumbers))) - Math.abs(Math.round(number * Math.pow(10 , decimalNumbers))) < 1) {
             result = (Math.round(number * Math.pow(10 , decimalNumbers)) / Math.pow(10 ,
                     decimalNumbers));
         } else {
-            result = number;
+            result = new BigDecimal(number);
         }
         return result;
     }

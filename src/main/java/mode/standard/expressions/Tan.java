@@ -17,6 +17,8 @@ import javafx.scene.text.Text;
 import mode.Command;
 import mode.Function2;
 
+import java.util.ArrayList;
+
 public class Tan extends Function2 {
     public Tan() {
         this.name = "tan(x)";
@@ -56,6 +58,10 @@ public class Tan extends Function2 {
         Parent traceNode = parentPane;
         while (traceNode != null) {
             addCheckMouseClickPosition(traceNode.getParent() , functionContainer);
+            ArrayList<Node> allNodes = UIConfig.getAllNodes(traceNode);
+            for (Node node : allNodes) {
+                addCheckMouseClickPosition(traceNode , functionContainer);
+            }
             traceNode =  traceNode.getParent();
         }
     }
@@ -82,6 +88,7 @@ public class Tan extends Function2 {
                             }
                         } catch (NumberFormatException e) {
                         }
+                        System.out.println(event.getTarget());
                     }
                 }
             });

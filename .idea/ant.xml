@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AntConfiguration">
+    <buildFile url="jar://$PROJECT_DIR$/../latexview-0.6.0.jar!/META-INF/maven/io.github.egormkn/latexview/pom.xml" />
+  </component>
+</project>
