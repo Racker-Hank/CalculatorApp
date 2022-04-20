@@ -13,6 +13,8 @@ import javafx.scene.text.Text;
 public class InputTextField extends TextField {
     String textFieldStyle = "-fx-font-size: " + 14 + ";"
 //            + "-fx-background-color:transparent;"
+//            + "-fx-border-color: green;"
+//            + "-fx-border-size: 1px;"
             ;
 
     public InputTextField() {

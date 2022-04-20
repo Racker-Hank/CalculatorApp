@@ -63,6 +63,8 @@ public class Controller2 {
     public void initialize() {
         PrimaryButton.mainInputPane = mainInputPane;
         InputPane test = new InputPane();
+        test.requestFocus();
+        test.defaultTextField.requestFocus();
         mainInputPane.getChildren().add(test);
 
 
@@ -206,6 +208,7 @@ public class Controller2 {
         mainInputPane.getChildren().clear();
         tempOutputTextArea.clear();
         InputPane test = new InputPane();
+        test.defaultTextField.requestFocus();
         mainInputPane.getChildren().add(test);
     }
 }

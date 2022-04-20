@@ -184,6 +184,7 @@ public class Fraction extends Operand implements Comparable <Fraction> {
 
             Region numeratorPaddingRegion1 = new Region();
             numeratorPaddingRegion1.setMinWidth(regionWidth);
+            HBox.setHgrow(numeratorPaddingRegion1 , Priority.NEVER);
 //            numeratorWrapper.getChildren().add(numeratorPaddingRegion1);
 
             numeratorContainer = new InputPane();
@@ -197,10 +198,12 @@ public class Fraction extends Operand implements Comparable <Fraction> {
                     }
                 });
             });
+            HBox.setHgrow(numeratorContainer , Priority.ALWAYS);
             numeratorWrapper.getChildren().add(numeratorContainer);
 
             Region numeratorPaddingRegion2 = new Region();
             numeratorPaddingRegion2.setMinWidth(regionWidth);
+            HBox.setHgrow(numeratorPaddingRegion2 , Priority.NEVER);
 //            numeratorWrapper.getChildren().add(numeratorPaddingRegion2);
             /*end numerator*/
 
@@ -230,6 +233,7 @@ public class Fraction extends Operand implements Comparable <Fraction> {
                     }
                 });
             });
+            HBox.setHgrow(denominatorContainer , Priority.ALWAYS);
             denominatorWrapper.getChildren().add(denominatorContainer);
 
             Region denominatorPaddingRegion2 = new Region();
@@ -322,8 +326,8 @@ public class Fraction extends Operand implements Comparable <Fraction> {
         if (parentPane.getParent().getParent() instanceof FractionVBox) {
             fractionContainer.parentFraction = ((FractionVBox) parentPane.getParent().getParent()).fraction;
             ((FractionVBox) parentPane.getParent().getParent()).childFraction = fractionContainer.fraction;
-//            System.out.println(fractionContainer.parentFraction.toString());
-//            System.out.println(fractionContainer.fraction.toString());
+            System.out.println(fractionContainer.parentFraction.toString());
+            System.out.println(fractionContainer.fraction.toString());
         }
         parentPane.getChildren().add(fractionContainer);
     }

@@ -104,8 +104,8 @@ public class PrimaryButton extends Button {
         this.setTooltip(tooltip);
         tooltip.setShowDelay(Duration.seconds(tooltipDelay));
         tooltip.setHideDelay(Duration.seconds(0));
-        setStyleString();
-        setColor(color);
+        setStyleString(0, color);
+//        setColor(color);
         //        color = defaultStyle.
         this.setStyle(defaultStyle);
         initializeButtonListener();
