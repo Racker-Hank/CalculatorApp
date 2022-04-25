@@ -19,9 +19,15 @@ public class TextHandler {
             }
 
             // if the token is an operand, push it to operand stack
-            if (tokens[i] >= '0' && tokens[i] <= '9') {
+            if (tokens[i] >= '0' && tokens[i] <= '9' || tokens[i] == '.') {
                 StringBuilder sb = new StringBuilder();
-                while (i < tokens.length && tokens[i] >= '0' && tokens[i] <= '9') {
+                boolean hasDot = false;
+                while (i < tokens.length && (tokens[i] >= '0' && tokens[i] <= '9' || tokens[i] == '.')) {
+                    if (!hasDot && tokens[i] == '.') {
+                        hasDot = true;
+                    } else if (hasDot && tokens[i] == '.') {
+                        System.out.println("error");
+                    }
                     sb.append(tokens[i++]);
                 }
                 //                operands.push(Double.parseDouble(sb.toString()));
@@ -31,7 +37,7 @@ public class TextHandler {
             // if token is '!' calculate factorial of stack's top and push it to operand stack
             else if (tokens[i] == '!') {
                 //                operands.push((double) MathUtil.factorial((int) (operands.pop().denominator)));
-                operands.push(new Fraction(MathUtil.factorial((int) (operands.pop().denominator))));
+                operands.push(new Fraction(MathUtil.factorial((int) (operands.pop().numerator))));
             }
             // if the token is "(" push it to the operation stack
             else if (tokens[i] == '(') {
@@ -127,5 +133,6 @@ public class TextHandler {
 
     public static void main(String[] args) {
         System.out.println(TextHandler.numberFormatter(Math.pow(Math.sin(Math.toRadians(45)),2)));
+        System.out.println();
     }
 }
