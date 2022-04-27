@@ -65,12 +65,12 @@ public class MathUtil {
      * @param num
      * @return
      */
-    public static int factorial (int num) {
+    public static long factorial (long num) {
         if (num < 0) {
             throw new IllegalArgumentException("Math error");
         }
-        int x = 1;
-        for (int i = 1; i <= num; i++) {
+        long x = 1;
+        for (long i = 1; i <= num; i++) {
             x *= i;
         }
         return x;
@@ -93,7 +93,7 @@ public class MathUtil {
      * @param n
      * @return Tổ hợp chập k của n
      */
-    public static int combination (int k, int n) {
+    public static long combination (long k, long n) {
         if (n < k) {
             throw new IllegalArgumentException("Math error");
         }

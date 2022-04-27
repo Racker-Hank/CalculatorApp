@@ -2,6 +2,7 @@ package UI.components;
 
 
 import UI.UIConfig;
+import inputHandler.TextHandler;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Control;
@@ -119,10 +120,11 @@ public class InputPane extends AnchorPane {
             double numerator = Double.parseDouble(defaultTextField.getText().substring(0 ,
                     defaultTextField.getText().indexOf("/")));
             if (defaultTextField.getText().substring(defaultTextField.getText().indexOf("/") + 1).equals("")){
-                fraction = new Fraction(numerator);
+                fraction = new Fraction(TextHandler.numberFormatter(numerator).doubleValue());
             } else {
                 double denominator = Double.parseDouble(defaultTextField.getText().substring(defaultTextField.getText().indexOf("/") + 1));
-                fraction = new Fraction(numerator, denominator);
+                fraction = new Fraction(TextHandler.numberFormatter(numerator).doubleValue(),
+                        TextHandler.numberFormatter(denominator).doubleValue());
             }
 //            fraction.parent =
             this.getChildren().clear();

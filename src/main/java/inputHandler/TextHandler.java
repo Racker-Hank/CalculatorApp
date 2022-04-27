@@ -3,6 +3,7 @@ package inputHandler;
 import operation.Fraction;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Stack;
 
 public class TextHandler {
@@ -20,9 +21,9 @@ public class TextHandler {
             }
 
             // if the token is an operand, push it to operand stack
-            if (tokens[i] >= '0' && tokens[i] <= '9') {
+            if (tokens[i] >= '0' && tokens[i] <= '9' ||  tokens[i] == '.') {
                 StringBuilder sb = new StringBuilder();
-                while (i < tokens.length && tokens[i] >= '0' && tokens[i] <= '9') {
+                while (i < tokens.length && ((tokens[i] >= '0' && tokens[i] <= '9') || tokens[i] == '.')) {
                     sb.append(tokens[i++]);
                 }
                 //                operands.push(Double.parseDouble(sb.toString()));
@@ -32,7 +33,7 @@ public class TextHandler {
             // if token is '!' calculate factorial of stack's top and push it to operand stack
             else if (tokens[i] == '!') {
                 //                operands.push((double) MathUtil.factorial((int) (operands.pop().denominator)));
-                operands.push(new Fraction(MathUtil.factorial((int) (operands.pop().denominator))));
+                operands.push(new Fraction(MathUtil.factorial((long) (operands.pop().numerator))));
             }
             // if the token is "(" push it to the operation stack
             else if (tokens[i] == '(') {
@@ -106,7 +107,7 @@ public class TextHandler {
             case '-' -> MathUtil.subtract(a , b);
             case '*' -> MathUtil.multiply(a , b);
             case '/' -> MathUtil.divide(a , b);
-            //            case '^' -> MathUtil.power(a , b);
+            case '^' -> a.pow(b);
             default -> new Fraction(0);
         };
     }
@@ -116,10 +117,13 @@ public class TextHandler {
         Number result;
         int decimalNumbers = 9;
         if (number == (int) number) {
-            result = ((int) number);    
+            result = ((long) number);
         } else if (Math.abs((number * Math.pow(10 , decimalNumbers))) - Math.abs(Math.round(number * Math.pow(10 , decimalNumbers))) < 1) {
-            result = (Math.round(number * Math.pow(10 , decimalNumbers)) / Math.pow(10 ,
-                    decimalNumbers));
+//            System.out.println("hello");
+//            result = new BigDecimal(Math.round(number * Math.pow(10 , decimalNumbers)) / Math.pow(10 ,
+//                    decimalNumbers)).setScale(decimalNumbers , RoundingMode.HALF_EVEN).stripTrailingZeros()            result = new BigDecimal(Math.round(number * Math.pow(10 , decimalNumbers)) / Math.pow(10 ,
+            result = Math.round(number * Math.pow(10 , decimalNumbers)) / Math.pow(10 ,
+                    decimalNumbers);
         } else {
             result = new BigDecimal(number);
         }

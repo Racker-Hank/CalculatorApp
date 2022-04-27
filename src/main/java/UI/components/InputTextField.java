@@ -31,17 +31,21 @@ public class InputTextField extends TextField {
         textField.textProperty().addListener((ov , prevText , currText) -> {
             // Do this in a Platform.runLater because of Textfield has no padding at first time and so on
             Platform.runLater(() -> {
-                //                System.out.println(currText);
+//                System.out.println(currText + "abcxyz");
                 Text text = new Text(currText);
+//                System.out.println(text.getText());
                 text.setFont(textField.getFont()); // Set the same font, so the size is the same
                 double width = text.getLayoutBounds().getWidth() // This big is the Text in the TextField
                         + textField.getPadding().getLeft() + textField.getPadding().getRight() // Add the padding of the
                         // TextField
-                        + 2d; // Add some spacing
+                        + 4d; // Add some spacing
                 textField.setPrefWidth(width); // Set the width
                 // Set the width of parent
 //                if (textField.getParent() != null) {
 //                    ((InputPane) textField.getParent()).setPrefWidth(width);
+//                }
+//                if (prevText.isEmpty() || currText.isEmpty()) {
+//                    textField.setPrefWidth(UIConfig.fontSize);
 //                }
                 textField.positionCaret(textField.getCaretPosition()); // If you remove this line, it flashes a little bit
             });

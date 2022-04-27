@@ -1,0 +1,22 @@
+.tree-cell:selected {
+    -fx-font-weight: bold ;
+    -fx-background-color: #333;
+}
+
+.tree-cell {
+    -fx-background-color: #202020;
+    -fx-text-fill: #fff;
+}
+
+.tree-cell > .tree-disclosure-node > .arrow  {
+    -fx-background-color: #777777;
+    -fx-translate-y: 3;
+}
+.tree-cell:expanded > .tree-disclosure-node > .arrow {
+    -fx-background-color: white;
+}
+
+.split-pane-divider {
+    -fx-background-color: #555 ;
+    -fx-padding: 0 0.125em 0 0.125em;
+}

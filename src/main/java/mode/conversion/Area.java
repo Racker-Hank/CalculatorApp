@@ -1,6 +1,7 @@
 package mode.conversion;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class Area {
 //    public static final double squareMillimeters = 1;
@@ -37,6 +38,21 @@ public class Area {
             add(squareMiles);
             add(hectares);
             add(acres);
+        }
+    };
+
+    public static LinkedHashMap <String, Unit> unitsMap = new LinkedHashMap<String, Unit>(){
+        {
+            put("mm²", squareMillimeters);
+            put("cm²", squareCentimeters);
+            put("m²", squareMeters);
+            put("km²", squareKilometers);
+            put("in²", squareInches);
+            put("ft²", squareFeet);
+            put("yd²", squareYards);
+            put("mile²", squareMiles);
+            put("ha", hectares);
+            put("acre", acres);
         }
     };
 

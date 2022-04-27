@@ -32,7 +32,7 @@ public class Operation {
         TextHandler.mathInputHandler(inputTextArea.getText() , result);
         try {
             outputTextArea.setText(String.valueOf(TextHandler.numberFormatter(result.toDouble())));
-            System.out.println(TextHandler.numberFormatter(result.toDouble()));
+//            System.out.println(TextHandler.numberFormatter(result.toDouble()));
             return result;
         } catch (Exception e) {
             //            e.printStackTrace();

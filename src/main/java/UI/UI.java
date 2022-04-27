@@ -1,6 +1,6 @@
 package UI;
 
-import javafx.application.Application;
+import  javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,15 +17,16 @@ public class UI extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-//      Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Main2.fxml")));
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Main3.fxml")));
+      Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Main3.fxml")));
+//        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/ui_test.fxml")));
+        root.getStylesheets().add("/styles.css");
         Scene scene = new Scene(root);
 
         Image icon = new Image("images/Frame 42.png");
         stage.getIcons().add(icon);
         stage.setTitle("Calculator");
 //        stage.setX(50);
-//        stage.setY(50);
+//        stage.setY(50);\
         stage.initStyle(StageStyle.DECORATED);
         stage.setScene(scene);
         UIConfig.primaryStage = stage;

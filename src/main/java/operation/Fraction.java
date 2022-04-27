@@ -13,6 +13,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
 import javafx.scene.transform.Translate;
 
@@ -185,14 +186,16 @@ public class Fraction extends Operand implements Comparable <Fraction> {
             Region numeratorPaddingRegion1 = new Region();
             numeratorPaddingRegion1.setMinWidth(regionWidth);
             HBox.setHgrow(numeratorPaddingRegion1 , Priority.NEVER);
-//            numeratorWrapper.getChildren().add(numeratorPaddingRegion1);
+            numeratorWrapper.getChildren().add(numeratorPaddingRegion1);
 
             numeratorContainer = new InputPane();
             numeratorContainer.defaultTextField.setText(TextHandler.numberFormatter(numerator) + "");
             numeratorContainer.defaultTextField.textProperty().addListener((observable , oldValue , newValue) -> {
                 Platform.runLater(() -> {
+//                    fractionLine.prefWidthProperty().bind(this.widthProperty());
                     try {
                         numerator = TextHandler.numberFormatter(Double.parseDouble(newValue.toString())).doubleValue();
+//                        numeratorWrapper.setPrefWidth(numeratorContainer.getWidth() + regionWidth*2);
                     } catch (NumberFormatException e) {
                         //                        e.printStackTrace();
                     }
@@ -201,10 +204,16 @@ public class Fraction extends Operand implements Comparable <Fraction> {
             HBox.setHgrow(numeratorContainer , Priority.ALWAYS);
             numeratorWrapper.getChildren().add(numeratorContainer);
 
+//            Text numeratorText = new Text(TextHandler.numberFormatter(numerator) + "abcxyz");
+//            numeratorText.setStyle("-fx-font-size: 14;");
+//            numeratorText.setOpacity(0);
+//            numeratorText.setTranslateY(-14);
+//            numeratorText.textProperty().bind(numeratorContainer.defaultTextField.textProperty());
+
             Region numeratorPaddingRegion2 = new Region();
             numeratorPaddingRegion2.setMinWidth(regionWidth);
             HBox.setHgrow(numeratorPaddingRegion2 , Priority.NEVER);
-//            numeratorWrapper.getChildren().add(numeratorPaddingRegion2);
+            numeratorWrapper.getChildren().add(numeratorPaddingRegion2);
             /*end numerator*/
 
             fractionLine = new AnchorPane();
@@ -219,13 +228,15 @@ public class Fraction extends Operand implements Comparable <Fraction> {
 
             Region denominatorPaddingRegion1 = new Region();
             denominatorPaddingRegion1.setMinWidth(regionWidth);
-//            denominatorWrapper.getChildren().add(denominatorPaddingRegion1);
+            denominatorWrapper.getChildren().add(denominatorPaddingRegion1);
 
             denominatorContainer = new InputPane();
             denominatorContainer.defaultTextField.setText(denominator == 1 ? "" : TextHandler.numberFormatter(denominator) +
                     "");
             denominatorContainer.defaultTextField.textProperty().addListener((observable , oldValue , newValue) -> {
+//                fractionLine.prefWidthProperty().bind(this.widthProperty());
                 Platform.runLater(() -> {
+//                    System.out.println(this.getWidth());
                     try {
                         denominator = TextHandler.numberFormatter(Double.parseDouble(newValue.toString())).doubleValue();
                     } catch (NumberFormatException e) {
@@ -238,7 +249,7 @@ public class Fraction extends Operand implements Comparable <Fraction> {
 
             Region denominatorPaddingRegion2 = new Region();
             denominatorPaddingRegion2.setMinWidth(regionWidth);
-//            denominatorWrapper.getChildren().add(denominatorPaddingRegion2);
+            denominatorWrapper.getChildren().add(denominatorPaddingRegion2);
             /*end denominator*/
 
 //            this.getChildren().add(numeratorContainer);
@@ -246,6 +257,7 @@ public class Fraction extends Operand implements Comparable <Fraction> {
 //            this.getChildren().add(denominatorContainer);
 
             this.getChildren().add(numeratorWrapper);
+//            this.getChildren().add(numeratorText);
             this.getChildren().add(fractionLine);
             this.getChildren().add(denominatorWrapper);
 
@@ -308,8 +320,8 @@ public class Fraction extends Operand implements Comparable <Fraction> {
         //        denominatorContainer.defaultTextField.requestFocus();
         //        this.getChildren().add(fractionContainer);
 
-                fractionContainer.fractionLine.setPrefWidth(1 * parentPane.getWidth());
-        System.out.println(fractionContainer.fractionLine.getPrefWidth());
+                fractionContainer.fractionLine.setPrefWidth(1 * parentPane.getWidth() + fractionContainer.regionWidth*2);
+//        System.out.println(fractionContainer.fractionLine.getPrefWidth());
         //        fractionContainer.fractionLine.setPrefWidth(fractionContainer.numeratorContainer.defaultTextField.getText().length() > fractionContainer.denominatorContainer.defaultTextField.getText().length() ? fractionContainer.numeratorContainer.defaultTextField.getPrefWidth() : fractionContainer.denominatorContainer.defaultTextField.getPrefWidth());
         //        fractionContainer.fractionLine.setPrefWidth(14);
         //        fractionContainer.fractionLine.prefWidthProperty().bind(fractionContainer.numeratorContainer.defaultTextField.getText().length() > fractionContainer.denominatorContainer.defaultTextField.getText().length() ? fractionContainer.numeratorContainer.defaultTextField.prefWidthProperty() : fractionContainer.denominatorContainer.defaultTextField.prefWidthProperty());
