@@ -115,7 +115,7 @@ public class Controller3 implements Initializable {
     void clickToResizeRight(MouseEvent event) {
         double dividerPositions2 = splitPane.getDividerPositions()[1];
             if (dividerPositions2 > 0.99) {
-                animatedSplitPane(1, 0.76);
+                animatedSplitPane(1, 0.8);
                 resizeRightIcon.setGlyphName("ANGLE_DOUBLE_RIGHT");
             }
             else {
@@ -190,7 +190,7 @@ public class Controller3 implements Initializable {
         //            } catch (IOException e) {
         //                e.printStackTrace();
         //            }
-        //        Controller2 controller2 = new Controller2(mainStackPane);
+        //        StandardController controller2 = new StandardController(mainStackPane);
         //        addFunctionButtons();
         //        } catch (IOException e) {
         //            e.printStackTrace();
@@ -258,7 +258,7 @@ public class Controller3 implements Initializable {
 
     public void animatedSplitPane (int dividerPositions , double position) {
         KeyValue keyValue = new KeyValue(splitPane.getDividers().get(dividerPositions).positionProperty(), position);
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), keyValue));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(175), keyValue));
         timeline.play();
     }
 }
