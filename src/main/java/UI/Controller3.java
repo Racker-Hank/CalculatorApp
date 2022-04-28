@@ -5,6 +5,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +16,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -103,11 +106,11 @@ public class Controller3 implements Initializable {
         double dividerPositions1 = splitPane.getDividerPositions()[0];
         if (dividerPositions1 < 0.004) {
                 animatedSplitPane(0, 0.21);
-                resizeLeftIcon.setGlyphName("ANGLE_DOUBLE_LEFT");
+//                resizeLeftIcon.setGlyphName("ANGLE_DOUBLE_LEFT");
         }
         else {
             animatedSplitPane(0, 0);
-            resizeLeftIcon.setGlyphName("ANGLE_DOUBLE_RIGHT");
+//            resizeLeftIcon.setGlyphName("ANGLE_DOUBLE_RIGHT");
         }
     }
 
@@ -116,11 +119,11 @@ public class Controller3 implements Initializable {
         double dividerPositions2 = splitPane.getDividerPositions()[1];
             if (dividerPositions2 > 0.99) {
                 animatedSplitPane(1, 0.8);
-                resizeRightIcon.setGlyphName("ANGLE_DOUBLE_RIGHT");
+//                resizeRightIcon.setGlyphName("ANGLE_DOUBLE_RIGHT");
             }
             else {
                 animatedSplitPane(1, 1);
-                resizeRightIcon.setGlyphName("ANGLE_DOUBLE_LEFT");
+//                resizeRightIcon.setGlyphName("ANGLE_DOUBLE_LEFT");
             }
     }
 
@@ -174,7 +177,7 @@ public class Controller3 implements Initializable {
         treeView.setRoot(root);
         treeView.setShowRoot(false);
         treeView.getSelectionModel().select(standard);
-
+        splitPaneListener();
         //            try {
         //                AnchorPane test = (AnchorPane) FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Standard" +
         //                        ".fxml")));
@@ -260,5 +263,25 @@ public class Controller3 implements Initializable {
         KeyValue keyValue = new KeyValue(splitPane.getDividers().get(dividerPositions).positionProperty(), position);
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(175), keyValue));
         timeline.play();
+    }
+
+    public void splitPaneListener () {
+        splitPane.getDividers().get(0).positionProperty().addListener((obs, oldVal, newVal) -> {
+                if (newVal.doubleValue() < 0.004) {
+                    resizeLeftIcon.setGlyphName("ANGLE_DOUBLE_RIGHT");
+                }
+                else {
+                    resizeLeftIcon.setGlyphName("ANGLE_DOUBLE_LEFT");
+                }
+        });
+
+        splitPane.getDividers().get(1).positionProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.doubleValue() > 0.99) {
+                resizeRightIcon.setGlyphName("ANGLE_DOUBLE_LEFT");
+            }
+            else {
+                resizeRightIcon.setGlyphName("ANGLE_DOUBLE_RIGHT");
+            }
+        });
     }
 }
