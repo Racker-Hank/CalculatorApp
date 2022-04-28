@@ -17,6 +17,7 @@ public class Area {
 
     public static final Unit squareMillimeters = new Unit("mm²", 1);
     public static final Unit squareCentimeters = new Unit("cm²", Math.pow(10,2));
+    public static final Unit squareDecimeters = new Unit("dm²", Math.pow(10,4));
     public static final Unit squareMeters = new Unit("m²", Math.pow(10,6));
     public static final Unit squareKilometers = new Unit("km²", Math.pow(10,12));
     public static final Unit squareInches = new Unit("in²", 645.16);
@@ -30,6 +31,7 @@ public class Area {
         {
             add(squareMillimeters);
             add(squareCentimeters);
+            add(squareDecimeters);
             add(squareMeters);
             add(squareKilometers);
             add(squareInches);
@@ -45,13 +47,14 @@ public class Area {
         {
             put("mm²", squareMillimeters);
             put("cm²", squareCentimeters);
+            put("dm²", squareDecimeters);
             put("m²", squareMeters);
+            put("ha", hectares);
             put("km²", squareKilometers);
             put("in²", squareInches);
             put("ft²", squareFeet);
             put("yd²", squareYards);
             put("mile²", squareMiles);
-            put("ha", hectares);
             put("acre", acres);
         }
     };
@@ -64,4 +67,7 @@ public class Area {
     }
 
 
+    public static double convert(Unit fromUnit , Unit toUnit , double n) {
+        return n * fromUnit.toSmallestUnit * (1 / toUnit.toSmallestUnit);
+    }
 }
