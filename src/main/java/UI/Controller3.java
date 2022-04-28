@@ -51,6 +51,7 @@ public class Controller3 implements Initializable {
     //    @FXML
     private AnchorPane conversion;
     private AnchorPane lengthConversion;
+    private AnchorPane areaConversion;
 
     @FXML
     private AnchorPane financial;
@@ -79,74 +80,92 @@ public class Controller3 implements Initializable {
 
     @Override
     public void initialize(URL location , ResourceBundle resources) {
+        //        try {
+        loadPanes();
+
+        treeView.setStyle(treeItemStyle);
+        treeView.getStyleClass().add("tree-view");
+        TreeItem <String> root = new TreeItem <>("Root");
+
+        TreeItem <String> standard = new TreeItem <>("Standard");
+        //            System.out.println(this.standard.getId());
+        panes.put(standard , this.standard);
+        this.visiblePane = this.standard;
+        root.getChildren().add(standard);
+
+        TreeItem <String> equation = new TreeItem <>("Equation");
+        TreeItem <String> variable = new TreeItem <>("Variable");
+        TreeItem <String> graph = new TreeItem <>("Graph");
+        equation.getChildren().addAll(variable , graph);
+        panes.put(equation , this.equation);
+        panes.put(variable , this.variable);
+        panes.put(graph , this.graph);
+        //            root.getChildren().add(equation);
+
+        TreeItem <String> matrix = new TreeItem <>("Matrix");
+        panes.put(matrix , this.matrix);
+        //            root.getChildren().add(matrix);
+
+        TreeItem <String> vector = new TreeItem <>("Vector");
+        panes.put(vector , this.vector);
+        //            root.getChildren().add(vector);
+
+        TreeItem <String> conversion = new TreeItem <>("Conversion");
+        TreeItem <String> lengthConversion = new TreeItem <>("Length Conversion");
+        TreeItem <String> areaConversion = new TreeItem <>("Area Conversion");
+        panes.put(conversion , this.conversion);
+        panes.put(lengthConversion , this.lengthConversion);
+        panes.put(areaConversion , this.areaConversion);
+        conversion.getChildren().add(lengthConversion);
+        conversion.getChildren().add(areaConversion);
+        root.getChildren().add(conversion);
+
+        TreeItem <String> financial = new TreeItem <>("Financial");
+        panes.put(financial , this.financial);
+        //            root.getChildren().add(financial);
+
+        treeView.setRoot(root);
+        treeView.setShowRoot(false);
+        treeView.getSelectionModel().select(standard);
+
+        //            try {
+        //                AnchorPane test = (AnchorPane) FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Standard" +
+        //                        ".fxml")));
+        //                AnchorPane conversionPane = (AnchorPane) FXMLLoader.load(Objects.requireNonNull(getClass().getResource(
+        //                        "/fxml" +
+        //                                "/Conversion" +
+        //                                ".fxml")));
+        //                //            mainStackPane.getChildren().add(test);
+        //                //            test.setVisible(false);
+        //                //            mainStackPane.getChildren().add(conversionPane);
+        //                //            System.out.println(test.getId());
+        //                //            System.out.println(test.getParent());
+        //            } catch (IOException e) {
+        //                e.printStackTrace();
+        //            }
+        //        Controller2 controller2 = new Controller2(mainStackPane);
+        //        addFunctionButtons();
+        //        } catch (IOException e) {
+        //            e.printStackTrace();
+        //        }
+    }
+
+    public void loadPanes() {
         try {
             this.standard = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Standard.fxml")));
-            this.lengthConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(
-                    "/fxml/Conversion.fxml")));
-            lengthConversion.setVisible(false);
+            this.lengthConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion/LengthConversion.fxml")));
+            this.areaConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion" +
+                    "/AreaConversion.fxml")));
+
             mainStackPane.getChildren().add(standard);
             mainStackPane.getChildren().add(lengthConversion);
-            treeView.setStyle(treeItemStyle);
-            treeView.getStyleClass().add("tree-view");
-            TreeItem <String> root = new TreeItem <>("Root");
+            mainStackPane.getChildren().add(areaConversion);
 
-            TreeItem <String> standard = new TreeItem <>("Standard");
-            //            System.out.println(this.standard.getId());
-            panes.put(standard , this.standard);
-            this.visiblePane = this.standard;
-            root.getChildren().add(standard);
-
-            TreeItem <String> equation = new TreeItem <>("Equation");
-            TreeItem <String> variable = new TreeItem <>("Variable");
-            TreeItem <String> graph = new TreeItem <>("Graph");
-            equation.getChildren().addAll(variable , graph);
-            panes.put(equation , this.equation);
-            panes.put(variable , this.variable);
-            panes.put(graph , this.graph);
-            //            root.getChildren().add(equation);
-
-            TreeItem <String> matrix = new TreeItem <>("Matrix");
-            panes.put(matrix , this.matrix);
-            //            root.getChildren().add(matrix);
-
-            TreeItem <String> vector = new TreeItem <>("Vector");
-            panes.put(vector , this.vector);
-            //            root.getChildren().add(vector);
-
-            TreeItem <String> conversion = new TreeItem <>("Conversion");
-            TreeItem <String> lengthConversion = new TreeItem <>("Length Conversion");
-            panes.put(conversion , this.conversion);
-            panes.put(lengthConversion , this.lengthConversion);
-            conversion.getChildren().add(lengthConversion);
-            root.getChildren().add(conversion);
-
-            TreeItem <String> financial = new TreeItem <>("Financial");
-            panes.put(financial , this.financial);
-            //            root.getChildren().add(financial);
-
-            treeView.setRoot(root);
-            treeView.setShowRoot(false);
-            treeView.getSelectionModel().select(standard);
-
-            //            try {
-            //                AnchorPane test = (AnchorPane) FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Standard" +
-            //                        ".fxml")));
-            //                AnchorPane conversionPane = (AnchorPane) FXMLLoader.load(Objects.requireNonNull(getClass().getResource(
-            //                        "/fxml" +
-            //                                "/Conversion" +
-            //                                ".fxml")));
-            //                //            mainStackPane.getChildren().add(test);
-            //                //            test.setVisible(false);
-            //                //            mainStackPane.getChildren().add(conversionPane);
-            //                //            System.out.println(test.getId());
-            //                //            System.out.println(test.getParent());
-            //            } catch (IOException e) {
-            //                e.printStackTrace();
-            //            }
-            //        Controller2 controller2 = new Controller2(mainStackPane);
-            //        addFunctionButtons();
+            for (int i = 1; i < mainStackPane.getChildren().size(); i++) {
+                mainStackPane.getChildren().get(i).setVisible(false);
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            //            e.printStackTrace();
         }
     }
 

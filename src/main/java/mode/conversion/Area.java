@@ -49,12 +49,12 @@ public class Area {
             put("cm²", squareCentimeters);
             put("dm²", squareDecimeters);
             put("m²", squareMeters);
+            put("ha", hectares);
             put("km²", squareKilometers);
             put("in²", squareInches);
             put("ft²", squareFeet);
             put("yd²", squareYards);
             put("mile²", squareMiles);
-            put("ha", hectares);
             put("acre", acres);
         }
     };
@@ -67,4 +67,7 @@ public class Area {
     }
 
 
+    public static double convert(Unit fromUnit , Unit toUnit , double n) {
+        return n * fromUnit.toSmallestUnit * (1 / toUnit.toSmallestUnit);
+    }
 }
