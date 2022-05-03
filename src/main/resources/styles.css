@@ -20,3 +20,13 @@
     -fx-background-color: #555 ;
     -fx-padding: 0 0.125em 0 0.125em;
 }
+
+.text-area {
+    -fx-background: black ;
+    -fx-control-inner-background: black;
+    -fx-focus-color: black;
+}
+
+.text-area:focused {
+    -fx-focus-color: black;
+}

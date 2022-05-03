@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="test" style="-fx-background-color: #080202;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controller2">
+<AnchorPane fx:id="test" style="-fx-background-color: #080202;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controller2">
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: #080202;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
@@ -31,23 +31,31 @@
                      <children>
                         <HBox alignment="CENTER" spacing="16.0">
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #28F984; -fx-border-radius: 16; -fx-border-width: 2; -fx-background-color: black;" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <TextArea prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TextArea prefHeight="200.0" prefWidth="200.0" style="-fx-background: black; -fx-control-inner-background: black;" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
                                        <font>
                                           <Font name="Noto Sans Math Regular" size="16.0" />
                                        </font>
                                     </TextArea>
                                  </children>
                               </AnchorPane>
-                              <Button mnemonicParsing="false" onAction="#killme" text="PIN" />
+                              <AnchorPane>
+                                 <children>
+                                    <AnchorPane layoutY="63.0" prefHeight="39.0" prefWidth="39.0" style="-fx-border-color: #28f984; -fx-border-width: 2; -fx-border-radius: 20;">
+                                       <children>
+                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#killme" style="-fx-background-color: transparent;" text="PIN" textFill="#28f984" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" spacing="16.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #28F984; -fx-border-width: 2px; -fx-border-radius: 16; -fx-background-radius: 24;" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <ScrollPane layoutX="10.0" layoutY="6.0" maxHeight="160.0" style="-fx-border-radius: 16; -fx-background-radius: 16;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                    <ScrollPane layoutX="10.0" layoutY="6.0" maxHeight="160.0" style="-fx-border-radius: 16; -fx-background-radius: 16; -fx-background: black; -fx-background-color: black;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                        <content>
                                           <HBox fx:id="mainInputPane" alignment="CENTER_LEFT" fillHeight="false" maxWidth="292.0" spacing="4.0">
                                              <cursor>
@@ -61,13 +69,22 @@
                                     </ScrollPane>
                                  </children>
                               </AnchorPane>
-                              <Button mnemonicParsing="false" text="GO" HBox.hgrow="NEVER">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor></Button>
-                              <AnchorPane maxWidth="300.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                              <AnchorPane prefHeight="160.0" prefWidth="37.0" HBox.hgrow="NEVER">
                                  <children>
-                                    <TextArea fx:id="tempOutputTextArea" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <AnchorPane layoutY="64.0" prefHeight="38.0" prefWidth="39.0" style="-fx-border-color: #28F984; -fx-border-radius: 20; -fx-border-width: 2;">
+                                       <children>
+                                          <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="GO" textFill="#28f984" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane maxWidth="300.0" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #28F984; -fx-border-width: 2; -fx-border-radius: 16; -fx-background-radius: 16;" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextArea fx:id="tempOutputTextArea" layoutX="5.0" layoutY="6.0" prefHeight="155.0" prefWidth="136.0" style="-fx-control-inner-background: black;" wrapText="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
                                        <font>
                                           <Font name="Noto Sans Math Regular" size="16.0" />
                                        </font>
