@@ -5,6 +5,7 @@
 
 .tree-cell {
     -fx-background-color: #202020;
+    // -fx-background-radius: 4;
     -fx-text-fill: #fff;
 }
 
@@ -19,4 +20,35 @@
 .split-pane-divider {
     -fx-background-color: #555 ;
     -fx-padding: 0 0.125em 0 0.125em;
+}
+
+.choice-box {
+    -fx-cursor: hand;
+    -fx-background-color: #333;
+    -fx-mark-color: #28F984;
+    -fx-border-width: 2;
+    -fx-border-color: #28F984;
+    -fx-border-radius: 16;
+    // -fx-pref-width: 200;
+    -fx-max-width: 120;
+    -fx-min-width: 120;
+}
+
+.choice-box > .label {
+    -fx-text-fill: white;
+ }
+
+// Background color of the whole context menu
+.choice-box .context-menu { -fx-background-color: #000; }
+// Focused item background color in the list
+.choice-box .menu-item:focused { -fx-background-color: #28F984; }
+// Text color of non-focused items in the list
+.choice-box .menu-item > .label { -fx-text-fill: white; }
+// Text color of focused item in the list
+.choice-box .menu-item:focused > .label { -fx-text-fill: #000; }
+
+.text-area {
+    -fx-background: black ;
+    -fx-control-inner-background: black;
+    -fx-faint-focus-color: black;
 }

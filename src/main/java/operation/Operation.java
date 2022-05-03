@@ -27,7 +27,33 @@ public class Operation {
         });
 }
 
-    public Fraction calculate() {
+    public  Fraction calculate() {
+        Fraction result = new Fraction();
+        TextHandler.mathInputHandler(inputTextArea.getText() , result);
+        try {
+            outputTextArea.setText(String.valueOf(TextHandler.numberFormatter(result.toDouble())));
+//            System.out.println(TextHandler.numberFormatter(result.toDouble()));
+            return result;
+        } catch (Exception e) {
+            //            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Fraction calculate(TextArea inputTextArea) {
+        Fraction result = new Fraction();
+        TextHandler.mathInputHandler(inputTextArea.getText() , result);
+        try {
+//            outputTextArea.setText(String.valueOf(TextHandler.numberFormatter(result.toDouble())));
+//            System.out.println(TextHandler.numberFormatter(result.toDouble()));
+            return result;
+        } catch (Exception e) {
+            //            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Fraction calculate(TextArea inputTextArea, TextArea outputTextArea) {
         Fraction result = new Fraction();
         TextHandler.mathInputHandler(inputTextArea.getText() , result);
         try {

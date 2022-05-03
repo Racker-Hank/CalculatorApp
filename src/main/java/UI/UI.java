@@ -31,6 +31,7 @@ public class UI extends Application {
         stage.setScene(scene);
         UIConfig.primaryStage = stage;
 //        stage.setFullScreen(true);
+//        stage.setMaximized(true);
         stage.show();
     }
 }

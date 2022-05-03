@@ -7,14 +7,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.GridPane;
-import mode.conversion.Length;
+import mode.conversion.Area;
+import mode.conversion.Speed;
 import mode.conversion.Unit;
 import operation.Operation;
 
 import java.util.HashMap;
 
-public class LengthConversionController {
+public class SpeedConversionController {
     @FXML
     private TextArea fromUnitTextArea;
 
@@ -29,41 +29,31 @@ public class LengthConversionController {
 
     public HashMap <String, Unit> unitsMap;
 
+    ChangeListener choiceBoxListener = (obs , oldValue , newValue) -> {
+        Platform.runLater(() -> {
+            convert();
+        });
+    };
+
     public void initialize() {
-        //        fromUnit.getItems().addAll(Length.lengthUnits);
-        unitsMap = Length.unitsMap;
+        unitsMap = Speed.unitsMap;
         initTextArea();
         initChoiceBox();
     }
 
     public void initTextArea() {
-        fromUnitTextArea.textProperty().addListener((obs , oldValue , newValue) -> {
-            Platform.runLater(() -> {
-                convert();
-            });
-        });
+        fromUnitTextArea.textProperty().addListener(choiceBoxListener);
     }
 
     public void initChoiceBox() {
-        ChangeListener choiceBoxListener = (obs , oldValue , newValue) -> {
-            Platform.runLater(() -> {
-                convert();
-            });
-        };
-
-        for (String unitName : unitsMap.keySet()
-        ) {
-            fromUnitChoiceBox.getItems().add(unitName);
-        }
+        fromUnitChoiceBox.getItems().addAll(unitsMap.keySet());
         fromUnitChoiceBox.setTooltip(new Tooltip("Unit to convert from"));
-        fromUnitChoiceBox.setValue("m");
-
+        fromUnitChoiceBox.setValue("m/s");
         fromUnitChoiceBox.valueProperty().addListener(choiceBoxListener);
 
-        //        toUnit.getItems().addAll(Length.lengthUnits);
         toUnitChoiceBox.getItems().addAll(unitsMap.keySet());
         toUnitChoiceBox.setTooltip(new Tooltip("Unit to convert to"));
-        toUnitChoiceBox.setValue("km");
+        toUnitChoiceBox.setValue("km/h");
         toUnitChoiceBox.valueProperty().addListener(choiceBoxListener);
     }
 
@@ -73,7 +63,7 @@ public class LengthConversionController {
             double n = Operation.calculate(fromUnitTextArea).toDouble();
             Unit fromUnit = unitsMap.get(fromUnitChoiceBox.getValue());
             Unit toUnit = unitsMap.get(toUnitChoiceBox.getValue());
-            toUnitTextArea.setText(TextHandler.numberFormatter(Length.convert(fromUnit , toUnit , n)) + "");
+            toUnitTextArea.setText(TextHandler.numberFormatter(Speed.convert(fromUnit , toUnit , n)) + "");
         } catch (Exception e) {
             //                    e.printStackTrace();
         }

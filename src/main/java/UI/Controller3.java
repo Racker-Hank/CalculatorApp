@@ -1,16 +1,23 @@
 package UI;
 
 import UI.components.PrimaryButton;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.util.Duration;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -29,6 +36,9 @@ public class Controller3 implements Initializable {
 
     @FXML
     private StackPane mainStackPane;
+
+    @FXML
+    private SplitPane splitPane;
 
     //    @FXML
     private AnchorPane standard;
@@ -52,6 +62,8 @@ public class Controller3 implements Initializable {
     private AnchorPane conversion;
     private AnchorPane lengthConversion;
     private AnchorPane areaConversion;
+    private AnchorPane volumeConversion;
+    private AnchorPane speedConversion;
 
     @FXML
     private AnchorPane financial;
@@ -75,8 +87,24 @@ public class Controller3 implements Initializable {
     @FXML
     private Button sqrtButton;
 
+    @FXML
+    private Button resizeLeft;
+
+    @FXML
+    private Button resizeRight;
+
+    @FXML
+    private FontAwesomeIcon resizeLeftIcon;
+
+    @FXML
+    private FontAwesomeIcon resizeRightIcon;
+
     String treeItemStyle = "-fx-font-size:16px;  -fx-font-family: Noto Sans Math; " +
             "-fx-background-color: #000; -fx-text-fill: #fff;";
+
+
+
+
 
     @Override
     public void initialize(URL location , ResourceBundle resources) {
@@ -113,11 +141,17 @@ public class Controller3 implements Initializable {
         TreeItem <String> conversion = new TreeItem <>("Conversion");
         TreeItem <String> lengthConversion = new TreeItem <>("Length Conversion");
         TreeItem <String> areaConversion = new TreeItem <>("Area Conversion");
+        TreeItem <String> volumeConversion = new TreeItem <>("Volume Conversion");
+        TreeItem <String> speedConversion = new TreeItem <>("Speed Conversion");
         panes.put(conversion , this.conversion);
         panes.put(lengthConversion , this.lengthConversion);
         panes.put(areaConversion , this.areaConversion);
+        panes.put(volumeConversion , this.volumeConversion);
+        panes.put(speedConversion , this.speedConversion);
         conversion.getChildren().add(lengthConversion);
         conversion.getChildren().add(areaConversion);
+        conversion.getChildren().add(volumeConversion);
+        conversion.getChildren().add(speedConversion);
         root.getChildren().add(conversion);
 
         TreeItem <String> financial = new TreeItem <>("Financial");
@@ -127,7 +161,7 @@ public class Controller3 implements Initializable {
         treeView.setRoot(root);
         treeView.setShowRoot(false);
         treeView.getSelectionModel().select(standard);
-
+        splitPaneListener();
         //            try {
         //                AnchorPane test = (AnchorPane) FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Standard" +
         //                        ".fxml")));
@@ -143,7 +177,7 @@ public class Controller3 implements Initializable {
         //            } catch (IOException e) {
         //                e.printStackTrace();
         //            }
-        //        Controller2 controller2 = new Controller2(mainStackPane);
+        //        StandardController controller2 = new StandardController(mainStackPane);
         //        addFunctionButtons();
         //        } catch (IOException e) {
         //            e.printStackTrace();
@@ -154,12 +188,17 @@ public class Controller3 implements Initializable {
         try {
             this.standard = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Standard.fxml")));
             this.lengthConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion/LengthConversion.fxml")));
-            this.areaConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion" +
-                    "/AreaConversion.fxml")));
+            this.areaConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion/AreaConversion.fxml")));
+            this.volumeConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion" +
+                    "/VolumeConversion.fxml")));
+            this.speedConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion" +
+                    "/SpeedConversion.fxml")));
 
             mainStackPane.getChildren().add(standard);
             mainStackPane.getChildren().add(lengthConversion);
             mainStackPane.getChildren().add(areaConversion);
+            mainStackPane.getChildren().add(volumeConversion);
+            mainStackPane.getChildren().add(speedConversion);
 
             for (int i = 1; i < mainStackPane.getChildren().size(); i++) {
                 mainStackPane.getChildren().get(i).setVisible(false);
@@ -207,5 +246,57 @@ public class Controller3 implements Initializable {
                 button = new PrimaryButton().toPrimaryButton(button);
             }
         }
+    }
+
+    @FXML
+    void clickToResizeLeft(MouseEvent event) {
+        double dividerPositions1 = splitPane.getDividerPositions()[0];
+        if (dividerPositions1 < 0.004) {
+            animatedSplitPane(0, 0.18);
+            //                resizeLeftIcon.setGlyphName("ANGLE_DOUBLE_LEFT");
+        }
+        else {
+            animatedSplitPane(0, 0);
+            //            resizeLeftIcon.setGlyphName("ANGLE_DOUBLE_RIGHT");
+        }
+    }
+
+    @FXML
+    void clickToResizeRight(MouseEvent event) {
+        double dividerPositions2 = splitPane.getDividerPositions()[1];
+        if (dividerPositions2 > 0.99) {
+            animatedSplitPane(1, 0.8);
+            //                resizeRightIcon.setGlyphName("ANGLE_DOUBLE_RIGHT");
+        }
+        else {
+            animatedSplitPane(1, 1);
+            //                resizeRightIcon.setGlyphName("ANGLE_DOUBLE_LEFT");
+        }
+    }
+
+    public void animatedSplitPane (int dividerPositions , double position) {
+        KeyValue keyValue = new KeyValue(splitPane.getDividers().get(dividerPositions).positionProperty(), position);
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(175), keyValue));
+        timeline.play();
+    }
+
+    public void splitPaneListener () {
+        splitPane.getDividers().get(0).positionProperty().addListener((obs, oldVal, newVal) -> {
+                if (newVal.doubleValue() < 0.004) {
+                    resizeLeftIcon.setGlyphName("ANGLE_DOUBLE_RIGHT");
+                }
+                else {
+                    resizeLeftIcon.setGlyphName("ANGLE_DOUBLE_LEFT");
+                }
+        });
+
+        splitPane.getDividers().get(1).positionProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.doubleValue() > 0.99) {
+                resizeRightIcon.setGlyphName("ANGLE_DOUBLE_LEFT");
+            }
+            else {
+                resizeRightIcon.setGlyphName("ANGLE_DOUBLE_RIGHT");
+            }
+        });
     }
 }

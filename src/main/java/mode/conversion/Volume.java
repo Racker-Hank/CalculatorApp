@@ -1,6 +1,7 @@
 package mode.conversion;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class Volume {
 
@@ -19,9 +20,9 @@ public class Volume {
 //    public static final double cubicFeet = 28316.8466;
 //    public static final double cubicYards = 764554.858;
 
-    public static final Unit milliliters = new Unit("ml", 1);
+    public static final Unit milliliters = new Unit("m\uD835\uDC59", 1);
     public static final Unit cubicCentimeters = new Unit("cm³", 1);
-    public static final Unit liters = new Unit("l", Math.pow(10,3));
+    public static final Unit liters = new Unit("𝑙", Math.pow(10,3));
     public static final Unit cubicMeters = new Unit("m³", Math.pow(10,6));
     public static final Unit teaSpoonsUS = new Unit("tsp(US)", 4.92892159);
     public static final Unit tableSpoonUS = new Unit("tbsp(US)", 14.7867648);
@@ -53,9 +54,31 @@ public class Volume {
         }
     };
 
+    public static LinkedHashMap <String, Unit> unitsMap = new LinkedHashMap <String, Unit>() {
+        {
+            put("m\uD835\uDC59", milliliters);
+            put("cm³", cubicCentimeters);
+            put("𝑙", liters);
+            put("m³", cubicMeters);
+            put("tsp (US)", teaSpoonsUS);
+            put("tbsp (US)", tableSpoonUS);
+            put("fl oz (US)", fluidOuncesUS);
+            put("c  (US)", cupsUS);
+            put("pt (US)", pintsUS);
+            put("qt (US)", quartsUS);
+            put("gal (US)", gallonsUS);
+            put("in³", cubicInches);
+            put("ft³", cubicFeet);
+            put("yd³", cubicYards);
+        }
+    };
 
     public static double a = liters.toSmallestUnit;
     public static double b = pintsUS.toSmallestUnit;
+
+    public static double convert(Unit fromUnit , Unit toUnit , double n) {
+        return n * fromUnit.toSmallestUnit * (1 / toUnit.toSmallestUnit);
+    }
 
     public static double result (double num) {
         return num * a * (1 / b);
