@@ -59,7 +59,7 @@
                                           <Insets bottom="4.0" left="8.0" right="8.0" top="4.0" />
                                        </padding>
                                     </ScrollPane>
-                                    <TextArea fx:id="toUnitTextArea" wrapText="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
+                                    <TextArea fx:id="toUnitTextArea" editable="false" wrapText="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
                                        <font>
                                           <Font name="Noto Sans Math Regular" size="16.0" />
                                        </font>

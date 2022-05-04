@@ -9,7 +9,7 @@ package inputHandler;
 
             -- real numbers such as 2.7, 3, and 12.7e-12
             -- the variable x
-            -- arithmetic operators  +,  -,  *,  /,  and  ^ , where
+            -- arithmetic operators  +,  -,  *,  /, ! and  ^ , where
                the last of these represents raising to a power
             -- the mathematical functions sin, cos, tan, sec, csc, cot,
                arcsin, arccos, arctan, exp, ln, log2, log10, abs, and sqrt,

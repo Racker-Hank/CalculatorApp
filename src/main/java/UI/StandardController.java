@@ -53,6 +53,12 @@ public class StandardController {
     private TextArea tempOutputTextArea;
 
     @FXML
+    private Button calculateButton;
+
+    @FXML
+    private TextArea lastCalculationTextArea;
+
+    @FXML
     private HBox tabsButtonContainer;
 
     Expressions expressions;
@@ -217,6 +223,15 @@ public class StandardController {
     ////        tempOutputTextArea.clear();
     //        tempOutputTextArea.setText(tempOutput);
     //    }
+
+    public void saveCalculation() {
+        if (inputTextArea.getText().length() > 0 && tempOutputTextArea.getText().length() > 0) {
+            lastCalculationTextArea.clear();
+            lastCalculationTextArea.setText(inputTextArea.getText() + " = " + tempOutputTextArea.getText());
+            inputTextArea.clear();
+            tempOutputTextArea.clear();
+        }
+    }
 
     public void killme() {
         //        System.out.println("hi");

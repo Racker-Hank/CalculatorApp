@@ -45,6 +45,7 @@ public class Controller3 implements Initializable {
 
     @FXML
     private AnchorPane equation;
+    private AnchorPane firstDegree;
 
     @FXML
     private AnchorPane variable;
@@ -102,10 +103,6 @@ public class Controller3 implements Initializable {
     String treeItemStyle = "-fx-font-size:16px;  -fx-font-family: Noto Sans Math; " +
             "-fx-background-color: #000; -fx-text-fill: #fff;";
 
-
-
-
-
     @Override
     public void initialize(URL location , ResourceBundle resources) {
         //        try {
@@ -122,13 +119,16 @@ public class Controller3 implements Initializable {
         root.getChildren().add(standard);
 
         TreeItem <String> equation = new TreeItem <>("Equation");
-        TreeItem <String> variable = new TreeItem <>("Variable");
-        TreeItem <String> graph = new TreeItem <>("Graph");
-        equation.getChildren().addAll(variable , graph);
-        panes.put(equation , this.equation);
-        panes.put(variable , this.variable);
-        panes.put(graph , this.graph);
-        //            root.getChildren().add(equation);
+        TreeItem <String> firstDegree = new TreeItem <>("First Degree");
+        panes.put(firstDegree, this.firstDegree);
+        equation.getChildren().add(firstDegree);
+//        panes.put(equation , this.equation);
+//        TreeItem <String> variable = new TreeItem <>("Variable");
+//        TreeItem <String> graph = new TreeItem <>("Graph");
+//        equation.getChildren().addAll(variable , graph);
+//        panes.put(variable , this.variable);
+//        panes.put(graph , this.graph);
+        root.getChildren().add(equation);
 
         TreeItem <String> matrix = new TreeItem <>("Matrix");
         panes.put(matrix , this.matrix);
@@ -187,6 +187,11 @@ public class Controller3 implements Initializable {
     public void loadPanes() {
         try {
             this.standard = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Standard.fxml")));
+
+//            Equation
+            this.firstDegree = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Equation/FirstDegreeEquation.fxml")));
+
+            //            Conversion
             this.lengthConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion/LengthConversion.fxml")));
             this.areaConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion/AreaConversion.fxml")));
             this.volumeConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion" +
@@ -195,6 +200,9 @@ public class Controller3 implements Initializable {
                     "/SpeedConversion.fxml")));
 
             mainStackPane.getChildren().add(standard);
+
+            mainStackPane.getChildren().add(firstDegree);
+
             mainStackPane.getChildren().add(lengthConversion);
             mainStackPane.getChildren().add(areaConversion);
             mainStackPane.getChildren().add(volumeConversion);

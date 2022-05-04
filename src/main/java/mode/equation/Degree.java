@@ -5,9 +5,19 @@ import operation.Fraction;
 
 import java.util.ArrayList;
 
-public abstract class Degree extends Mode {
-    ArrayList<Fraction> solutions = new ArrayList<>();
+public class Degree extends Mode {
+    public ArrayList<Fraction> solutions = new ArrayList<>();
 
+    public String solutionString;
 
+    public static ArrayList<String> operators = new ArrayList <String>() {
+        {
+            add("=");
+            add(">");
+            add("<");
+            add("≥");
+            add("≤");
+        }
+    };
 
 }

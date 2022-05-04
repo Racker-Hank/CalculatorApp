@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,32 +24,38 @@
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints maxHeight="500.0" minHeight="120.0" prefHeight="160.0" vgrow="ALWAYS" />
-                        <RowConstraints maxHeight="500.0" minHeight="120.0" prefHeight="160.0" vgrow="ALWAYS" />
-                        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" valignment="CENTER" vgrow="NEVER" />
-                        <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="100.0" minHeight="50.0" prefHeight="50.0" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="500.0" minHeight="120.0" prefHeight="150.0" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="147.0" minHeight="50.0" prefHeight="80.0" valignment="CENTER" vgrow="NEVER" />
+                        <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="65.0" vgrow="ALWAYS" />
                      </rowConstraints>
                      <children>
                         <HBox alignment="CENTER" spacing="16.0">
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #28F984; -fx-border-radius: 16; -fx-border-width: 2; -fx-background-color: black;" HBox.hgrow="ALWAYS">
+                              <AnchorPane prefWidth="200.0" style="-fx-border-color: none; -fx-border-radius: 16; -fx-border-width: 2; -fx-background-color: black;" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" style="-fx-control-inner-background: black; -fx-background: black; -fx-faint-focus-color: black;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                    <TextArea fx:id="lastCalculationTextArea" editable="false" prefWidth="200.0" style="-fx-control-inner-background: black; -fx-background: black; -fx-faint-focus-color: black; -fx-text-fill: white;" text="Your Recent Calculation" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                        <font>
-                                          <Font name="Noto Sans Math Regular" size="16.0" />
+                                          <Font name="Noto Sans Math Regular" size="24.0" />
                                        </font>
                                     </TextArea>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane>
-                                 <children>
-                                    <AnchorPane layoutY="63.0" prefHeight="39.0" prefWidth="39.0" style="-fx-border-color: #28f984; -fx-border-width: 2; -fx-border-radius: 20;">
-                                       <children>
-                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#killme" style="-fx-background-color: transparent;" text="PIN" textFill="#28f984" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </AnchorPane>
+                              <Button alignment="CENTER" maxHeight="40.0" mnemonicParsing="false" onAction="#killme" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-background-radius: 16; -fx-border-radius: 16; -fx-border-width: 2; -fx-border-color: #28F984;" textFill="WHITE">
+                                 <graphic>
+                                    <Label text="PIN" textFill="WHITE">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" spacing="16.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
@@ -57,29 +64,28 @@
                                  <children>
                                     <TextArea fx:id="inputTextArea" promptText="Input Your Math Expression Here" wrapText="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
                                        <font>
-                                          <Font name="Noto Sans Math Regular" size="16.0" />
+                                          <Font name="Noto Sans Math Regular" size="24.0" />
                                        </font>
                                     </TextArea>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane prefHeight="160.0" prefWidth="37.0" HBox.hgrow="NEVER">
-                                 <children>
-                                    <AnchorPane layoutY="64.0" prefHeight="38.0" prefWidth="39.0" style="-fx-border-color: #28F984; -fx-border-radius: 20; -fx-border-width: 2;">
-                                       <children>
-                                          <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="GO" textFill="#28f984" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </Button>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </AnchorPane>
+                              <Button fx:id="calculateButton" maxHeight="40.0" mnemonicParsing="false" onAction="#saveCalculation" prefHeight="40.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-background-radius: 16; -fx-border-radius: 16; -fx-border-color: #28F984; -fx-border-width: 2;" textFill="WHITE">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <graphic>
+                                    <Label text="GO" textFill="WHITE">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                              </Button>
                               <AnchorPane maxWidth="300.0" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #28F984; -fx-border-width: 2; -fx-border-radius: 16; -fx-background-radius: 16;" HBox.hgrow="ALWAYS">
                                  <children>
                                     <TextArea fx:id="tempOutputTextArea" editable="false" layoutX="5.0" layoutY="6.0" prefHeight="155.0" prefWidth="136.0" style="-fx-background-color: black;" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                        <font>
-                                          <Font name="Noto Sans Math Regular" size="16.0" />
+                                          <Font name="Noto Sans Math Regular" size="24.0" />
                                        </font>
                                     </TextArea>
                                  </children>
