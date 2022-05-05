@@ -1,4 +1,12 @@
 package inputHandler;
+
+import operation.Constants;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Refer to <a href="https://math.hws.edu/javanotes/source/chapter8/Expr.java">Expr</a> for original Java code.
  */
@@ -54,6 +62,19 @@ public class Expr {
      * does not contain a legal expression.
      */
     public Expr(String definition) {
+        Field[] fields = Constants.class.getDeclaredFields();
+        for (Field f : fields) {
+            if (Modifier.isStatic(f.getModifiers())) {
+                Constants.Constant constant = null;
+                try {
+                    constant = (Constants.Constant) f.get(null);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+                assert constant != null;
+                constantsList.add(constant);
+            }
+        }
         parse(definition);
     }
 
@@ -103,6 +124,7 @@ public class Expr {
             "csc", "arcsin", "arccos", "arctan", "exp",
             "ln", "log10", "log2", "abs", "sqrt", "rt", "mod"};
 
+    private static final List<Constants.Constant> constantsList = new ArrayList<>(); // array of constants
 
     private double eval(double variable) { // evaluate this expression for this value of the variable
         try {
@@ -372,6 +394,13 @@ public class Expr {
             pos++;
         }
         w = new StringBuilder(w.toString().toLowerCase());
+        for (Constants.Constant constant : constantsList) {
+            if (w.toString().equals(constant.symbol)) {
+                code[codeSize++] = (byte) constantCt;
+                constants[constantCt++] = constant.value;
+                return;
+            }
+        }
         for (int i = 0; i < functionNames.length; i++) {
             if (w.toString().equals(functionNames[i]) && i < 15) {
                 skip();
@@ -450,20 +479,47 @@ public class Expr {
     }
 
     public static void main(String[] args) {
-        //        Expr expr = new Expr("sin(1)+cos(2)");
-        //        System.out.println(expr.value(1));
-        //        System.out.println(Arrays.toString(expr.code));
-        //        System.out.println(Arrays.toString(expr.constants));
+//        Expr expr = new Expr("sin(1)+cos(2)");
+//        System.out.println(expr.value(1));
+//        System.out.println(Arrays.toString(expr.code));
+//        System.out.println(Arrays.toString(expr.constants));
 
-        //        Expr expr2 = new Expr("rt(8,3)");
-        //        System.out.println(expr2.value(1));
-        //        System.out.println(Arrays.toString(expr2.code));
-        //        System.out.println(Arrays.toString(expr2.constants));
+//        Expr expr2 = new Expr("rt(8,3)");
+//        System.out.println(expr2.value(1));
+//        System.out.println(Arrays.toString(expr2.code));
+//        System.out.println(Arrays.toString(expr2.constants));
 
-        Expr expr3 = new Expr("mod(10,3)");
-        System.out.println(expr3.value(1));
-        //        System.out.println(Arrays.toString(expr3.code));
-        //        System.out.println(Arrays.toString(expr3.constants));
+//        Expr expr3 = new Expr("mod(10,3)");
+//        System.out.println(expr3.value(1));
+//        System.out.println(Arrays.toString(expr3.code));
+//        System.out.println(Arrays.toString(expr3.constants));
+
+        Expr test = new Expr("π");
+        System.out.println(test.value(0));
+        test = new Expr("cos(π)");
+        System.out.println(test.value(0));
+        test = new Expr("e");
+        System.out.println(test.value(0));
+        test = new Expr("qp");
+        System.out.println(test.value(0));
+        test = new Expr("h1");
+        System.out.println(test.value(0));
+//        System.out.println(Expr.constantsList);
+//        Field[] fields = Constants.class.getDeclaredFields();
+//        for (Field f : fields) {
+//            if (Modifier.isStatic(f.getModifiers())) {
+////                System.out.println(f.getType());
+////                System.out.println(f.getName());
+//                // get object from constants class with name f.getName()
+//                Constants.Constant o = null;
+//                try {
+//                    o = (Constants.Constant) f.get(null);
+//                } catch (IllegalAccessException e) {
+//                    e.printStackTrace();
+//                }
+//                System.out.println(o.symbol);
+//            }
+//        }
     }
 
 

@@ -142,7 +142,8 @@ public class TextHandler {
         System.out.println(TextHandler.numberFormatter(Math.pow(Math.sin(Math.toRadians(45)),2)));
 
         Fraction a = new Fraction();
-        mathInputHandler("3!", a);
+        mathInputHandler("sin(π/4)", a);
         System.out.println(a.toDouble());
+        System.out.println(TextHandler.numberFormatter(a.toDouble()));
     }
 }
