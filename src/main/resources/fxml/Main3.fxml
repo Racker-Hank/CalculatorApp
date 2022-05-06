@@ -23,7 +23,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controller3">
+<VBox prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controller3">
   <children>
       <GridPane minHeight="32.0" style="-fx-background-color: #080202; -fx-border-color: #28F984; -fx-border-width: 0 0 0 0;" VBox.vgrow="NEVER">
          <columnConstraints>
@@ -86,7 +86,7 @@
             </HBox>
          </children>
       </GridPane>
-    <SplitPane fx:id="splitPane" dividerPositions="0.212, 0.8" focusTraversable="true" prefHeight="679.0" prefWidth="1200.0" style="-fx-background-color: #202020; -fx-border-color: #28F984; -fx-border-width: 1 0 1 0;" VBox.vgrow="ALWAYS">
+    <SplitPane fx:id="splitPane" dividerPositions="0.18, 0.8" focusTraversable="true" prefHeight="679.0" prefWidth="1200.0" style="-fx-background-color: #202020; -fx-border-color: #28F984; -fx-border-width: 1 0 1 0;" VBox.vgrow="ALWAYS">
       <items>
         <AnchorPane style="-fx-background-color: #202020;" SplitPane.resizableWithParent="false">
           <children>
@@ -140,7 +140,7 @@
             <Font size="11.0" fx:id="x3" />
           </font>
           <textFill>
-            <Color blue="0.625" green="0.625" red="0.625" fx:id="x4" />
+            <Color red="0.625" green="0.625" blue="0.625" fx:id="x4" />
           </textFill>
         </Label>
         <Pane prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #202020;" HBox.hgrow="ALWAYS" />

@@ -1,5 +1,7 @@
 package inputHandler;
-
+/**
+ * Refer to <a href="https://math.hws.edu/javanotes/source/chapter8/Expr.java">Expr</a> for original Java code.
+ */
 
 /*
     An object belonging to the class Expr is a mathematical expression that
@@ -7,7 +9,7 @@ package inputHandler;
 
             -- real numbers such as 2.7, 3, and 12.7e-12
             -- the variable x
-            -- arithmetic operators  +,  -,  *,  /,  and  ^ , where
+            -- arithmetic operators  +,  -,  *,  /, ! and  ^ , where
                the last of these represents raising to a power
             -- the mathematical functions sin, cos, tan, sec, csc, cot,
                arcsin, arccos, arctan, exp, ln, log2, log10, abs, and sqrt,
@@ -59,6 +61,7 @@ public class Expr {
      * Computes the value of this expression, when the variable x
      * has a specified value.  If the expression is undefined
      * for the specified value of x, then Double.NaN is returned.
+     *
      * @param x the value to be used for the variable x in the expression
      * @return the computed value of the expression
      */
@@ -68,7 +71,7 @@ public class Expr {
 
     /**
      * Return the original definition string of this expression.  This
-     *  is the same string that was provided in the constructor.
+     * is the same string that was provided in the constructor.
      */
     public String toString() {
         return definition;
@@ -89,17 +92,16 @@ public class Expr {
 
 
     private static final byte  // values for code array; values >= 0 are indices into constants array
-            PLUS = -1,   MINUS = -2,   TIMES = -3,   DIVIDE = -4,  POWER = -5,
-            SIN = -6,    COS = -7,     TAN = -8,     COT = -9,     SEC = -10,
-            CSC = -11,   ARCSIN = -12, ARCCOS = -13, ARCTAN = -14, EXP = -15,
-            LN = -16,    LOG10 = -17,  LOG2 = -18,   ABS = -19,   SQRT = -20,
-            UNARYMINUS = -21, VARIABLE = -22;
+            PLUS = -1, MINUS = -2, TIMES = -3, DIVIDE = -4, POWER = -5, SIN = -6, COS = -7, TAN = -8,
+            COT = -9, SEC = -10, CSC = -11, ARCSIN = -12, ARCCOS = -13, ARCTAN = -14, EXP = -15,
+            LN = -16, LOG10 = -17, LOG2 = -18, ABS = -19, SQRT = -20, ROOT = -21, MODULO = -22,
+            FACTORIAL = -23, PERCENT = -24, UNARYMINUS = -25, VARIABLE = -26;
 
 
-    private static String[] functionNames =  {  // names of standard functions, used during parsing
+    private static final String[] functionNames = {  // names of standard functions, used during parsing
             "sin", "cos", "tan", "cot", "sec",
             "csc", "arcsin", "arccos", "arctan", "exp",
-            "ln", "log10", "log2", "abs", "sqrt" };
+            "ln", "log10", "log2", "abs", "sqrt", "rt", "mod"};
 
 
     private double eval(double variable) { // evaluate this expression for this value of the variable
@@ -113,48 +115,100 @@ public class Expr {
                     double x = stack[--top];
                     double ans = Double.NaN;
                     switch (code[i]) {
-                        case PLUS:    ans = x + y;  break;
-                        case MINUS:   ans = x - y;  break;
-                        case TIMES:   ans = x * y;  break;
-                        case DIVIDE:  ans = x / y;  break;
-                        case POWER:   ans = Math.pow(x,y);  break;
+                        case PLUS:
+                            ans = x + y;
+                            break;
+                        case MINUS:
+                            ans = x - y;
+                            break;
+                        case TIMES:
+                            ans = x * y;
+                            break;
+                        case DIVIDE:
+                            ans = x / y;
+                            break;
+                        case POWER:
+                            ans = Math.pow(x, y);
+                            break;
                     }
                     if (Double.isNaN(ans))
                         return ans;
                     stack[top++] = ans;
-                }
-                else if (code[i] == VARIABLE) {
+                } else if (code[i] == VARIABLE) {
                     stack[top++] = variable;
-                }
-                else {
+                } else {
                     double x = stack[--top];
                     double ans = Double.NaN;
                     switch (code[i]) {
-                        case SIN: ans = Math.sin(x);  break;
-                        case COS: ans = Math.cos(x);  break;
-                        case TAN: ans = Math.tan(x);  break;
-                        case COT: ans = Math.cos(x)/Math.sin(x);  break;
-                        case SEC: ans = 1.0/Math.cos(x);  break;
-                        case CSC: ans = 1.0/Math.sin(x);  break;
-                        case ARCSIN: if (Math.abs(x) <= 1.0) ans = Math.asin(x);  break;
-                        case ARCCOS: if (Math.abs(x) <= 1.0) ans = Math.acos(x);  break;
-                        case ARCTAN: ans = Math.atan(x);  break;
-                        case EXP: ans = Math.exp(x);  break;
-                        case LN: if (x > 0.0) ans = Math.log(x);  break;
-                        case LOG2: if (x > 0.0) ans = Math.log(x)/Math.log(2);  break;
-                        case LOG10: if (x > 0.0) ans = Math.log(x)/Math.log(10);  break;
-                        case ABS: ans = Math.abs(x);  break;
-                        case SQRT: if (x >= 0.0) ans = Math.sqrt(x);  break;
-                        case UNARYMINUS: ans = -x; break;
+                        case SIN:
+                            ans = Math.sin(x);
+                            break;
+                        case COS:
+                            ans = Math.cos(x);
+                            break;
+                        case TAN:
+                            ans = Math.tan(x);
+                            break;
+                        case COT:
+                            ans = Math.cos(x) / Math.sin(x);
+                            break;
+                        case SEC:
+                            ans = 1.0 / Math.cos(x);
+                            break;
+                        case CSC:
+                            ans = 1.0 / Math.sin(x);
+                            break;
+                        case ARCSIN:
+                            if (Math.abs(x) <= 1.0) ans = Math.asin(x);
+                            break;
+                        case ARCCOS:
+                            if (Math.abs(x) <= 1.0) ans = Math.acos(x);
+                            break;
+                        case ARCTAN:
+                            ans = Math.atan(x);
+                            break;
+                        case EXP:
+                            ans = Math.exp(x);
+                            break;
+                        case LN:
+                            if (x > 0.0) ans = Math.log(x);
+                            break;
+                        case LOG2:
+                            if (x > 0.0) ans = Math.log(x) / Math.log(2);
+                            break;
+                        case LOG10:
+                            if (x > 0.0) ans = Math.log(x) / Math.log(10);
+                            break;
+                        case ABS:
+                            ans = Math.abs(x);
+                            break;
+                        case SQRT:
+                            if (x >= 0.0) ans = Math.sqrt(x);
+                            break;
+                        case UNARYMINUS:
+                            ans = -x;
+                            break;
+                        case ROOT:
+                            double y = stack[--top];
+                            if (y >= 0.0) ans = Math.pow(y, 1.0 / x);
+                            break;
+                        case FACTORIAL:
+                            ans = factorial(x);
+                            break;
+                        case PERCENT:
+                            ans = x / 100.0;
+                            break;
+                        case MODULO:
+                            y = stack[--top];
+                            ans = y % x;
+                            break;
                     }
                     if (Double.isNaN(ans))
                         return ans;
                     stack[top++] = ans;
-
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return Double.NaN;
         }
         if (Double.isInfinite(stack[0]))
@@ -163,6 +217,15 @@ public class Expr {
             return stack[0];
     }
 
+    private double factorial(double x) {
+        if (x < 0.0) return Double.NaN;
+        if (x > 170.0) return Double.POSITIVE_INFINITY;
+        double ans = 1.0;
+        while (x > 1.0) {
+            ans *= x--;
+        }
+        return ans;
+    }
 
     private int pos = 0, constantCt = 0, codeSize = 0;  // data for use during parsing
 
@@ -178,8 +241,7 @@ public class Expr {
                 s++;
                 if (s > max)
                     max = s;
-            }
-            else if (code[i] >= POWER)
+            } else if (code[i] >= POWER)
                 s--;
         }
         return max;
@@ -200,10 +262,10 @@ public class Expr {
         int stackSize = computeStackUsage();
         stack = new double[stackSize];
         byte[] c = new byte[codeSize];
-        System.arraycopy(code,0,c,0,codeSize);
+        System.arraycopy(code, 0, c, 0, codeSize);
         code = c;
         double[] A = new double[constantCt];
-        System.arraycopy(constants,0,A,0,constantCt);
+        System.arraycopy(constants, 0, A, 0, constantCt);
         constants = A;
     }
 
@@ -215,7 +277,7 @@ public class Expr {
     }
 
     private void skip() {  // skip over white space in data
-        while(Character.isWhitespace(next()))
+        while (Character.isWhitespace(next()))
             pos++;
     }
 
@@ -237,7 +299,7 @@ public class Expr {
             char op = next();
             pos++;
             parseTerm();
-            code[codeSize++] = (op == '+')? PLUS : MINUS;
+            code[codeSize++] = (op == '+') ? PLUS : MINUS;
             skip();
         }
     }
@@ -249,7 +311,7 @@ public class Expr {
             char op = next();
             pos++;
             parseFactor();
-            code[codeSize++] = (op == '*')? TIMES : DIVIDE;
+            code[codeSize++] = (op == '*') ? TIMES : DIVIDE;
             skip();
         }
     }
@@ -257,11 +319,22 @@ public class Expr {
     private void parseFactor() {
         parsePrimary();
         skip();
-        while (next() == '^') {
-            pos++;
-            parsePrimary();
-            code[codeSize++] = POWER;
-            skip();
+        while (next() == '^' || next() == '!' || next() == '%') {
+            char op = next();
+            if (op == '^') {
+                pos++;
+                parsePrimary();
+                code[codeSize++] = POWER;
+                skip();
+            } else if (op == '!') {
+                pos++;
+                code[codeSize++] = FACTORIAL;
+                skip();
+            } else if (op == '%') {
+                pos++;
+                code[codeSize++] = PERCENT;
+                skip();
+            }
         }
     }
 
@@ -271,8 +344,7 @@ public class Expr {
         if (ch == 'x' || ch == 'X') {
             pos++;
             code[codeSize++] = VARIABLE;
-        }
-        else if (Character.isLetter(ch))
+        } else if (Character.isLetter(ch))
             parseWord();
         else if (Character.isDigit(ch) || ch == '.')
             parseNumber();
@@ -283,8 +355,7 @@ public class Expr {
             if (next() != ')')
                 error("Expected a right parenthesis.");
             pos++;
-        }
-        else if (ch == ')')
+        } else if (ch == ')')
             error("Unmatched right parenthesis.");
         else if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^')
             error("Operator '" + ch + "' found in an unexpected position.");
@@ -295,14 +366,14 @@ public class Expr {
     }
 
     private void parseWord() {
-        String w = "";
+        StringBuilder w = new StringBuilder();
         while (Character.isLetterOrDigit(next())) {
-            w += next();
+            w.append(next());
             pos++;
         }
-        w = w.toLowerCase();
+        w = new StringBuilder(w.toString().toLowerCase());
         for (int i = 0; i < functionNames.length; i++) {
-            if (w.equals(functionNames[i])) {
+            if (w.toString().equals(functionNames[i]) && i < 15) {
                 skip();
                 if (next() != '(')
                     error("Function name '" + w + "' must be followed by its parameter in parentheses.");
@@ -312,7 +383,25 @@ public class Expr {
                 if (next() != ')')
                     error("Missing right parenthesis after parameter of function '" + w + "'.");
                 pos++;
-                code[codeSize++] = (byte)(SIN - i);
+                code[codeSize++] = (byte) (SIN - i);
+                return;
+            } else if (w.toString().equals(functionNames[i]) && i >= 15) {
+                skip();
+                if (next() != '(')
+                    error("Function name '" + w + "' must be followed by its parameter in parentheses.");
+                pos++;
+                parseExpression();
+                skip();
+                if (next() != ',') {
+                    error("Missing comma after parameter of function '" + w + "'.");
+                }
+                pos++;
+                parseExpression();
+                skip();
+                if (next() != ')')
+                    error("Missing right parenthesis after parameter of function '" + w + "'.");
+                pos++;
+                code[codeSize++] = (byte) (SIN - i);
                 return;
             }
         }
@@ -320,51 +409,62 @@ public class Expr {
     }
 
     private void parseNumber() {
-        String w = "";
+        StringBuilder w = new StringBuilder();
         while (Character.isDigit(next())) {
-            w += next();
+            w.append(next());
             pos++;
         }
         if (next() == '.') {
-            w += next();
+            w.append(next());
             pos++;
             while (Character.isDigit(next())) {
-                w += next();
+                w.append(next());
                 pos++;
             }
         }
-        if (w.equals("."))
+        if (w.toString().equals("."))
             error("Illegal number found, consisting of decimal point only.");
         if (next() == 'E' || next() == 'e') {
-            w += next();
+            w.append(next());
             pos++;
             if (next() == '+' || next() == '-') {
-                w += next();
+                w.append(next());
                 pos++;
             }
-            if (! Character.isDigit(next()))
+            if (!Character.isDigit(next()))
                 error("Illegal number found, with no digits in its exponent.");
             while (Character.isDigit(next())) {
-                w += next();
+                w.append(next());
                 pos++;
             }
         }
         double d = Double.NaN;
         try {
-            d = Double.valueOf(w).doubleValue();
-        }
-        catch (Exception e) {
+            d = Double.parseDouble(w.toString());
+        } catch (Exception ignored) {
         }
         if (Double.isNaN(d))
             error("Illegal number '" + w + "' found in data.");
-        code[codeSize++] = (byte)constantCt;
+        code[codeSize++] = (byte) constantCt;
         constants[constantCt++] = d;
     }
 
     public static void main(String[] args) {
-        String str = "1 + 2/3";
-        Expr e = new Expr(str);
-        System.out.println(e.value(0));
+        //        Expr expr = new Expr("sin(1)+cos(2)");
+        //        System.out.println(expr.value(1));
+        //        System.out.println(Arrays.toString(expr.code));
+        //        System.out.println(Arrays.toString(expr.constants));
+
+        //        Expr expr2 = new Expr("rt(8,3)");
+        //        System.out.println(expr2.value(1));
+        //        System.out.println(Arrays.toString(expr2.code));
+        //        System.out.println(Arrays.toString(expr2.constants));
+
+        Expr expr3 = new Expr("mod(10,3)");
+        System.out.println(expr3.value(1));
+        //        System.out.println(Arrays.toString(expr3.code));
+        //        System.out.println(Arrays.toString(expr3.constants));
     }
+
 
 } // end class Expr

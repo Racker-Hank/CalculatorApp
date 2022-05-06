@@ -12,10 +12,11 @@ public class FirstDegree extends Degree{
         solutions.clear();
         if (a.toDouble() == 0) {
 //            throw Exception;
-            System.out.println("a cannot be zero");
+//            System.out.println("a cannot be zero");
         }
         else {
             solutions.add((MathUtil.divide(MathUtil.multiply(new Fraction(-1),b), a)).simplify());
+            solutionString = "𝑥 = " + solutions.get(0).toDouble();
         }
     }
     // >= ax + b >= 0 => x >= -b/a
@@ -29,10 +30,12 @@ public class FirstDegree extends Degree{
         equal(a,b);
         Fraction x = solutions.get(0);
         if ( a.toDouble() > 0) {
-            System.out.println("x ∈ " + "[" + x.toDouble() + ", +∞)");
+//            System.out.println("x ∈ " + "[" + x.toDouble() + ", +∞)");
+            solutionString = "\uD835\uDC65 ∈ " + "[" + x.toDouble() + ", +∞)";
         }
         else {
-            System.out.println("x ∈ " + "(-∞," + x.toDouble() + "]");
+//            System.out.println("x ∈ " + "(-∞," + x.toDouble() + "]");
+            solutionString = "\uD835\uDC65 ∈ " + "(-∞," + x.toDouble() + "]";
         }
     }
 
@@ -46,10 +49,12 @@ public class FirstDegree extends Degree{
         equal(a,b);
         Fraction x = solutions.get(0);
         if ( a.toDouble() > 0) {
-            System.out.println("x ∈ " + "(-∞," + x.toDouble() + "]");
+//            System.out.println("x ∈ " + "(-∞," + x.toDouble() + "]");
+            solutionString = "\uD835\uDC65 ∈ " + "(-∞," + x.toDouble() + "]";
         }
         else {
-            System.out.println("x ∈ " + "[" + x.toDouble() + ", +∞)");
+//            System.out.println("x ∈ " + "[" + x.toDouble() + ", +∞)");
+            solutionString = "\uD835\uDC65 ∈ " + "[" + x.toDouble() + ", +∞)";
         }
     }
 
@@ -57,10 +62,12 @@ public class FirstDegree extends Degree{
         equal(a,b);
         Fraction x = solutions.get(0);
         if ( a.toDouble() > 0) {
-            System.out.println("x ∈ " + "(-∞," + x.toDouble() + ")");
+//            System.out.println("x ∈ " + "(-∞," + x.toDouble() + ")");
+            solutionString = "\uD835\uDC65 ∈ " + "(-∞," + x.toDouble() + ")";
         }
         else {
-            System.out.println("x ∈ " + "(" + x.toDouble() + ", +∞)");
+//            System.out.println("x ∈ " + "(" + x.toDouble() + ", +∞)");
+            solutionString = "\uD835\uDC65 ∈ " + "(" + x.toDouble() + ", +∞)";
         }
     }
 
@@ -68,10 +75,12 @@ public class FirstDegree extends Degree{
         equal(a,b);
         Fraction x = solutions.get(0);
         if ( a.toDouble() > 0) {
-            System.out.println("x ∈ " + "(" + x.toDouble() + ", +∞)");
+//            System.out.println("x ∈ " + "(" + x.toDouble() + ", +∞)");
+            solutionString = "\uD835\uDC65 ∈ " + "(" + x.toDouble() + ", +∞)";
         }
         else {
-            System.out.println("x ∈ " + "(-∞," + x.toDouble() + ")");
+//            System.out.println("x ∈ " + "(-∞," + x.toDouble() + ")");
+            solutionString = "\uD835\uDC65 ∈ " + "(-∞," + x.toDouble() + ")";
         }
     }
 

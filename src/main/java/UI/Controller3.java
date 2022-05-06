@@ -45,6 +45,7 @@ public class Controller3 implements Initializable {
 
     @FXML
     private AnchorPane equation;
+    private AnchorPane firstDegree;
 
     @FXML
     private AnchorPane variable;
@@ -62,6 +63,8 @@ public class Controller3 implements Initializable {
     private AnchorPane conversion;
     private AnchorPane lengthConversion;
     private AnchorPane areaConversion;
+    private AnchorPane volumeConversion;
+    private AnchorPane speedConversion;
 
     @FXML
     private AnchorPane financial;
@@ -100,34 +103,6 @@ public class Controller3 implements Initializable {
     String treeItemStyle = "-fx-font-size:16px;  -fx-font-family: Noto Sans Math; " +
             "-fx-background-color: #000; -fx-text-fill: #fff;";
 
-
-    @FXML
-    void clickToResizeLeft(MouseEvent event) {
-        double dividerPositions1 = splitPane.getDividerPositions()[0];
-        if (dividerPositions1 < 0.004) {
-                animatedSplitPane(0, 0.21);
-//                resizeLeftIcon.setGlyphName("ANGLE_DOUBLE_LEFT");
-        }
-        else {
-            animatedSplitPane(0, 0);
-//            resizeLeftIcon.setGlyphName("ANGLE_DOUBLE_RIGHT");
-        }
-    }
-
-    @FXML
-    void clickToResizeRight(MouseEvent event) {
-        double dividerPositions2 = splitPane.getDividerPositions()[1];
-            if (dividerPositions2 > 0.99) {
-                animatedSplitPane(1, 0.8);
-//                resizeRightIcon.setGlyphName("ANGLE_DOUBLE_RIGHT");
-            }
-            else {
-                animatedSplitPane(1, 1);
-//                resizeRightIcon.setGlyphName("ANGLE_DOUBLE_LEFT");
-            }
-    }
-
-
     @Override
     public void initialize(URL location , ResourceBundle resources) {
         //        try {
@@ -144,13 +119,16 @@ public class Controller3 implements Initializable {
         root.getChildren().add(standard);
 
         TreeItem <String> equation = new TreeItem <>("Equation");
-        TreeItem <String> variable = new TreeItem <>("Variable");
-        TreeItem <String> graph = new TreeItem <>("Graph");
-        equation.getChildren().addAll(variable , graph);
-        panes.put(equation , this.equation);
-        panes.put(variable , this.variable);
-        panes.put(graph , this.graph);
-        //            root.getChildren().add(equation);
+        TreeItem <String> firstDegree = new TreeItem <>("First Degree");
+        panes.put(firstDegree, this.firstDegree);
+        equation.getChildren().add(firstDegree);
+//        panes.put(equation , this.equation);
+//        TreeItem <String> variable = new TreeItem <>("Variable");
+//        TreeItem <String> graph = new TreeItem <>("Graph");
+//        equation.getChildren().addAll(variable , graph);
+//        panes.put(variable , this.variable);
+//        panes.put(graph , this.graph);
+        root.getChildren().add(equation);
 
         TreeItem <String> matrix = new TreeItem <>("Matrix");
         panes.put(matrix , this.matrix);
@@ -163,11 +141,17 @@ public class Controller3 implements Initializable {
         TreeItem <String> conversion = new TreeItem <>("Conversion");
         TreeItem <String> lengthConversion = new TreeItem <>("Length Conversion");
         TreeItem <String> areaConversion = new TreeItem <>("Area Conversion");
+        TreeItem <String> volumeConversion = new TreeItem <>("Volume Conversion");
+        TreeItem <String> speedConversion = new TreeItem <>("Speed Conversion");
         panes.put(conversion , this.conversion);
         panes.put(lengthConversion , this.lengthConversion);
         panes.put(areaConversion , this.areaConversion);
+        panes.put(volumeConversion , this.volumeConversion);
+        panes.put(speedConversion , this.speedConversion);
         conversion.getChildren().add(lengthConversion);
         conversion.getChildren().add(areaConversion);
+        conversion.getChildren().add(volumeConversion);
+        conversion.getChildren().add(speedConversion);
         root.getChildren().add(conversion);
 
         TreeItem <String> financial = new TreeItem <>("Financial");
@@ -203,13 +187,26 @@ public class Controller3 implements Initializable {
     public void loadPanes() {
         try {
             this.standard = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Standard.fxml")));
+
+//            Equation
+            this.firstDegree = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Equation/FirstDegreeEquation.fxml")));
+
+            //            Conversion
             this.lengthConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion/LengthConversion.fxml")));
-            this.areaConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion" +
-                    "/AreaConversion.fxml")));
+            this.areaConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion/AreaConversion.fxml")));
+            this.volumeConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion" +
+                    "/VolumeConversion.fxml")));
+            this.speedConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion" +
+                    "/SpeedConversion.fxml")));
 
             mainStackPane.getChildren().add(standard);
+
+            mainStackPane.getChildren().add(firstDegree);
+
             mainStackPane.getChildren().add(lengthConversion);
             mainStackPane.getChildren().add(areaConversion);
+            mainStackPane.getChildren().add(volumeConversion);
+            mainStackPane.getChildren().add(speedConversion);
 
             for (int i = 1; i < mainStackPane.getChildren().size(); i++) {
                 mainStackPane.getChildren().get(i).setVisible(false);
@@ -256,6 +253,32 @@ public class Controller3 implements Initializable {
                 //                button.setStyle(PrimaryButton.style);
                 button = new PrimaryButton().toPrimaryButton(button);
             }
+        }
+    }
+
+    @FXML
+    void clickToResizeLeft(MouseEvent event) {
+        double dividerPositions1 = splitPane.getDividerPositions()[0];
+        if (dividerPositions1 < 0.004) {
+            animatedSplitPane(0, 0.18);
+            //                resizeLeftIcon.setGlyphName("ANGLE_DOUBLE_LEFT");
+        }
+        else {
+            animatedSplitPane(0, 0);
+            //            resizeLeftIcon.setGlyphName("ANGLE_DOUBLE_RIGHT");
+        }
+    }
+
+    @FXML
+    void clickToResizeRight(MouseEvent event) {
+        double dividerPositions2 = splitPane.getDividerPositions()[1];
+        if (dividerPositions2 > 0.99) {
+            animatedSplitPane(1, 0.8);
+            //                resizeRightIcon.setGlyphName("ANGLE_DOUBLE_RIGHT");
+        }
+        else {
+            animatedSplitPane(1, 1);
+            //                resizeRightIcon.setGlyphName("ANGLE_DOUBLE_LEFT");
         }
     }
 

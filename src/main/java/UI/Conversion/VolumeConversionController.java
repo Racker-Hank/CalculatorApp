@@ -5,16 +5,18 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
 import mode.conversion.Area;
 import mode.conversion.Length;
 import mode.conversion.Unit;
+import mode.conversion.Volume;
 import operation.Operation;
 
 import java.util.HashMap;
 
-public class AreaConversionController {
+public class VolumeConversionController {
     @FXML
     private TextArea fromUnitTextArea;
 
@@ -29,6 +31,11 @@ public class AreaConversionController {
 
     public HashMap <String, Unit> unitsMap;
 
+    @FXML
+    private Label conversionModeName;
+
+    String conversionMode;
+
     ChangeListener choiceBoxListener = (obs , oldValue , newValue) -> {
         Platform.runLater(() -> {
             convert();
@@ -36,10 +43,27 @@ public class AreaConversionController {
     };
 
     public void initialize() {
-        unitsMap = Area.unitsMap;
+        //        System.out.println(conversionModeName.getText().toLowerCase());
+        unitsMap = Volume.unitsMap;
+        //        initConversionMode();
         initTextArea();
         initChoiceBox();
     }
+
+    //    public void initConversionMode() {
+    //        conversionMode = conversionModeName.getText().toLowerCase();
+    //        switch (conversionMode) {
+    //            case "length":
+    //                unitsMap = Length.unitsMap;
+    //                break;
+    //            case "area":
+    //                unitsMap = Area.unitsMap;
+    //                break;
+    //            case "volume":
+    //                unitsMap = Volume.unitsMap;
+    //                break;
+    //        }
+    //    }
 
     public void initTextArea() {
         fromUnitTextArea.textProperty().addListener(choiceBoxListener);
@@ -48,12 +72,14 @@ public class AreaConversionController {
     public void initChoiceBox() {
         fromUnitChoiceBox.getItems().addAll(unitsMap.keySet());
         fromUnitChoiceBox.setTooltip(new Tooltip("Unit to convert from"));
-        fromUnitChoiceBox.setValue("m²");
+        fromUnitChoiceBox.setValue("m³");
+        //        fromUnitChoiceBox.setValue((String) unitsMap.keySet().toArray()[0]);
         fromUnitChoiceBox.valueProperty().addListener(choiceBoxListener);
 
         toUnitChoiceBox.getItems().addAll(unitsMap.keySet());
         toUnitChoiceBox.setTooltip(new Tooltip("Unit to convert to"));
-        toUnitChoiceBox.setValue("km²");
+        toUnitChoiceBox.setValue("\uD835\uDC59");
+        //        toUnitChoiceBox.setValue((String) unitsMap.keySet().toArray()[1]);
         toUnitChoiceBox.valueProperty().addListener(choiceBoxListener);
     }
 
@@ -63,7 +89,21 @@ public class AreaConversionController {
             double n = Operation.calculate(fromUnitTextArea).toDouble();
             Unit fromUnit = unitsMap.get(fromUnitChoiceBox.getValue());
             Unit toUnit = unitsMap.get(toUnitChoiceBox.getValue());
-            toUnitTextArea.setText(TextHandler.numberFormatter(Area.convert(fromUnit , toUnit , n)) + "");
+            Number result;
+            //            switch (conversionMode) {
+            //                case "length":
+            //                    result = TextHandler.numberFormatter(Length.convert(fromUnit , toUnit , n));
+            //                    break;
+            //                case "area":
+            //                    result = TextHandler.numberFormatter(Area.convert(fromUnit , toUnit , n));
+            //                    break;
+            //                case "volume":
+            result = TextHandler.numberFormatter(Volume.convert(fromUnit , toUnit , n));
+            //                    break;
+            //                default:
+            //                    result = TextHandler.numberFormatter(0);
+            //            }
+            toUnitTextArea.setText(result + "");
         } catch (Exception e) {
             //                    e.printStackTrace();
         }
