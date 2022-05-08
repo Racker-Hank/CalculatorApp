@@ -7,15 +7,15 @@ public class MathUtil {
         return a.add(b);
     }
 
-    public static Fraction subtract(Fraction a, Fraction b) {
+    public static Fraction subtract(Fraction a, Fraction b)  {
         return a.subtract(b);
     }
 
-    public static Fraction multiply(Fraction a, Fraction b) {
+    public static Fraction multiply(Fraction a, Fraction b)  {
         return a.multiply(b);
     }
 
-    public static Fraction divide(Fraction a, Fraction b) {
+    public static Fraction divide(Fraction a, Fraction b)  {
 //        if (b == 0) {
 //            throw new IllegalArgumentException("Cannot divide by zero");
 //        }

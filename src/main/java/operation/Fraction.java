@@ -4,6 +4,7 @@ package operation;
 
 import UI.UIConfig;
 import UI.components.InputPane;
+import error.MathError;
 import inputHandler.MathUtil;
 import inputHandler.TextHandler;
 import javafx.application.Platform;
@@ -22,11 +23,11 @@ public class Fraction extends Operand implements Comparable <Fraction> {
     public double numerator;
     public double denominator;
 
-    public Fraction(double numerator , double denominator) {
+    public Fraction(double numerator , double denominator)  {
         this.numerator = numerator;
         if (denominator == 0) {
-            //            throw new Error();
-            throw new IllegalArgumentException("Cannot divide by zero");
+//                        throw new Error();
+//            throw new MathError();
         }
         this.denominator = denominator;
     }
@@ -52,25 +53,25 @@ public class Fraction extends Operand implements Comparable <Fraction> {
         this.denominator = fraction.denominator;
     }
 
-    public Fraction add(Fraction fraction) {
+    public Fraction add(Fraction fraction)  {
         double newNumerator = this.numerator * fraction.denominator + fraction.numerator * this.denominator;
         double newDenominator = this.denominator * fraction.denominator;
         return new Fraction(newNumerator , newDenominator);
     }
 
-    public Fraction subtract(Fraction fraction) {
+    public Fraction subtract(Fraction fraction)  {
         double newNumerator = this.numerator * fraction.denominator - fraction.numerator * this.denominator;
         double newDenominator = this.denominator * fraction.denominator;
         return new Fraction(newNumerator , newDenominator);
     }
 
-    public Fraction multiply(Fraction fraction) {
+    public Fraction multiply(Fraction fraction)  {
         double newNumerator = this.numerator * fraction.numerator;
         double newDenominator = this.denominator * fraction.denominator;
         return new Fraction(newNumerator , newDenominator);
     }
 
-    public Fraction divide(Fraction fraction) {
+    public Fraction divide(Fraction fraction)  {
         double newNumerator = this.numerator * fraction.denominator;
         double newDenominator = this.denominator * fraction.numerator;
         return new Fraction(newNumerator , newDenominator);
@@ -344,7 +345,7 @@ public class Fraction extends Operand implements Comparable <Fraction> {
         parentPane.getChildren().add(fractionContainer);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         //        Fraction a = new Fraction(1, 2);
         //        System.out.println(a.root(new Fraction(2)).toDouble());
         //        System.out.println(a.pow(new Fraction(2)).toDouble());
