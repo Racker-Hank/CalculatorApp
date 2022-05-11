@@ -28,11 +28,15 @@ public class Temperature {
     }
 
     public static final double celsius = 1;
-    public static final double fahreheit = 2;
+    public static final double fahrenheit = 2;
     public static final double kelvin = 3;
 
+    public static final Unit Celsius = new Unit ("°C", 1);
+    public static final Unit Fahrenheit = new Unit ("°F", 2);
+    public static final Unit Kelvin = new Unit ("K", 3);
+
     public static double a = kelvin;
-    public static double b = fahreheit;
+    public static double b = fahrenheit;
 
     public static double result (double num) {
         if (a == 1 && b == 2) return Temperature_C_To_F_(num);
