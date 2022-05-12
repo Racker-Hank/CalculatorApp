@@ -1,6 +1,7 @@
 package mode.conversion;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class Weight {
 //    public static final double carats = 200;
@@ -21,12 +22,12 @@ public class Weight {
     public static final Unit carats = new Unit("ct", 200);
     public static final Unit milligrams = new Unit("mg", 1);
     public static final Unit centigrams = new Unit("cg", Math.pow(10,1));
-    public static final Unit decigrams = new Unit("dcg", Math.pow(10,2));
+    public static final Unit decigrams = new Unit("dg", Math.pow(10,2));
     public static final Unit grams = new Unit("g", Math.pow(10,3));
-    public static final Unit dekagrams = new Unit("dkg", Math.pow(10,4));
+    public static final Unit dekagrams = new Unit("dag", Math.pow(10,4));
     public static final Unit hectograms = new Unit("hg", Math.pow(10,5));
     public static final Unit kilograms = new Unit("kg", Math.pow(10,6));
-    public static final Unit metricTonnes = new Unit("", Math.pow(10,9));
+    public static final Unit metricTonnes = new Unit("t", Math.pow(10,9));
     public static final Unit ounces = new Unit("oz", 28349.5231);
     public static final Unit pounds = new Unit("lb", 453592.37);
     public static final Unit stone = new Unit("st", 6350293.18);
@@ -52,6 +53,28 @@ public class Weight {
         }
     };
 
+    public static LinkedHashMap<String, Unit> unitsMap = new LinkedHashMap<String, Unit>() {
+        {
+            put("ct", carats);
+            put("mg", milligrams);
+            put("cg", centigrams);
+            put("dg", decigrams);
+            put("g", grams);
+            put("dag", dekagrams);
+            put("hg", hectograms);
+            put("kg", kilograms);
+            put("t", metricTonnes);
+            put("oz", ounces);
+            put("lb", pounds);
+            put("st", stone);
+            put("Short Tons (US)", shortTonsUS);
+            put("Long Tons (US)", longTonsUS);
+        }
+    };
+
+    public static double convert(Unit fromUnit , Unit toUnit , double n) {
+        return n * fromUnit.toSmallestUnit * (1 / toUnit.toSmallestUnit);
+    }
 
     public static double a = ounces.toSmallestUnit;
     public static double b = grams.toSmallestUnit;

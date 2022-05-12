@@ -27,9 +27,9 @@
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints maxHeight="100.0" minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="500.0" minHeight="120.0" prefHeight="150.0" vgrow="ALWAYS" />
-                        <RowConstraints maxHeight="147.0" minHeight="50.0" prefHeight="80.0" valignment="CENTER" vgrow="NEVER" />
-                        <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="65.0" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="500.0" minHeight="120.0" prefHeight="200.0" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="147.0" minHeight="27.0" prefHeight="60.0" valignment="CENTER" vgrow="NEVER" />
+                        <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="31.0" vgrow="ALWAYS" />
                      </rowConstraints>
                      <children>
                         <HBox alignment="CENTER" spacing="100.0">

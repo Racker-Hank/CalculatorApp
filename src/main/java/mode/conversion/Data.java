@@ -1,6 +1,7 @@
 package mode.conversion;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class Data {
 //    public static final double bits = 1;
@@ -75,6 +76,37 @@ public class Data {
             add(pebibytes);
         }
     };
+
+    public static LinkedHashMap<String, Unit> unitsMap = new LinkedHashMap <String, Unit>() {
+        {
+            put("b", bits);
+            put("B", bytes);
+            put("Kb", kilobits);
+            put("Kib", kibibits);
+            put("KB", kilobytes);
+            put("KiB", kibibytes);
+            put("Mb", megabits);
+            put("Mib", mebibits);
+            put("MB", megabytes);
+            put("MiB", mebibytes);
+            put("Gb", gigabits);
+            put("Gib", gibibits);
+            put("GB", gigabytes);
+            put("GiB", gibibytes);
+            put("Tb", terabits);
+            put("Tib", tebibits);
+            put("TB", terabytes);
+            put("TiB", tebibytes);
+            put("Pb", petabits);
+            put("Pib", pebibits);
+            put("PB", petabytes);
+            put("PiB", pebibytes);
+        }
+    };
+
+    public static double convert(Unit fromUnit , Unit toUnit , double n) {
+        return n * fromUnit.toSmallestUnit * (1 / toUnit.toSmallestUnit);
+    }
 
     public static double a = kibibits.toSmallestUnit;
     public static double b = mebibytes.toSmallestUnit;

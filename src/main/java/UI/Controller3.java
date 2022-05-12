@@ -50,6 +50,7 @@ public class Controller3 implements Initializable {
     @FXML
     private AnchorPane equation;
     private AnchorPane firstDegree;
+    private AnchorPane secondDegree;
 
     @FXML
     private AnchorPane variable;
@@ -69,6 +70,12 @@ public class Controller3 implements Initializable {
     private AnchorPane areaConversion;
     private AnchorPane volumeConversion;
     private AnchorPane speedConversion;
+    private AnchorPane dataConversion;
+    private AnchorPane energyConversion;
+    private AnchorPane powerConversion;
+    private AnchorPane pressureConversion;
+    private AnchorPane timeConversion;
+    private AnchorPane weightConversion;
 
     @FXML
     private AnchorPane financial;
@@ -143,6 +150,8 @@ public class Controller3 implements Initializable {
 
             //            Equation
             this.firstDegree = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Equation/FirstDegreeEquation.fxml")));
+            this.secondDegree = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Equation" +
+                    "/SecondDegreeEquation.fxml")));
 
             //            Conversion
             this.lengthConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion/LengthConversion.fxml")));
@@ -151,15 +160,34 @@ public class Controller3 implements Initializable {
                     "/VolumeConversion.fxml")));
             this.speedConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion" +
                     "/SpeedConversion.fxml")));
+            this.dataConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion" +
+                    "/DataConversion.fxml")));
+            this.energyConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion" +
+                    "/EnergyConversion.fxml")));
+            this.powerConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion" +
+                    "/PowerConversion.fxml")));
+            this.pressureConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion" +
+                    "/PressureConversion.fxml")));
+            this.timeConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion" +
+                    "/TimeConversion.fxml")));
+            this.weightConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion" +
+                    "/WeightConversion.fxml")));
 
             mainStackPane.getChildren().add(standard);
 
             mainStackPane.getChildren().add(firstDegree);
+            mainStackPane.getChildren().add(secondDegree);
 
             mainStackPane.getChildren().add(lengthConversion);
             mainStackPane.getChildren().add(areaConversion);
             mainStackPane.getChildren().add(volumeConversion);
             mainStackPane.getChildren().add(speedConversion);
+            mainStackPane.getChildren().add(dataConversion);
+            mainStackPane.getChildren().add(energyConversion);
+            mainStackPane.getChildren().add(powerConversion);
+            mainStackPane.getChildren().add(pressureConversion);
+            mainStackPane.getChildren().add(timeConversion);
+            mainStackPane.getChildren().add(weightConversion);
 
             for (int i = 1; i < mainStackPane.getChildren().size(); i++) {
                 mainStackPane.getChildren().get(i).setVisible(false);
@@ -182,8 +210,11 @@ public class Controller3 implements Initializable {
 
         TreeItem <String> equation = new TreeItem <>("Equation");
         TreeItem <String> firstDegree = new TreeItem <>("First Degree");
+        TreeItem <String> secondDegree = new TreeItem <>("Second Degree");
         panes.put(firstDegree , this.firstDegree);
+        panes.put(secondDegree , this.secondDegree);
         equation.getChildren().add(firstDegree);
+        equation.getChildren().add(secondDegree);
         //        panes.put(equation , this.equation);
         //        TreeItem <String> variable = new TreeItem <>("Variable");
         //        TreeItem <String> graph = new TreeItem <>("Graph");
@@ -205,15 +236,36 @@ public class Controller3 implements Initializable {
         TreeItem <String> areaConversion = new TreeItem <>("Area Conversion");
         TreeItem <String> volumeConversion = new TreeItem <>("Volume Conversion");
         TreeItem <String> speedConversion = new TreeItem <>("Speed Conversion");
+        TreeItem <String> dataConversion = new TreeItem <>("Data Conversion");
+        TreeItem <String> energyConversion = new TreeItem <>("Energy Conversion");
+        TreeItem <String> powerConversion = new TreeItem <>("Power Conversion");
+        TreeItem <String> pressureConversion = new TreeItem <>("Pressure Conversion");
+        TreeItem <String> timeConversion = new TreeItem <>("Time Conversion");
+        TreeItem <String> weightConversion = new TreeItem <>("Weight Conversion");
+
         panes.put(conversion , this.conversion);
         panes.put(lengthConversion , this.lengthConversion);
         panes.put(areaConversion , this.areaConversion);
         panes.put(volumeConversion , this.volumeConversion);
         panes.put(speedConversion , this.speedConversion);
+        panes.put(dataConversion, this.dataConversion);
+        panes.put(energyConversion, this.energyConversion);
+        panes.put(powerConversion, this.powerConversion);
+        panes.put(pressureConversion, this.pressureConversion);
+        panes.put(timeConversion, this.timeConversion);
+        panes.put(weightConversion, this.weightConversion);
+
         conversion.getChildren().add(lengthConversion);
         conversion.getChildren().add(areaConversion);
         conversion.getChildren().add(volumeConversion);
         conversion.getChildren().add(speedConversion);
+        conversion.getChildren().add(dataConversion);
+        conversion.getChildren().add(energyConversion);
+        conversion.getChildren().add(powerConversion);
+        conversion.getChildren().add(pressureConversion);
+        conversion.getChildren().add(timeConversion);
+        conversion.getChildren().add(weightConversion);
+
         root.getChildren().add(conversion);
 
         TreeItem <String> financial = new TreeItem <>("Financial");

@@ -9,6 +9,10 @@
     -fx-text-fill: #fff;
 }
 
+//.tree-cell:hover {
+//    -fx-background-color: #333;
+//}
+
 .tree-cell > .tree-disclosure-node > .arrow  {
     -fx-background-color: #777777;
     -fx-translate-y: 3;

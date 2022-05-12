@@ -178,7 +178,7 @@ public class Standard extends Mode {
             Separator separator = new Separator(Orientation.VERTICAL);
             separator.setPrefHeight(Control.USE_COMPUTED_SIZE);
             GridPane.setHalignment(separator , HPos.CENTER);
-            GridPane.setHgrow(separator , Priority.ALWAYS);
+            GridPane.setHgrow(separator , Priority.NEVER);
             GridPane.setHalignment(pinnedTabButton , HPos.CENTER);
             GridPane.setHgrow(pinnedTabButton , Priority.ALWAYS);
             tabsGridPane.add(historyTabButton , 0 , 0);

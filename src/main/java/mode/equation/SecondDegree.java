@@ -16,12 +16,14 @@ public class SecondDegree extends Degree {
             Fraction Δ = MathUtil.subtract(MathUtil.multiply(b,b),MathUtil.multiply(MathUtil.multiply(new Fraction(4),a),c));
             if (Δ.toDouble() == 0) {
                 solutions.add(MathUtil.divide(MathUtil.multiply(new Fraction(-1),b),MathUtil.multiply(new Fraction(2),a)));
+                solutionString = "𝑥 = " + solutions.get(0).toDouble();
             }
             else if (Δ.toDouble() > 0) {
                 Fraction x = new Fraction(Δ.toDouble());
                 x.numerator = Math.sqrt(x.numerator);
                 solutions.add(MathUtil.divide(MathUtil.add(MathUtil.multiply(new Fraction(-1),b),x),MathUtil.multiply(new Fraction(2),a)));
                 solutions.add(MathUtil.divide(MathUtil.subtract(MathUtil.multiply(new Fraction(-1),b),x),MathUtil.multiply(new Fraction(2),a)));
+                solutionString = "𝑥 = " + solutions.get(0).toDouble() + " or " + solutions.get(1).toDouble();
             }
         }
     }
@@ -38,6 +40,7 @@ public class SecondDegree extends Degree {
         if (solutions.size() == 1) {
             Fraction x = MathUtil.divide(MathUtil.multiply(new Fraction(-1),b),MathUtil.multiply(new Fraction(2),a));
             System.out.println("x ∈ " + "(-∞," + x.toDouble() + ") U (" + x.toDouble() + ", +∞)");
+            solutionString = "\uD835\uDC65 ∈ " + "(-∞," + x.toDouble() + ") ∪ (" + x.toDouble() + ", +∞)";
         }
 
         else if (solutions.size() > 1) {
@@ -51,9 +54,11 @@ public class SecondDegree extends Degree {
             Fraction x2 = solutions.get(0);
             if (a.toDouble() > 0) {
                 System.out.println("x ∈ " + "(" + x1.toDouble() + ", " + x2.toDouble() + ")");
+                solutionString = "\uD835\uDC65 ∈ " + "(" + x1.toDouble() + ", " + x2.toDouble() + ")";
             }
             else {
                 System.out.println("x ∈ " + "(-∞, " + x2.toDouble() + ") U (" + x1.toDouble() + ", +∞)");
+                solutionString = "\uD835\uDC65 ∈ " + "(-∞, " + x2.toDouble() + ") ∪ (" + x1.toDouble() + ", +∞)";
             }
         }
     }
@@ -63,15 +68,18 @@ public class SecondDegree extends Degree {
         if (solutions.size() == 1) {
             Fraction x = MathUtil.divide(MathUtil.multiply(new Fraction(-1),b),MathUtil.multiply(new Fraction(2),a));
             System.out.println("x ∈ " + "(-∞," + x.toDouble() + ") U (" + x.toDouble() + ", +∞)");
+            solutionString = "\uD835\uDC65 ∈ " + "(-∞," + x.toDouble() + ") ∪ (" + x.toDouble() + ", +∞)";
         }
         else if (solutions.size() > 1) {
             Fraction x1 = solutions.get(1);
             Fraction x2 = solutions.get(0);
             if (a.toDouble() > 0) {
-                System.out.println("x ∈ " + "(-∞, " + x1.toDouble() + ") U (" + x2.toDouble() + ", +∞)");
+                System.out.println("x ∈ " + "(-∞, " + x1.toDouble() + ") ∪ (" + x2.toDouble() + ", +∞)");
+                solutionString = "\uD835\uDC65 ∈ " + "(-∞, " + x1.toDouble() + ") ∪ (" + x2.toDouble() + ", +∞)";
             }
             else {
                 System.out.println("x ∈ " + "(" + x2.toDouble() + ", " + x1.toDouble() + ")");
+                solutionString = "\uD835\uDC65 ∈ " + "(" + x2.toDouble() + ", " + x1.toDouble() + ")";
             }
         }
     }
@@ -86,9 +94,11 @@ public class SecondDegree extends Degree {
             Fraction x2 = solutions.get(0);
             if (a.toDouble() > 0) {
                 System.out.println("x ∈ " + "(-∞, " + x1.toDouble() + "] U [" + x2.toDouble() + ", +∞)");
+                solutionString = "\uD835\uDC65 ∈ " + "(-∞, " + x1.toDouble() + "] ∪ [" + x2.toDouble() + ", +∞)";
             }
             else {
                 System.out.println("x ∈ " + "[" + x2.toDouble() + ", " + x1.toDouble() + "]");
+                solutionString = "\uD835\uDC65 ∈ " + "[" + x2.toDouble() + ", " + x1.toDouble() + "]";
             }
         }
     }
@@ -103,9 +113,11 @@ public class SecondDegree extends Degree {
             Fraction x2 = solutions.get(0);
             if (a.toDouble() > 0) {
                 System.out.println("x ∈ " + "[" + x1.toDouble() + ", " + x2.toDouble() + "]");
+                solutionString = "\uD835\uDC65 ∈ " + "[" + x1.toDouble() + ", " + x2.toDouble() + "]";
             }
             else {
                 System.out.println("x ∈ " + "(-∞, " + x2.toDouble() + "] U [" + x1.toDouble() + ", +∞)");
+                solutionString = "\uD835\uDC65 ∈ " + "(-∞, " + x2.toDouble() + "] ∪ [" + x1.toDouble() + ", +∞)";
             }
         }
     }
