@@ -1,6 +1,7 @@
 package mode.conversion;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class Power {
 //    public static final double watts = 1;
@@ -24,6 +25,20 @@ public class Power {
             add(BTUsPerMinute);
         }
     };
+
+    public static LinkedHashMap<String, Unit> unitsMap = new LinkedHashMap <String, Unit>() {
+        {
+            put("W", watts);
+            put("kW", kilowatts);
+            put("hp", housepower);
+            put("ft-lb/min", foot_poundsPerMinute);
+            put("Btu/min", BTUsPerMinute);
+        }
+    };
+
+    public static double convert(Unit fromUnit , Unit toUnit , double n) {
+        return n * fromUnit.toSmallestUnit * (1 / toUnit.toSmallestUnit);
+    }
 
     public static double a = watts.toSmallestUnit;
     public static double b = kilowatts.toSmallestUnit;

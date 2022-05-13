@@ -22,7 +22,7 @@ public class Constants {
     public static final Constant c = new Constant("Lightspeed","c", 299792458) ;
 
     //2. hằng số planck
-    public static final Constant h = new Constant("Planck","e", 6.626 * Math.pow(10,-34));
+    public static final Constant h = new Constant("Planck","h", 6.626 * Math.pow(10,-34));
 
     //3. hằng số hấp dẫn newton
     public static final Constant G = new Constant( "Newton Const","G", 6.672 * Math.pow(10,-11));
@@ -97,7 +97,7 @@ public class Constants {
     public static final Constant r = new Constant( "Gas Constant","r",8.314472);
 
     //27. Thể tích phân tử của một khí lý tưởng
-    public static final Constant Vm = new Constant( "Molecular volume of an ideal gas","Vm)" ,22.710981 * Math.pow(10
+    public static final Constant Vm = new Constant( "Molecular volume of an ideal gas","Vm" ,22.710981 * Math.pow(10
             ,-3));
 
     //28. Hằng số Boltzman

@@ -115,8 +115,8 @@ public class ThirdDegree extends Degree {
                 double rightx = -(b.toDouble()) / (3 * a.toDouble());
                 Fraction no = new Fraction((leftx * middlex) + rightx);
                 if ( a.toDouble() > 0)
-                System.out.println("(" + no.toDouble() + ", +∞)");
-                    else
+                    System.out.println("(" + no.toDouble() + ", +∞)");
+                else
                     System.out.println("(-∞ , " + no.toDouble() + ")");
             }
         }
@@ -125,7 +125,7 @@ public class ThirdDegree extends Degree {
             double n1 = (-b.toDouble() + MathUtil.root(b.toDouble() * b.toDouble() * b.toDouble()
                     - 27 * d.toDouble() * a.toDouble() * a.toDouble(),3)) / (3 *a.toDouble());
             if ( a.toDouble() > 0)
-            System.out.println("(" + n1 + ", +∞)");
+                System.out.println("(" + n1 + ", +∞)");
             else
                 System.out.println("(-∞ , " + n1 + ")");
         }
@@ -138,8 +138,8 @@ public class ThirdDegree extends Degree {
             double rightx = b.toDouble() / (3 * a.toDouble());
             Fraction no1 = new Fraction((leftx * middlex) - rightx);
             if (a.toDouble() > 0)
-            System.out.println("(" + no1.toDouble() + ", +∞)");
-                else System.out.println("(-∞ , " + no1.toDouble() + ")");
+                System.out.println("(" + no1.toDouble() + ", +∞)");
+            else System.out.println("(-∞ , " + no1.toDouble() + ")");
         }
     }
 
@@ -203,7 +203,7 @@ public class ThirdDegree extends Degree {
             double rightx = b.toDouble() / (3 * a.toDouble());
             Fraction no1 = new Fraction((leftx * middlex) - rightx);
             if ( a.toDouble() > 0)
-            System.out.println("(-∞ , " + no1.toDouble() + ")");
+                System.out.println("(-∞ , " + no1.toDouble() + ")");
             else
                 System.out.println("(" + no1.toDouble() + ", +∞)");
         }

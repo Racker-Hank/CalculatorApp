@@ -1,6 +1,7 @@
 package mode.conversion;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class Pressure {
 //    public static final double Atmospheres = 1;
@@ -24,6 +25,20 @@ public class Pressure {
             add(milimetersOfMercury);
         }
     };
+
+    public static LinkedHashMap<String, Unit> unitsMap = new LinkedHashMap <String, Unit>() {
+        {
+            put("atm", Atmospheres);
+            put("bar", Bars);
+            put("Pa", pascals);
+            put("kPa", kilopascals);
+            put("mmHg", milimetersOfMercury);
+        }
+    };
+
+    public static double convert(Unit fromUnit , Unit toUnit , double n) {
+        return n * fromUnit.toSmallestUnit * (1 / toUnit.toSmallestUnit);
+    }
 
     public static double a = Atmospheres.toSmallestUnit;
     public static double b = Bars.toSmallestUnit;

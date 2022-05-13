@@ -1,6 +1,7 @@
 package mode.conversion;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class Speed {
 
@@ -23,6 +24,22 @@ public class Speed {
             add(mach);
         }
     };
+
+    public static LinkedHashMap <String, Unit> unitsMap = new LinkedHashMap <String, Unit>() {
+        {
+            put("cm/s", centimeterPerSeconds);
+            put("m/s", metersPerSeconds);
+            put("km/h", kilometersPerHour);
+            put("f/s", feetsPerSecond);
+            put("mile/h", milesPerHour);
+            put("knots", knots);
+            put("mach", mach);
+        }
+    };
+
+    public static double convert(Unit fromUnit , Unit toUnit , double n) {
+        return n * fromUnit.toSmallestUnit * (1 / toUnit.toSmallestUnit);
+    }
 
     public static double a = feetsPerSecond.toSmallestUnit ;
     public static double b = centimeterPerSeconds.toSmallestUnit;

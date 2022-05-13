@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="test" style="-fx-background-color: #080202;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Conversion.VolumeConversionController">
+   <children>
+      <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: #080202;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane style="-fx-background-color: #080202;">
+               <children>
+                  <GridPane alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" minWidth="500.0" vgap="32.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="50.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="500.0" minHeight="120.0" prefHeight="160.0" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="500.0" prefHeight="160.0" valignment="CENTER" vgrow="ALWAYS" />
+                     </rowConstraints>
+                     <children>
+                        <HBox alignment="CENTER" spacing="16.0" GridPane.rowIndex="1">
+                           <children>
+                              <AnchorPane style="-fx-border-color: #28F984; -fx-border-width: 2px; -fx-border-radius: 16; -fx-background-radius: 24;">
+                                 <children>
+                                    <ScrollPane layoutX="10.0" layoutY="6.0" maxHeight="160.0" style="-fx-border-radius: 16; -fx-background-radius: 16;" visible="false" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                       <content>
+                                          <HBox fx:id="mainInputPane" alignment="CENTER_LEFT" fillHeight="false" maxWidth="292.0" spacing="4.0">
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
+                                          </HBox>
+                                       </content>
+                                       <padding>
+                                          <Insets bottom="4.0" left="8.0" right="8.0" top="4.0" />
+                                       </padding>
+                                    </ScrollPane>
+                                    <TextArea fx:id="fromUnitTextArea" wrapText="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
+                                       <font>
+                                          <Font name="Noto Sans Math Regular" size="16.0" />
+                                       </font>
+                                    </TextArea>
+                                 </children>
+                              </AnchorPane>
+                              <ChoiceBox fx:id="fromUnitChoiceBox" maxWidth="-Infinity" prefWidth="250.0" style="-fx-font-size: 16; -fx-font-family: Noto Sans Math; -fx-background-radius: 16;" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="16.0" GridPane.rowIndex="2">
+                           <children>
+                              <AnchorPane style="-fx-border-color: #28F984; -fx-border-width: 2px; -fx-border-radius: 16; -fx-background-radius: 24;">
+                                 <children>
+                                    <ScrollPane layoutX="10.0" layoutY="6.0" maxHeight="160.0" style="-fx-border-radius: 16; -fx-background-radius: 16;" visible="false" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                       <content>
+                                          <HBox fx:id="mainInputPane1" alignment="CENTER_LEFT" fillHeight="false" maxWidth="292.0" spacing="4.0">
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
+                                          </HBox>
+                                       </content>
+                                       <padding>
+                                          <Insets bottom="4.0" left="8.0" right="8.0" top="4.0" />
+                                       </padding>
+                                    </ScrollPane>
+                                    <TextArea fx:id="toUnitTextArea" editable="false" wrapText="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
+                                       <font>
+                                          <Font name="Noto Sans Math Regular" size="16.0" />
+                                       </font>
+                                    </TextArea>
+                                 </children>
+                              </AnchorPane>
+                              <ChoiceBox fx:id="toUnitChoiceBox" maxWidth="-Infinity" prefWidth="250.0" style="-fx-font-size: 16; -fx-font-family: Noto Sans Math; -fx-background-radius: 16;" />
+                           </children>
+                        </HBox>
+                        <GridPane fx:id="modeName" alignment="CENTER" GridPane.halignment="CENTER">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label fx:id="conversionModeName" alignment="CENTER" text="Volume" textFill="#28f984">
+                                 <font>
+                                    <Font name="Noto Sans Math Regular" size="32.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
+                     </children>
+                     <padding>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                     </padding>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

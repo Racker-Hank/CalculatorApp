@@ -48,7 +48,7 @@ public class Controller implements Initializable {
     @FXML
     private AnchorPane financial;
 
-//    function buttons
+    //    function buttons
     @FXML
     private VBox functionButtonsWrapper;
 
@@ -133,7 +133,7 @@ public class Controller implements Initializable {
             for (int i = 0; i < ((HBox) hBox).getChildren().size(); i++) {
                 Button button = (Button) (((HBox) hBox).getChildren().get(i));
 //                button.setStyle(PrimaryButton.style);
-                PrimaryButton.toPrimaryButton(button);
+                button = new PrimaryButton().toPrimaryButton(button);
             }
         }
     }
