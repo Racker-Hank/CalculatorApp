@@ -78,6 +78,7 @@ public class Expr {
 //                constantsList.add(constant);
 //            }
 //        }
+
         parse(definition);
     }
 
@@ -167,6 +168,7 @@ public class Expr {
                     double x = stack[--top];
                     double ans = Double.NaN;
                     boolean deg_rad = Controller3.BottomRightPane.toggleSwitch.switchOnProperty().get();
+
                     switch (code[i]) {
                         case SIN:
                             ans = deg_rad ? MathUtil.sinDegrees(x) : MathUtil.sinRadians(x);
@@ -416,6 +418,13 @@ public class Expr {
             }
         }
         w = new StringBuilder(w.toString().toLowerCase());
+        for (Constants.Constant constant : constantsList) {
+            if (w.toString().equals(constant.symbol)) {
+                code[codeSize++] = (byte) constantCt;
+                constants[constantCt++] = constant.value;
+                return;
+            }
+        }
         for (int i = 0; i < functionNames.length; i++) {
             if (w.toString().equals(functionNames[i]) && i < 15) {
                 skip();
