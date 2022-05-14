@@ -20,7 +20,9 @@ public class PrimaryButton extends Button {
     public String inactiveStyle;
     public boolean isActive;
     public static HBox mainInputPane;
-    public static TextArea tempOutputTextArea;
+    public TextArea inputTextArea;
+//    public static TextArea tempOutputTextArea;
+    public TextArea tempOutputTextArea;
     public static double tooltipDelay = 0.5;
 
     //    public String name;
@@ -135,7 +137,7 @@ public class PrimaryButton extends Button {
                 public void handle(MouseEvent e) {
                     if (e.getButton().equals(MouseButton.PRIMARY)) {
                         //                    setButtonPressedStyle();
-                        function.addToAnchorPane(mainInputPane);
+                        function.addToTextArea(inputTextArea);
                     }
                 }
 

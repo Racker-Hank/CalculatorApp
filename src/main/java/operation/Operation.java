@@ -25,14 +25,14 @@ public class Operation {
             } catch (Exception e) {
             }
         });
-}
+    }
 
-    public  Fraction calculate() {
+    public Fraction calculate() {
         Fraction result = new Fraction();
         TextHandler.mathInputHandler(inputTextArea.getText() , result);
         try {
             outputTextArea.setText(String.valueOf(TextHandler.numberFormatter(result.toDouble())));
-//            System.out.println(TextHandler.numberFormatter(result.toDouble()));
+            //            System.out.println(TextHandler.numberFormatter(result.toDouble()));
             return result;
         } catch (Exception e) {
             //            e.printStackTrace();
@@ -42,10 +42,10 @@ public class Operation {
 
     public static Fraction calculate(TextArea inputTextArea) {
         Fraction result = new Fraction();
-        TextHandler.mathInputHandler(inputTextArea.getText() , result);
         try {
-//            outputTextArea.setText(String.valueOf(TextHandler.numberFormatter(result.toDouble())));
-//            System.out.println(TextHandler.numberFormatter(result.toDouble()));
+            TextHandler.mathInputHandler(inputTextArea.getText() , result);
+            //            outputTextArea.setText(String.valueOf(TextHandler.numberFormatter(result.toDouble())));
+            //            System.out.println(TextHandler.numberFormatter(result.toDouble()));
             return result;
         } catch (Exception e) {
             //            e.printStackTrace();
@@ -53,15 +53,16 @@ public class Operation {
         return null;
     }
 
-    public static Fraction calculate(TextArea inputTextArea, TextArea outputTextArea) {
+    public static Fraction calculate(TextArea inputTextArea , TextArea outputTextArea) {
         Fraction result = new Fraction();
-        TextHandler.mathInputHandler(inputTextArea.getText() , result);
         try {
+            TextHandler.mathInputHandler(inputTextArea.getText() , result);
             outputTextArea.setText(String.valueOf(TextHandler.numberFormatter(result.toDouble())));
-//            System.out.println(TextHandler.numberFormatter(result.toDouble()));
+            //            System.out.println(TextHandler.numberFormatter(result.toDouble()));
             return result;
         } catch (Exception e) {
             //            e.printStackTrace();
+            outputTextArea.clear();
         }
         return null;
     }

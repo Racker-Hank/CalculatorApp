@@ -122,10 +122,10 @@
                <children>
                   <SplitPane dividerPositions="0.55" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" style="-fx-background-color: #202020;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #202020;" SplitPane.resizableWithParent="false" />
+                      <AnchorPane fx:id="topRightPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #202020;" SplitPane.resizableWithParent="false" />
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #202020;">
                            <children>
-                              <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #202020;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #202020; -fx-background: #202020;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                     </items>

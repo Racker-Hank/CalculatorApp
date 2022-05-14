@@ -22,9 +22,9 @@ public class Weight {
     public static final Unit carats = new Unit("ct", 200);
     public static final Unit milligrams = new Unit("mg", 1);
     public static final Unit centigrams = new Unit("cg", Math.pow(10,1));
-    public static final Unit decigrams = new Unit("dcg", Math.pow(10,2));
+    public static final Unit decigrams = new Unit("dg", Math.pow(10,2));
     public static final Unit grams = new Unit("g", Math.pow(10,3));
-    public static final Unit dekagrams = new Unit("dkg", Math.pow(10,4));
+    public static final Unit dekagrams = new Unit("dag", Math.pow(10,4));
     public static final Unit hectograms = new Unit("hg", Math.pow(10,5));
     public static final Unit kilograms = new Unit("kg", Math.pow(10,6));
     public static final Unit metricTonnes = new Unit("t", Math.pow(10,9));
@@ -58,9 +58,9 @@ public class Weight {
             put("ct", carats);
             put("mg", milligrams);
             put("cg", centigrams);
-            put("dcg", decigrams);
+            put("dg", decigrams);
             put("g", grams);
-            put("dkg", dekagrams);
+            put("dag", dekagrams);
             put("hg", hectograms);
             put("kg", kilograms);
             put("t", metricTonnes);
