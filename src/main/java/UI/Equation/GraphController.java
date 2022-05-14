@@ -39,10 +39,9 @@ public class GraphController {
 
     public void drawGraph() {
         graphCanvas.setFunctions(graphFunctions.getFunctions());
-//        System.out.println(graphFunctions.getFunctions());
+        System.out.println(graphFunctions.getFunctions().toString());
 //        System.out.println(graphCanvas.getFunctions());
 
-        graphFunctions.update();
         graphCanvas.draw();
     }
 }

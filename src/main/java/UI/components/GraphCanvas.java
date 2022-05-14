@@ -9,15 +9,15 @@ import java.util.List;
 import java.util.Map;
 
 public class GraphCanvas extends Canvas {
-    private Map<Expr, Color> functions;
+    private Map<Function, Color> functions;
 
-    public GraphCanvas(Map<Expr, Color> functions) {
+    public GraphCanvas(Map<Function, Color> functions) {
         super(600, 600);
         this.functions = functions;
         draw();
     }
 
-    public void setFunctions(Map<Expr, Color> functions) {
+    public void setFunctions(Map<Function, Color> functions) {
         this.functions = functions;
     }
 
@@ -26,8 +26,8 @@ public class GraphCanvas extends Canvas {
         g.setFill(Color.BLACK);
         g.fillRect(0,0,getWidth(),getHeight());
         drawAxes(g);
-        for (Expr function : functions.keySet()) {
-            drawFunction(g, function, functions.get(function));
+        for (Function function : functions.keySet()) {
+            drawFunction(g, function.expr, functions.get(function));
         }
     }
 
@@ -74,7 +74,7 @@ public class GraphCanvas extends Canvas {
 
         //random color
         g.setStroke(color);
-        System.out.println(color);
+//        System.out.println(color);
 //        g.setStroke(Color.RED);
         g.setLineWidth(2);
 

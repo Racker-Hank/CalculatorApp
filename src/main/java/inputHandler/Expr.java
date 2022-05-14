@@ -7,6 +7,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Refer to <a href="https://math.hws.edu/javanotes/source/chapter8/Expr.java">Expr</a> for original Java code.
@@ -97,6 +98,17 @@ public class Expr {
      */
     public String toString() {
         return definition;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Expr expr = (Expr) o;
+        return Objects.equals(definition, expr.definition);
+    }
+
+    public int hashCode() {
+        return Objects.hash(definition);
     }
 
     //------------------- private implementation details ----------------------------------
