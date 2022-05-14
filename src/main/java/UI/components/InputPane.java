@@ -1,16 +1,10 @@
 package UI.components;
 
 
-import UI.UIConfig;
 import inputHandler.TextHandler;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.control.Control;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.AnchorPane;
 import operation.Fraction;
 
 public class InputPane extends AnchorPane {

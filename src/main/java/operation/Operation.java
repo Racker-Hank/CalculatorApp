@@ -1,7 +1,5 @@
 package operation;
 
-import java.util.Stack;
-
 import inputHandler.TextHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

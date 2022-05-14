@@ -7,15 +7,8 @@ import UI.components.InputPane;
 import inputHandler.MathUtil;
 import inputHandler.TextHandler;
 import javafx.application.Platform;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
-import javafx.scene.transform.Scale;
-import javafx.scene.transform.Translate;
 
 public class Fraction extends Operand implements Comparable <Fraction> {
     public String name = "Fraction";

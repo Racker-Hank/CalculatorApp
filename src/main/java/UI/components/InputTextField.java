@@ -2,12 +2,9 @@ package UI.components;
 
 import UI.UIConfig;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class InputTextField extends TextField {

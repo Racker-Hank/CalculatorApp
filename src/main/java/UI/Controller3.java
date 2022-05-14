@@ -1,24 +1,21 @@
 package UI;
 
+import UI.Equation.GraphController;
 import UI.components.PrimaryButton;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
 import mode.standard.Standard;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -334,6 +331,10 @@ public class Controller3 implements Initializable {
                                 //                            VBox vBox = new VBox();
                                 //                            vBox.setSpacing(4);
                                 topRightPane.getChildren().add(Standard.topRightPane);
+                                break;
+                            case "Graph":
+                                topRightPane.getChildren().clear();
+                                topRightPane.getChildren().add(GraphController.graphScrollPane);
                                 break;
                             default:
                                 topRightPane.getChildren().clear();

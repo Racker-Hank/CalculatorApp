@@ -1,7 +1,6 @@
 package inputHandler;
 
 import UI.StandardController;
-import mode.standard.Standard;
 import operation.Constants;
 
 import java.lang.reflect.Field;
@@ -138,24 +137,14 @@ public class Expr {
                 else if (code[i] >= POWER) {
                     double y = stack[--top];
                     double x = stack[--top];
-                    double ans = Double.NaN;
-                    switch (code[i]) {
-                        case PLUS:
-                            ans = x + y;
-                            break;
-                        case MINUS:
-                            ans = x - y;
-                            break;
-                        case TIMES:
-                            ans = x * y;
-                            break;
-                        case DIVIDE:
-                            ans = x / y;
-                            break;
-                        case POWER:
-                            ans = Math.pow(x, y);
-                            break;
-                    }
+                    double ans = switch (code[i]) {
+                        case PLUS -> x + y;
+                        case MINUS -> x - y;
+                        case TIMES -> x * y;
+                        case DIVIDE -> x / y;
+                        case POWER -> Math.pow(x, y);
+                        default -> Double.NaN;
+                    };
                     if (Double.isNaN(ans))
                         return ans;
                     stack[top++] = ans;
@@ -489,53 +478,4 @@ public class Expr {
         code[codeSize++] = (byte) constantCt;
         constants[constantCt++] = d;
     }
-
-    public static void main(String[] args) {
-        //        Expr expr = new Expr("sin(1)+cos(2)");
-        //        System.out.println(expr.value(1));
-        //        System.out.println(Arrays.toString(expr.code));
-        //        System.out.println(Arrays.toString(expr.constants));
-
-        //        Expr expr2 = new Expr("rt(8,3)");
-        //        System.out.println(expr2.value(1));
-        //        System.out.println(Arrays.toString(expr2.code));
-        //        System.out.println(Arrays.toString(expr2.constants));
-
-        //        Expr expr3 = new Expr("mod(10,3)");
-        //        System.out.println(expr3.value(1));
-        //        System.out.println(Arrays.toString(expr3.code));
-        //        System.out.println(Arrays.toString(expr3.constants));
-
-        //        Expr test = new Expr("π");
-        //        System.out.println(test.value(0));
-        //        Expr test = new Expr("cos(π)");
-        //        System.out.println(test.value(0));
-        //        test = new Expr("e");
-        //        System.out.println(test.value(0));
-        //        test = new Expr("qp");
-        //        System.out.println(test.value(0));
-        //        test = new Expr("h1");
-        //        System.out.println(test.value(0));
-
-        Expr test = new Expr("randInt(1,10)");
-        System.out.println(test.value(0));
-        //        System.out.println(Expr.constantsList);
-        //        Field[] fields = Constants.class.getDeclaredFields();
-        //        for (Field f : fields) {
-        //            if (Modifier.isStatic(f.getModifiers())) {
-        ////                System.out.println(f.getType());
-        ////                System.out.println(f.getName());
-        //                // get object from constants class with name f.getName()
-        //                Constants.Constant o = null;
-        //                try {
-        //                    o = (Constants.Constant) f.get(null);
-        //                } catch (IllegalAccessException e) {
-        //                    e.printStackTrace();
-        //                }
-        //                System.out.println(o.symbol);
-        //            }
-        //        }
-    }
-
-
 } // end class Expr

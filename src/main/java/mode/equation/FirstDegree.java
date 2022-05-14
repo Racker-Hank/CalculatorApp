@@ -3,8 +3,6 @@ package mode.equation;
 import inputHandler.MathUtil;
 import operation.Fraction;
 
-import java.util.ArrayList;
-
 public class FirstDegree extends Degree{
     public String name = "First Degree";
 

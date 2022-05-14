@@ -17,8 +17,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import mode.Mode;
 
-import java.util.ArrayList;
-
 public class Standard extends Mode {
     public static ObservableList <String> historyCalculation = FXCollections.observableArrayList();
     public static ObservableList <String> pinnedCalculation = FXCollections.observableArrayList();

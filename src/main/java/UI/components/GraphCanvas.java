@@ -6,22 +6,19 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 import java.util.List;
+import java.util.Map;
 
 public class GraphCanvas extends Canvas {
-    private List<Expr> functions;
+    private Map<Expr, Color> functions;
 
-    public GraphCanvas(List<Expr> functions) {
+    public GraphCanvas(Map<Expr, Color> functions) {
         super(600, 600);
         this.functions = functions;
         draw();
     }
 
-    public void setFunctions(List<Expr> functions) {
+    public void setFunctions(Map<Expr, Color> functions) {
         this.functions = functions;
-    }
-
-    public List<Expr> getFunctions() {
-        return functions;
     }
 
     public void draw() {
@@ -29,8 +26,8 @@ public class GraphCanvas extends Canvas {
         g.setFill(Color.BLACK);
         g.fillRect(0,0,getWidth(),getHeight());
         drawAxes(g);
-        for (Expr function : functions) {
-            drawFunction(g, function);
+        for (Expr function : functions.keySet()) {
+            drawFunction(g, function, functions.get(function));
         }
     }
 
@@ -64,7 +61,7 @@ public class GraphCanvas extends Canvas {
         g.strokeText("0", width/2 - 25, height/2 + 25);
     }
 
-    private void drawFunction(GraphicsContext g, Expr function) {
+    private void drawFunction(GraphicsContext g, Expr function, Color color) {
         double x, y;          // A point on the graph.  y is f(x).
         double prevx, prevy;  // The previous point on the graph.
 
@@ -76,7 +73,8 @@ public class GraphCanvas extends Canvas {
         dx  = 10.0 / numPoints;
 
         //random color
-        g.setStroke(Color.color(Math.random(), Math.random(), Math.random()));
+        g.setStroke(color);
+        System.out.println(color);
 //        g.setStroke(Color.RED);
         g.setLineWidth(2);
 
@@ -103,12 +101,6 @@ public class GraphCanvas extends Canvas {
                 // Draw a line segment between the two points.
                 putLine(g, prevx, prevy, x, y);
             }
-
-//            if (x > -2.1 && x < -1.9) {
-//                System.out.println(x + " " + y);
-//            }
-//            System.out.println(x + " " + y);
-
         }  // end for
     }
 
@@ -119,13 +111,6 @@ public class GraphCanvas extends Canvas {
         // that go from -5 to 5 to the coordinates that are needed
         // for drawing on the canvas, which go from 0 to 600.
         // coordinates of the corresponding pixels.
-
-//        if (Math.abs(y1) > 10000 || Math.abs(y2) > 10000) {
-//            // Only draw lines for reasonable y-values.
-//            // This should not be necessary, but I'm not sure
-//            // how GraphicsContext will handle very large values.
-//            return;
-//        }
 
         double a1, b1;   // Pixel coordinates corresponding to (x1,y1).
         double a2, b2;   // Pixel coordinates corresponding to (x2,y2).

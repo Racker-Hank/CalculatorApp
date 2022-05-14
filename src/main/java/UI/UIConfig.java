@@ -22,7 +22,7 @@ public class UIConfig {
     public static String colorInactiveGrey = "#777777";
 
     public static ArrayList <Node> getAllNodes(Parent root) {
-        ArrayList<Node> nodes = new ArrayList<Node>();
+        ArrayList<Node> nodes = new ArrayList<>();
         addAllDescendents(root, nodes);
         return nodes;
     }

@@ -4,20 +4,21 @@ import UI.components.InputPane;
 import UI.components.PrimaryButton;
 import UI.components.ToggleSwitch;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import mode.standard.Expressions;
 import mode.standard.Specials;
 import mode.standard.Standard;
 import operation.Operation;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 //public class StandardController implements Initializable {

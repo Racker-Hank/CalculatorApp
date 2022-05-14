@@ -26,7 +26,7 @@ public class UI extends Application {
         stage.getIcons().add(icon);
         stage.setTitle("Calculator");
 //        stage.setX(50);
-//        stage.setY(50);\
+//        stage.setY(50);
         stage.initStyle(StageStyle.DECORATED);
         stage.setScene(scene);
         UIConfig.primaryStage = stage;

@@ -1,22 +1,8 @@
 package mode.standard.specials;
 
 import UI.UIConfig;
-import UI.components.InputPane;
 import UI.components.PrimaryButton;
-import inputHandler.MathUtil;
-import inputHandler.TextHandler;
-import javafx.application.Platform;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
-import javafx.scene.text.Text;
 import mode.Command;
 import mode.Function2;
 

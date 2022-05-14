@@ -1,13 +1,7 @@
 package mode;
 
 import UI.components.PrimaryButton;
-import javafx.scene.Parent;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import operation.Fraction;
-
-import java.lang.reflect.Method;
 
 public class Function2 {
     public String name;

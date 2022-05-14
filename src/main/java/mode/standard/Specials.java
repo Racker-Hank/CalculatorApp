@@ -9,7 +9,7 @@ import operation.Operand;
 import java.util.ArrayList;
 
 public class Specials extends Operand {
-    public static ArrayList <Function2> functions = new ArrayList <Function2>();
+    public static ArrayList <Function2> functions = new ArrayList<>();
 
     public static RandInRangeMN randDoubleInRangeMN = new RandInRangeMN();
     public static RandInRangeN randDoubleInRangeN = new RandInRangeN();

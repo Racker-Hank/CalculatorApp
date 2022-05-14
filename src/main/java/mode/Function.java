@@ -2,7 +2,6 @@ package mode;
 
 import operation.Fraction;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class Function {
@@ -52,7 +51,7 @@ public class Function {
     public static void main(String[] args) {
         Function f1 = new Function();
         Class[] paramTypes = { double.class , double.class };
-        Method test = null;
+        Method test;
         try {
             test = Function.class.getMethod("test" , paramTypes);
             Function f = new Function("test" , "test" , f1 , test);

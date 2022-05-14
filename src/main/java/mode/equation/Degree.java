@@ -10,7 +10,7 @@ public class Degree extends Mode {
 
     public String solutionString;
 
-    public static ArrayList<String> operators = new ArrayList <String>() {
+    public static ArrayList<String> operators = new ArrayList <>() {
         {
             add("=");
             add(">");
