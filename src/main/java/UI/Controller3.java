@@ -1,21 +1,28 @@
 package UI;
 
+import UI.Equation.GraphController;
 import UI.components.PrimaryButton;
+import UI.components.ToggleSwitch;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
+import mode.standard.Expressions;
 import mode.standard.Standard;
+import operation.Constants;
+import operation.Operation;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -44,6 +51,9 @@ public class Controller3 implements Initializable {
     @FXML
     private AnchorPane topRightPane;
 
+    @FXML
+    private AnchorPane bottomRightPane;
+
     //    @FXML
     private AnchorPane standard;
 
@@ -51,12 +61,11 @@ public class Controller3 implements Initializable {
     private AnchorPane equation;
     private AnchorPane firstDegree;
     private AnchorPane secondDegree;
+    private AnchorPane graph;
 
     @FXML
     private AnchorPane variable;
 
-    @FXML
-    private AnchorPane graph;
 
     @FXML
     private AnchorPane matrix;
@@ -121,6 +130,7 @@ public class Controller3 implements Initializable {
         loadTreeView();
         splitPaneListener();
         initTopRightPane();
+        initBottomRightPane();
 
         //            try {
         //                AnchorPane test = (AnchorPane) FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Standard" +
@@ -152,6 +162,7 @@ public class Controller3 implements Initializable {
             this.firstDegree = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Equation/FirstDegreeEquation.fxml")));
             this.secondDegree = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Equation" +
                     "/SecondDegreeEquation.fxml")));
+            this.graph = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Equation" + "/Graph.fxml")));
 
             //            Conversion
             this.lengthConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion/LengthConversion.fxml")));
@@ -177,6 +188,7 @@ public class Controller3 implements Initializable {
 
             mainStackPane.getChildren().add(firstDegree);
             mainStackPane.getChildren().add(secondDegree);
+            mainStackPane.getChildren().add(graph);
 
             mainStackPane.getChildren().add(lengthConversion);
             mainStackPane.getChildren().add(areaConversion);
@@ -211,10 +223,13 @@ public class Controller3 implements Initializable {
         TreeItem <String> equation = new TreeItem <>("Equation");
         TreeItem <String> firstDegree = new TreeItem <>("First Degree");
         TreeItem <String> secondDegree = new TreeItem <>("Second Degree");
+        TreeItem <String> graph = new TreeItem <>("Graph");
         panes.put(firstDegree , this.firstDegree);
         panes.put(secondDegree , this.secondDegree);
+        panes.put(graph , this.graph);
         equation.getChildren().add(firstDegree);
         equation.getChildren().add(secondDegree);
+        equation.getChildren().add(graph);
         //        panes.put(equation , this.equation);
         //        TreeItem <String> variable = new TreeItem <>("Variable");
         //        TreeItem <String> graph = new TreeItem <>("Graph");
@@ -332,6 +347,10 @@ public class Controller3 implements Initializable {
                                 //                            vBox.setSpacing(4);
                                 topRightPane.getChildren().add(Standard.topRightPane);
                                 break;
+                            case "Graph":
+                                topRightPane.getChildren().clear();
+                                topRightPane.getChildren().add(GraphController.graphScrollPane);
+                                break;
                             default:
                                 topRightPane.getChildren().clear();
                         }
@@ -341,6 +360,96 @@ public class Controller3 implements Initializable {
                 }
             }
         });
+    }
+
+    public void initBottomRightPane() {
+        BottomRightPane bottomRightPane = new BottomRightPane();
+        this.bottomRightPane.getChildren().add(bottomRightPane);
+    }
+
+    public static TextArea inputTextArea;
+    public static TextArea outputTextArea;
+
+    public static class BottomRightPane extends AnchorPane {
+        public VBox vBox;
+        public AnchorPane constantsPane;
+        public static ToggleSwitch toggleSwitch;
+
+        public BottomRightPane() {
+            initVBox();
+            initConstantsPane();
+            initToggleSwitch();
+            setPrefWidth(Control.USE_COMPUTED_SIZE);
+            AnchorPane.setTopAnchor(this, 4.0);
+            AnchorPane.setBottomAnchor(this, 0.0);
+            AnchorPane.setLeftAnchor(this, 0.0);
+            AnchorPane.setRightAnchor(this, 0.0);
+        }
+
+        private void initToggleSwitch() {
+            toggleSwitch = new ToggleSwitch();
+            toggleSwitch.switchOnProperty().addListener((obs , oldValue , newValue) -> {
+                Platform.runLater(() -> {
+                    try {
+                        Operation.calculate(inputTextArea, outputTextArea);
+                    } catch (Exception e) {
+                        //                    e.printStackTrace();
+                    }
+                });
+            });
+            HBox toggleSwitchContainer = new HBox(toggleSwitch);
+            toggleSwitchContainer.setAlignment(Pos.CENTER);
+            vBox.getChildren().add(toggleSwitchContainer);
+        }
+
+        private void initVBox() {
+            vBox = new VBox();
+            vBox.setSpacing(8);
+            AnchorPane.setTopAnchor(vBox, 0.0);
+            AnchorPane.setBottomAnchor(vBox, 0.0);
+            AnchorPane.setLeftAnchor(vBox, 0.0);
+            AnchorPane.setRightAnchor(vBox, 0.0);
+            this.getChildren().add(vBox);
+        }
+
+        private void initConstantsPane() {
+            int buttonPerRow = 5;
+            int constantsCount = 20;
+            //        if (tabTracker[1]) {
+            VBox constantsButtonsContainer = new VBox(8);
+//            constantsButtonsContainer.setAlignment(Pos.CENTER);
+            constantsButtonsContainer.setFillWidth(true);
+            for (int i = 0; i < constantsCount / buttonPerRow + 1; i++) {
+                HBox hBox = new HBox();
+                hBox.setSpacing(4);
+                hBox.setAlignment(Pos.CENTER);
+                for (int j = 0; j < Math.min(buttonPerRow , constantsCount - i * buttonPerRow); j++) {
+                    Button button = new Button();
+                    PrimaryButton primaryButton = new PrimaryButton();
+                    primaryButton.setColor(UIConfig.colorYellow);
+                    Constants.Constant constant = Constants.constants.get(i * buttonPerRow + j);
+                    button.setText(constant.symbol);
+//                    button.setPrefWidth(100);
+//                    button.setPrefHeight(40);
+                    button.setStyle(primaryButton.defaultStyle);
+                    button.setOnAction(event -> {
+                        inputTextArea.appendText(constant.symbol);
+                    });
+                    Tooltip tooltip = new Tooltip(constant.name);
+                    tooltip.setStyle("-fx-font-family: System;" + "-fx-font-weight: bold;" + "-fx-font-size: " + 12 + "px;");
+                    Tooltip.install(button , tooltip);
+                    hBox.getChildren().add(button);
+                }
+                constantsButtonsContainer.getChildren().add(hBox);
+            }
+            constantsButtonsContainer.prefWidthProperty().bind(this.widthProperty());
+            AnchorPane.setTopAnchor(constantsButtonsContainer , 0.0);
+            AnchorPane.setBottomAnchor(constantsButtonsContainer , 0.0);
+            AnchorPane.setLeftAnchor(constantsButtonsContainer , 0.0);
+            constantsPane = new AnchorPane(constantsButtonsContainer);
+            VBox.setVgrow(constantsButtonsContainer , Priority.ALWAYS);
+            vBox.getChildren().add(constantsPane);
+        }
     }
 
     @FXML

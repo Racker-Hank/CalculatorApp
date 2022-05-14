@@ -61,7 +61,7 @@
                                     <Font name="Noto Sans Math Regular" size="32.0" />
                                  </font>
                               </Label>
-                              <Label text="+" textFill="WHITE">
+                              <Label minWidth="20.0" text="+" textFill="WHITE">
                                  <font>
                                     <Font name="Noto Sans Math Regular" size="32.0" />
                                  </font>
@@ -75,12 +75,12 @@
                                     </TextArea>
                                  </children>
                               </AnchorPane>
-                              <Label text="𝑥" textFill="WHITE">
+                              <Label minWidth="16.0" text="𝑥" textFill="WHITE">
                                  <font>
                                     <Font name="Noto Sans Math Regular" size="32.0" />
                                  </font>
                               </Label>
-                              <Label text="+" textFill="WHITE">
+                              <Label minWidth="19.0" text="+" textFill="WHITE">
                                  <font>
                                     <Font name="Noto Sans Math Regular" size="32.0" />
                                  </font>
@@ -95,7 +95,7 @@
                                  </children>
                               </AnchorPane>
                               <ChoiceBox fx:id="operatorChoiceBox" maxWidth="-Infinity" prefWidth="250.0" style="-fx-font-size: 30; -fx-font-family: Noto Sans Math; -fx-background-radius: 16;" />
-                              <Label text="0" textFill="WHITE">
+                              <Label minWidth="20.0" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="Noto Sans Math Regular" size="32.0" />
                                  </font>

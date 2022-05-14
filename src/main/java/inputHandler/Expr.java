@@ -1,5 +1,6 @@
 package inputHandler;
 
+import UI.Controller3;
 import UI.StandardController;
 import mode.standard.Standard;
 import operation.Constants;
@@ -64,19 +65,19 @@ public class Expr {
      * does not contain a legal expression.
      */
     public Expr(String definition) {
-        Field[] fields = Constants.class.getDeclaredFields();
-        for (Field f : fields) {
-            if (Modifier.isStatic(f.getModifiers())) {
-                Constants.Constant constant = null;
-                try {
-                    constant = (Constants.Constant) f.get(null);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-                assert constant != null;
-                constantsList.add(constant);
-            }
-        }
+//        Field[] fields = Constants.class.getDeclaredFields();
+//        for (Field f : fields) {
+//            if (Modifier.isStatic(f.getModifiers())) {
+//                Constants.Constant constant = null;
+//                try {
+//                    constant = (Constants.Constant) f.get(null);
+//                } catch (IllegalAccessException e) {
+//                    e.printStackTrace();
+//                }
+//                assert constant != null;
+//                constantsList.add(constant);
+//            }
+//        }
         parse(definition);
     }
 
@@ -127,7 +128,8 @@ public class Expr {
             "csc", "arcsin", "arccos", "arctan", "exp",
             "ln", "log10", "log2", "abs", "sqrt", "rt", "mod", "rand", "randint"};
 
-    private static final List<Constants.Constant> constantsList = new ArrayList<>(); // array of constants
+//    private static final List<Constants.Constant> constantsList = new ArrayList<>(); // array of constants
+    private static final List<Constants.Constant> constantsList = Constants.constants; // array of constants
 
     private double eval(double variable) { // evaluate this expression for this value of the variable
         try {
@@ -164,7 +166,7 @@ public class Expr {
                 } else {
                     double x = stack[--top];
                     double ans = Double.NaN;
-                    boolean deg_rad = StandardController.toggleSwitch.switchOnProperty().get();
+                    boolean deg_rad = Controller3.BottomRightPane.toggleSwitch.switchOnProperty().get();
                     switch (code[i]) {
                         case SIN:
                             ans = deg_rad ? MathUtil.sinDegrees(x) : MathUtil.sinRadians(x);

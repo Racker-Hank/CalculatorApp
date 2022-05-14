@@ -68,7 +68,7 @@ public class StandardController {
     Specials specials;
     HashMap <String, VBox> functionButtonsWrappers = new HashMap <>();
     VBox visibleFunctionButtonsWrapper;
-    public static ToggleSwitch toggleSwitch;
+//    public static ToggleSwitch toggleSwitch;
 
     //    public StandardController() {
     //        PrimaryButton.mainInputPane = mainInputPane;
@@ -100,6 +100,8 @@ public class StandardController {
         expressions = new Expressions();
         specials = new Specials();
         addFunctionButtons();
+        Controller3.inputTextArea = inputTextArea;
+        Controller3.outputTextArea = tempOutputTextArea;
     }
 
     private void initTextArea() {
@@ -108,7 +110,7 @@ public class StandardController {
                 try {
                     Operation.calculate(inputTextArea , tempOutputTextArea);
                 } catch (Exception e) {
-                    //                    e.printStackTrace();
+//                                        e.printStackTrace();
                 }
             });
         });
@@ -220,21 +222,21 @@ public class StandardController {
         //            functionButtonsWrapper.getChildren().clear();
         //            functionButtonsWrapper.getChildren().add(expressionButtonsContainer);
         //        }
-        toggleSwitch = new ToggleSwitch();
-        toggleSwitch.switchOnProperty().addListener((obs , oldValue , newValue) -> {
-            Platform.runLater(() -> {
-                try {
-                    Operation.calculate(inputTextArea, tempOutputTextArea);
-                } catch (Exception e) {
-                    //                    e.printStackTrace();
-                }
-            });
-        });
-        //        Standard.CopyToClipboardButton copyToClipboardButton = new Standard.CopyToClipboardButton();
-        //        HBox toggleSwitchContainer = new HBox(toggleSwitch, copyToClipboardButton);
-        HBox toggleSwitchContainer = new HBox(toggleSwitch);
-        toggleSwitchContainer.setAlignment(Pos.CENTER);
-        functionButtonsWrapper.addRow(1 , toggleSwitchContainer);
+//        toggleSwitch = new ToggleSwitch();
+//        toggleSwitch.switchOnProperty().addListener((obs , oldValue , newValue) -> {
+//            Platform.runLater(() -> {
+//                try {
+//                    Operation.calculate(inputTextArea, tempOutputTextArea);
+//                } catch (Exception e) {
+//                    //                    e.printStackTrace();
+//                }
+//            });
+//        });
+//        //        Standard.CopyToClipboardButton copyToClipboardButton = new Standard.CopyToClipboardButton();
+//        //        HBox toggleSwitchContainer = new HBox(toggleSwitch, copyToClipboardButton);
+//        HBox toggleSwitchContainer = new HBox(toggleSwitch);
+//        toggleSwitchContainer.setAlignment(Pos.CENTER);
+//        functionButtonsWrapper.addRow(1 , toggleSwitchContainer);
     }
 
     //    public static void setTempOutputTextArea(String tempOutput) {
