@@ -404,7 +404,7 @@ public class Controller3 implements Initializable {
 
         private void initVBox() {
             vBox = new VBox();
-            vBox.setSpacing(8);
+            vBox.setSpacing(16);
             AnchorPane.setTopAnchor(vBox, 0.0);
             AnchorPane.setBottomAnchor(vBox, 0.0);
             AnchorPane.setLeftAnchor(vBox, 0.0);
@@ -434,6 +434,7 @@ public class Controller3 implements Initializable {
                     button.setStyle(primaryButton.defaultStyle);
                     button.setOnAction(event -> {
                         inputTextArea.appendText(constant.symbol);
+                        inputTextArea.requestFocus();
                     });
                     Tooltip tooltip = new Tooltip(constant.name);
                     tooltip.setStyle("-fx-font-family: System;" + "-fx-font-weight: bold;" + "-fx-font-size: " + 12 + "px;");
