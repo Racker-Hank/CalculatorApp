@@ -407,7 +407,7 @@ public class Expr {
             w.append(next());
             pos++;
         }
-        w = new StringBuilder(w.toString().toLowerCase());
+        w = new StringBuilder(w.toString());
         for (Constants.Constant constant : constantsList) {
             if (w.toString().equals(constant.symbol)) {
                 code[codeSize++] = (byte) constantCt;
@@ -415,6 +415,7 @@ public class Expr {
                 return;
             }
         }
+        w = new StringBuilder(w.toString().toLowerCase());
         for (int i = 0; i < functionNames.length; i++) {
             if (w.toString().equals(functionNames[i]) && i < 15) {
                 skip();
