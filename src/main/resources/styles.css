@@ -9,6 +9,10 @@
     -fx-text-fill: #fff;
 }
 
+//.tree-cell:hover {
+//    -fx-background-color: #333;
+//}
+
 .tree-cell > .tree-disclosure-node > .arrow  {
     -fx-background-color: #777777;
     -fx-translate-y: 3;
@@ -52,4 +56,23 @@
     -fx-control-inner-background: black;
     -fx-faint-focus-color: black;
     -fx-accent: #F6BD00 ;
+}
+
+.text-area .scroll-bar:vertical {
+    -fx-pref-width: 12;
+    // -fx-background-color:transparent;
+}
+
+.text-area .scroll-bar:vertical .track {
+    // -fx-background-color: transparent;
+}
+
+.text-area .increment-button,
+.text-area .decrement-button {
+    // -fx-background-color: transparent;
+}
+
+.copy-to-clipboard-button, .pin-button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
 }

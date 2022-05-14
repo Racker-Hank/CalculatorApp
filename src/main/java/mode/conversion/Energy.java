@@ -1,6 +1,7 @@
 package mode.conversion;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class Energy {
 //    public static final double volts = 1;
@@ -30,6 +31,22 @@ public class Energy {
             add(britishThermalUnits);
         }
     };
+
+    public static LinkedHashMap<String, Unit> unitsMap = new LinkedHashMap <String, Unit>() {
+        {
+            put("V", volts);
+            put("J", joules);
+            put("kJ", kilojoules);
+            put("cal", thermalCalories);
+            put("kcal", foodCalories);
+            put("ft-lb", footPounds);
+            put("BTU", britishThermalUnits);
+        }
+    };
+
+    public static double convert(Unit fromUnit , Unit toUnit , double n) {
+        return n * fromUnit.toSmallestUnit * (1 / toUnit.toSmallestUnit);
+    }
 
 
     public static double a = footPounds.toSmallestUnit;

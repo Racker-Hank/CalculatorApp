@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import mode.standard.Expressions;
 import mode.standard.Specials;
+import mode.standard.Standard;
 import operation.Operation;
 
 import java.util.ArrayList;
@@ -61,22 +62,25 @@ public class StandardController {
     @FXML
     private HBox tabsButtonContainer;
 
+    //    PrimaryButton pb;
+
     Expressions expressions;
     Specials specials;
     HashMap <String, VBox> functionButtonsWrappers = new HashMap <>();
     VBox visibleFunctionButtonsWrapper;
-    public static ToggleSwitch toggleSwitch;
+//    public static ToggleSwitch toggleSwitch;
 
     //    public StandardController() {
     //        PrimaryButton.mainInputPane = mainInputPane;
     //        addFunctionButtons();
     //    }
     public void initialize() {
-        PrimaryButton.mainInputPane = mainInputPane;
-//        InputPane test = new InputPane();
-//        test.requestFocus();
-//        test.defaultTextField.requestFocus();
-//        mainInputPane.getChildren().add(test);
+        //        PrimaryButton.mainInputPane = mainInputPane;
+        //        pb = new PrimaryButton();
+        //        InputPane test = new InputPane();
+        //        test.requestFocus();
+        //        test.defaultTextField.requestFocus();
+        //        mainInputPane.getChildren().add(test);
 
 
         //        LatexView latex = new LatexView();
@@ -84,7 +88,7 @@ public class StandardController {
         //        latex.setSize(30);
         //        mainInputPane.getChildren().add(latex);
 
-        PrimaryButton.tempOutputTextArea = tempOutputTextArea;
+        //        pb.tempOutputTextArea = tempOutputTextArea;
         //        (Button) tabsButtonContainer.getChildren().get(0) =
         //        tabsButtonContainer.getChildren().add(PrimaryButton.toPrimaryButton((Button) tabsButtonContainer.getChildren().get(0) , 14,
         //                        UIConfig.colorWhite));
@@ -96,15 +100,17 @@ public class StandardController {
         expressions = new Expressions();
         specials = new Specials();
         addFunctionButtons();
+        Controller3.inputTextArea = inputTextArea;
+        Controller3.outputTextArea = tempOutputTextArea;
     }
 
     private void initTextArea() {
         inputTextArea.textProperty().addListener((obs , oldValue , newValue) -> {
             Platform.runLater(() -> {
                 try {
-                    Operation.calculate(inputTextArea, tempOutputTextArea);
+                    Operation.calculate(inputTextArea , tempOutputTextArea);
                 } catch (Exception e) {
-//                    e.printStackTrace();
+//                                        e.printStackTrace();
                 }
             });
         });
@@ -184,6 +190,8 @@ public class StandardController {
             hBox.setSpacing(8);
             hBox.setAlignment(javafx.geometry.Pos.CENTER);
             for (int j = 0; j < Math.min(buttonPerRow , Expressions.functions.size() - i * buttonPerRow); j++) {
+                Expressions.functions.get(i * buttonPerRow + j).button.inputTextArea = inputTextArea;
+                //                Expressions.functions.get(i * buttonPerRow + j).button.tempOutputTextArea = tempOutputTextArea;
                 hBox.getChildren().add(Expressions.functions.get(i * buttonPerRow + j).button);
             }
             expressionButtonsContainer.getChildren().add(hBox);
@@ -200,6 +208,7 @@ public class StandardController {
             hBox.setSpacing(8);
             hBox.setAlignment(javafx.geometry.Pos.CENTER);
             for (int j = 0; j < Math.min(buttonPerRow , Specials.functions.size() - i * buttonPerRow); j++) {
+                Specials.functions.get(i * buttonPerRow + j).button.inputTextArea = inputTextArea;
                 hBox.getChildren().add(Specials.functions.get(i * buttonPerRow + j).button);
             }
             //                functionButtonsWrapper.getChildren().clear();
@@ -213,10 +222,21 @@ public class StandardController {
         //            functionButtonsWrapper.getChildren().clear();
         //            functionButtonsWrapper.getChildren().add(expressionButtonsContainer);
         //        }
-        toggleSwitch = new ToggleSwitch();
-        HBox toggleSwitchContainer = new HBox(toggleSwitch);
-        toggleSwitchContainer.setAlignment(Pos.CENTER);
-        functionButtonsWrapper.addRow(1 , toggleSwitchContainer);
+//        toggleSwitch = new ToggleSwitch();
+//        toggleSwitch.switchOnProperty().addListener((obs , oldValue , newValue) -> {
+//            Platform.runLater(() -> {
+//                try {
+//                    Operation.calculate(inputTextArea, tempOutputTextArea);
+//                } catch (Exception e) {
+//                    //                    e.printStackTrace();
+//                }
+//            });
+//        });
+//        //        Standard.CopyToClipboardButton copyToClipboardButton = new Standard.CopyToClipboardButton();
+//        //        HBox toggleSwitchContainer = new HBox(toggleSwitch, copyToClipboardButton);
+//        HBox toggleSwitchContainer = new HBox(toggleSwitch);
+//        toggleSwitchContainer.setAlignment(Pos.CENTER);
+//        functionButtonsWrapper.addRow(1 , toggleSwitchContainer);
     }
 
     //    public static void setTempOutputTextArea(String tempOutput) {
@@ -227,7 +247,8 @@ public class StandardController {
     public void saveCalculation() {
         if (inputTextArea.getText().length() > 0 && tempOutputTextArea.getText().length() > 0) {
             lastCalculationTextArea.clear();
-            lastCalculationTextArea.setText(inputTextArea.getText() + " = " + tempOutputTextArea.getText());
+            lastCalculationTextArea.setText(inputTextArea.getText().trim() + " = " + tempOutputTextArea.getText());
+            Standard.historyCalculation.add(inputTextArea.getText().trim() + " = " + tempOutputTextArea.getText());
             inputTextArea.clear();
             tempOutputTextArea.clear();
         }

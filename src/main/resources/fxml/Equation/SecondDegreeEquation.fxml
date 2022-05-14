@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -14,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane style="-fx-background-color: #080202;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Equation.FirstDegreeController">
+<AnchorPane style="-fx-background-color: #080202;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Equation.SecondDegreeController">
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: #080202;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
@@ -39,7 +38,7 @@
                               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label fx:id="degreeName" alignment="CENTER" text="First Degree" textFill="#28f984">
+                              <Label fx:id="degreeName" alignment="CENTER" text="Second Degree" textFill="#28f984">
                                  <font>
                                     <Font name="Noto Sans Math Regular" size="32.0" />
                                  </font>
@@ -50,18 +49,6 @@
                            <children>
                               <AnchorPane style="-fx-border-color: #D97A85; -fx-border-width: 2px; -fx-border-radius: 16; -fx-background-radius: 24;">
                                  <children>
-                                    <ScrollPane layoutX="10.0" layoutY="6.0" maxHeight="160.0" style="-fx-border-radius: 16; -fx-background-radius: 16;" visible="false" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
-                                       <content>
-                                          <HBox fx:id="mainInputPane" alignment="CENTER_LEFT" fillHeight="false" maxWidth="292.0" spacing="4.0">
-                                             <cursor>
-                                                <Cursor fx:constant="TEXT" />
-                                             </cursor>
-                                          </HBox>
-                                       </content>
-                                       <padding>
-                                          <Insets bottom="4.0" left="8.0" right="8.0" top="4.0" />
-                                       </padding>
-                                    </ScrollPane>
                                     <TextArea fx:id="textArea_A" wrapText="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
                                        <font>
                                           <Font name="Noto Sans Math Regular" size="24.0" />
@@ -69,7 +56,7 @@
                                     </TextArea>
                                  </children>
                               </AnchorPane>
-                              <Label minWidth="16.0" text="𝑥" textFill="WHITE">
+                              <Label minWidth="30.0" text="𝑥²" textFill="WHITE">
                                  <font>
                                     <Font name="Noto Sans Math Regular" size="32.0" />
                                  </font>
@@ -82,6 +69,25 @@
                               <AnchorPane style="-fx-border-color: #F6BD00; -fx-border-width: 2px; -fx-border-radius: 16; -fx-background-radius: 24;">
                                  <children>
                                     <TextArea fx:id="textArea_B" wrapText="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
+                                       <font>
+                                          <Font name="Noto Sans Math Regular" size="24.0" />
+                                       </font>
+                                    </TextArea>
+                                 </children>
+                              </AnchorPane>
+                              <Label minWidth="16.0" text="𝑥" textFill="WHITE">
+                                 <font>
+                                    <Font name="Noto Sans Math Regular" size="32.0" />
+                                 </font>
+                              </Label>
+                              <Label minWidth="19.0" text="+" textFill="WHITE">
+                                 <font>
+                                    <Font name="Noto Sans Math Regular" size="32.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane style="-fx-border-color: #F6BD00; -fx-border-width: 2px; -fx-border-radius: 16; -fx-background-radius: 24;">
+                                 <children>
+                                    <TextArea fx:id="textArea_C" wrapText="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
                                        <font>
                                           <Font name="Noto Sans Math Regular" size="24.0" />
                                        </font>
