@@ -5,15 +5,23 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-import java.util.List;
 import java.util.Map;
 
 public class GraphCanvas extends Canvas {
     private Map<Function, Color> functions;
+    private double width;
+    private double height;
+    private final int lengthUnit = 30;
+    private int horizontalUnits;
+    private int verticalUnits;
 
     public GraphCanvas(Map<Function, Color> functions) {
         super(600, 600);
         this.functions = functions;
+
+        horizontalUnits = (int) (width / lengthUnit);
+        verticalUnits = (int) (height / lengthUnit);
+
         draw();
     }
 
@@ -22,6 +30,11 @@ public class GraphCanvas extends Canvas {
     }
 
     public void draw() {
+        width = getWidth();
+        height = getHeight();
+//        System.out.println(width + " " + height);
+        horizontalUnits = (int) (width / lengthUnit);
+        verticalUnits = (int) (height / lengthUnit);
         GraphicsContext g = getGraphicsContext2D();
         g.setFill(Color.BLACK);
         g.fillRect(0,0,getWidth(),getHeight());
@@ -32,33 +45,36 @@ public class GraphCanvas extends Canvas {
     }
 
     private void drawAxes(GraphicsContext g) {
-        double width = getWidth();
-        double height = getHeight();
         g.setStroke(Color.WHITE);
         g.setLineWidth(2);
         g.strokeLine(0, height/2, width, height/2);
         g.strokeLine(width/2, 0, width/2, height);
 
-//        for(int i = -5; i < 5; i++) {
-//            g.setLineWidth(0.5);
-//            g.strokeLine(width/2 + i * width/10, 0, width/2 + i * width/10, height);
-//            g.strokeLine(0, height/2 + i * height/10, width, height/2 + i * height/10);
-//        }
-
-        for(int i = -4; i < 5; i++) {
+        for(int i = -horizontalUnits/2+1; i < horizontalUnits/2; i++) {
             g.setLineWidth(0.5);
-            g.strokeLine(width/2 + i * width/10, height/2 - 10, width/2 + i * width/10, height/2 +10);
-            g.strokeLine(width/2 - 10, height/2 + i * height/10, width/2 + 10, height/2 + i * height/10);
+            g.strokeLine(width/2 + i * width/horizontalUnits, height/2 - 5, width/2 + i * width/horizontalUnits, height/2 + 5);
             if(i < 0) {
-                g.strokeText(String.valueOf(i), width * (i + 5) / 10 - 8, height / 2 + 25);
-                g.strokeText(String.valueOf(-i), width / 2 - 22, height * (i + 5) / 10 + 3);
+                g.strokeText(String.valueOf(i), width * (i + (double)horizontalUnits/2) / horizontalUnits - 8, height / 2 + 25);
+//                g.strokeText(String.valueOf(-i), width / 2 - 22, height * (i + horizontalUnits/2) / horizontalUnits + 3);
             } else if (i > 0) {
-                g.strokeText(String.valueOf(i), width * (i + 5) / 10 - 3, height / 2 + 25);
-                g.strokeText(String.valueOf(-i), width / 2 - 25, height * (i + 5) / 10 + 3);
+                g.strokeText(String.valueOf(i), width * (i + (double)horizontalUnits/2) / horizontalUnits - 3, height / 2 + 25);
+//                g.strokeText(String.valueOf(-i), width / 2 - 25, height * (i + horizontalUnits/2) / horizontalUnits + 3);
             }
         }
 
-        g.strokeText("0", width/2 - 25, height/2 + 25);
+        for(int i = -verticalUnits/2+1; i < verticalUnits/2; i++) {
+            g.setLineWidth(0.5);
+            g.strokeLine(width/2 - 5, height/2 + i * height/verticalUnits, width/2 + 5, height/2 + i * height/verticalUnits);
+            if(i < 0) {
+//                g.strokeText(String.valueOf(i), width * (i + verticalUnits/2) / verticalUnits - 8, height / 2 + 25);
+                g.strokeText(String.valueOf(-i), width / 2 - 22, height * (i + (double)verticalUnits/2) / verticalUnits + 3);
+            } else if (i > 0) {
+//                g.strokeText(String.valueOf(i), width * (i + verticalUnits/2) / verticalUnits - 3, height / 2 + 25);
+                g.strokeText(String.valueOf(-i), width / 2 - 25, height * (i + (double)verticalUnits/2) / verticalUnits + 3);
+            }
+        }
+
+        g.strokeText("0", width/2 - 15, height/2 + 18);
     }
 
     private void drawFunction(GraphicsContext g, Expr function, Color color) {
@@ -70,7 +86,7 @@ public class GraphCanvas extends Canvas {
 
         double numPoints = 500;  // Number of points to draw on the graph.
 
-        dx  = 10.0 / numPoints;
+        dx  = (horizontalUnits+4) / numPoints;
 
         //random color
         g.setStroke(color);
@@ -80,7 +96,7 @@ public class GraphCanvas extends Canvas {
 
         /* Compute the first point. */
 
-        x = -5.0;
+        x = (double) -(horizontalUnits+2)/2;
         y = function.value(x);
 
             /* Compute each of the other 300 points, and draw a line segment
@@ -115,13 +131,13 @@ public class GraphCanvas extends Canvas {
         double a1, b1;   // Pixel coordinates corresponding to (x1,y1).
         double a2, b2;   // Pixel coordinates corresponding to (x2,y2).
 
-        double width = getWidth();     // Width of the canvas (600).
-        double height = getHeight();   // Height of the canvas (600).
+//        double width = getWidth();     // Width of the canvas (600).
+//        double height = getHeight();   // Height of the canvas (600).
 
-        a1 = (int)( (x1 + 5) / 10 * width );
-        b1 = (int)( (5 - y1) / 10 * height );
-        a2 = (int)( (x2 + 5) / 10 * width );
-        b2 = (int)( (5 - y2) / 10 * height );
+        a1 =  (x1 + (double)horizontalUnits/2) / horizontalUnits * width ;
+        b1 =  ((double)verticalUnits/2 - y1) / verticalUnits * height ;
+        a2 =  (x2 + (double)horizontalUnits/2) / horizontalUnits * width ;
+        b2 =  ((double)verticalUnits/2 - y2) / verticalUnits * height ;
 
         g.strokeLine(a1,b1,a2,b2);
 

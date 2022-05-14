@@ -35,11 +35,19 @@ public class GraphController {
 
         graphCanvas = new GraphCanvas(graphFunctions.getFunctions());
         graphPane.getChildren().add(graphCanvas);
+        graphCanvas.widthProperty().bind(graphPane.widthProperty());
+        graphCanvas.heightProperty().bind(graphPane.heightProperty());
+        graphCanvas.widthProperty().addListener((observable, oldValue, newValue) -> {
+            graphCanvas.draw();
+        });
+        graphCanvas.heightProperty().addListener((observable, oldValue, newValue) -> {
+            graphCanvas.draw();
+        });
     }
 
     public void drawGraph() {
         graphCanvas.setFunctions(graphFunctions.getFunctions());
-        System.out.println(graphFunctions.getFunctions().toString());
+//        System.out.println(graphFunctions.getFunctions().toString());
 //        System.out.println(graphCanvas.getFunctions());
 
         graphCanvas.draw();
