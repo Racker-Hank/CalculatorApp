@@ -5,20 +5,16 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
 import mode.standard.Standard;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -76,6 +72,11 @@ public class Controller3 implements Initializable {
     private AnchorPane pressureConversion;
     private AnchorPane timeConversion;
     private AnchorPane weightConversion;
+
+    private AnchorPane BMI;
+    private AnchorPane bankInterestWithoutPeriod;
+    private AnchorPane bankInterestWithPeriod;
+    private AnchorPane compoundInterest;
 
     @FXML
     private AnchorPane financial;
@@ -173,6 +174,16 @@ public class Controller3 implements Initializable {
             this.weightConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion" +
                     "/WeightConversion.fxml")));
 
+            //              Health anđ financial
+            this.BMI = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/HealthAndFinancial" +
+                    "/BMI.fxml")));
+            this.bankInterestWithoutPeriod = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/HealthAndFinancial" +
+                    "/BankInterestWithoutPeriod.fxml")));
+            this.bankInterestWithPeriod = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/HealthAndFinancial" +
+                    "/BankInterestWithPeriod.fxml")));
+            this.compoundInterest = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/HealthAndFinancial" +
+                    "/CompoundInterest.fxml")));
+
             mainStackPane.getChildren().add(standard);
 
             mainStackPane.getChildren().add(firstDegree);
@@ -188,6 +199,11 @@ public class Controller3 implements Initializable {
             mainStackPane.getChildren().add(pressureConversion);
             mainStackPane.getChildren().add(timeConversion);
             mainStackPane.getChildren().add(weightConversion);
+
+            mainStackPane.getChildren().add(BMI);
+            mainStackPane.getChildren().add(bankInterestWithoutPeriod);
+            mainStackPane.getChildren().add(bankInterestWithPeriod);
+            mainStackPane.getChildren().add(compoundInterest);
 
             for (int i = 1; i < mainStackPane.getChildren().size(); i++) {
                 mainStackPane.getChildren().get(i).setVisible(false);
@@ -243,6 +259,7 @@ public class Controller3 implements Initializable {
         TreeItem <String> timeConversion = new TreeItem <>("Time Conversion");
         TreeItem <String> weightConversion = new TreeItem <>("Weight Conversion");
 
+
         panes.put(conversion , this.conversion);
         panes.put(lengthConversion , this.lengthConversion);
         panes.put(areaConversion , this.areaConversion);
@@ -254,6 +271,7 @@ public class Controller3 implements Initializable {
         panes.put(pressureConversion, this.pressureConversion);
         panes.put(timeConversion, this.timeConversion);
         panes.put(weightConversion, this.weightConversion);
+
 
         conversion.getChildren().add(lengthConversion);
         conversion.getChildren().add(areaConversion);
@@ -267,6 +285,27 @@ public class Controller3 implements Initializable {
         conversion.getChildren().add(weightConversion);
 
         root.getChildren().add(conversion);
+
+        TreeItem <String> healthAndFinancial = new TreeItem <>("Health And Financial");
+        TreeItem <String> BMI = new TreeItem <>("BMI");
+        TreeItem <String> bankInterest = new TreeItem <>("Bank Interest");
+        TreeItem <String> bankInterestWithoutPeriod = new TreeItem <>("Without Period");
+        TreeItem <String> bankInterestWithPeriod = new TreeItem <>("With Period");
+        TreeItem <String> compoundInterest = new TreeItem <>("Compound Interest");
+
+        panes.put(BMI, this.BMI);
+        panes.put(bankInterestWithoutPeriod, this.bankInterestWithoutPeriod);
+        panes.put(bankInterestWithPeriod, this.bankInterestWithPeriod);
+        panes.put(compoundInterest, this.compoundInterest);
+
+        healthAndFinancial.getChildren().add(BMI);
+        healthAndFinancial.getChildren().add(bankInterest);
+        bankInterest.getChildren().add(bankInterestWithoutPeriod);
+        bankInterest.getChildren().add(bankInterestWithPeriod);
+        bankInterest.getChildren().add(compoundInterest);
+
+        root.getChildren().add(healthAndFinancial);
+
 
         TreeItem <String> financial = new TreeItem <>("Financial");
         panes.put(financial , this.financial);
