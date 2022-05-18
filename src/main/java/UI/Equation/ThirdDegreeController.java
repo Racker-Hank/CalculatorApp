@@ -2,14 +2,14 @@ package UI.Equation;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import mode.equation.Degree;
-import mode.equation.FirstDegree;
+import mode.equation.SecondDegree;
+import mode.equation.ThirdDegree;
 import operation.Fraction;
 import operation.Operation;
 
-public class FirstDegreeController {
+public class ThirdDegreeController {
     @FXML
     private Label degreeName;
 
@@ -26,46 +26,52 @@ public class FirstDegreeController {
     private TextArea textArea_B;
 
     @FXML
+    private TextArea textArea_C;
+
+    @FXML
+    private TextArea textArea_D;
+
+    @FXML
     private ChoiceBox<String> operatorChoiceBox;
 
     @FXML
     private Button solveButton;
 
-    public static TextArea mainInputTextArea;
-
     public void initialize() {
         initChoiceBox();
-        initTextArea();
+//        initTextArea();
         initButton();
     }
 
     private void initButton() {
         solveButton.setOnMouseClicked(e -> {
             try {
-                FirstDegree firstDegree = new FirstDegree();
+                ThirdDegree thirdDegree = new ThirdDegree();
                 Fraction a = Operation.calculate(textArea_A);
                 Fraction b = Operation.calculate(textArea_B);
+                Fraction c = Operation.calculate(textArea_C);
+                Fraction d = Operation.calculate(textArea_D);
                 switch (operatorChoiceBox.getValue()) {
                     case "=":
-                        firstDegree.equal(a,b);
+                        thirdDegree.equal(a,b,c,d);
 //                        solutionTextArea.setText(firstDegree.solutions.get(0) + "");
-                        solutionTextArea.setText(firstDegree.solutionString);
+                        solutionTextArea.setText(thirdDegree.solutionString);
                         break;
                     case  ">":
-                        firstDegree.greater(a,b);
-                        solutionTextArea.setText(firstDegree.solutionString);
+                        thirdDegree.greater(a,b,c,d);
+                        solutionTextArea.setText(thirdDegree.solutionString);
                         break;
                     case  "<":
-                        firstDegree.smaller(a,b);
-                        solutionTextArea.setText(firstDegree.solutionString);
+                        thirdDegree.smaller(a,b,c,d);
+                        solutionTextArea.setText(thirdDegree.solutionString);
                         break;
                     case  "≥":
-                        firstDegree.notSmaller(a,b);
-                        solutionTextArea.setText(firstDegree.solutionString);
+                        thirdDegree.notSmaller(a,b,c,d);
+                        solutionTextArea.setText(thirdDegree.solutionString);
                         break;
                     case  "≤":
-                        firstDegree.notGreater(a,b);
-                        solutionTextArea.setText(firstDegree.solutionString);
+                        thirdDegree.notGreater(a,b,c,d);
+                        solutionTextArea.setText(thirdDegree.solutionString);
                         break;
                 }
             } catch (Exception ex) {
@@ -76,17 +82,7 @@ public class FirstDegreeController {
     }
 
     private void initTextArea() {
-        mainInputTextArea = textArea_A;
-        textArea_A.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) {
-                mainInputTextArea = textArea_A;
-            }
-        });
-        textArea_B.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) {
-                mainInputTextArea = textArea_B;
-            }
-        });
+
     }
 
     private void initChoiceBox() {

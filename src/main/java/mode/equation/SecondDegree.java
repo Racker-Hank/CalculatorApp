@@ -11,6 +11,7 @@ public class SecondDegree extends Degree {
         if (a.toDouble() == 0) {
 //            throw Exception;
             System.out.println("a cannot be zero");
+            solutionString = "a cannot be zero";
         }
         else {
             Fraction Δ = MathUtil.subtract(MathUtil.multiply(b,b),MathUtil.multiply(MathUtil.multiply(new Fraction(4),a),c));

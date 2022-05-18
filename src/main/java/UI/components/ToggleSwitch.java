@@ -44,8 +44,10 @@ public class ToggleSwitch extends HBox {
 
     private void bindProperties() {
         label.prefWidthProperty().bind(widthProperty().divide(2));
+        label.minWidthProperty().bind(widthProperty().divide(2));
         label.prefHeightProperty().bind(heightProperty());
         button.prefWidthProperty().bind(widthProperty().divide(2));
+        button.minWidthProperty().bind(widthProperty().divide(2));
         button.prefHeightProperty().bind(heightProperty());
     }
 

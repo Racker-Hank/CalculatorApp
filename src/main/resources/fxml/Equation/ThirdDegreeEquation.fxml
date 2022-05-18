@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane style="-fx-background-color: #080202;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Equation.ThirdDegreeController">
+   <children>
+      <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: #080202;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane style="-fx-background-color: #080202;">
+               <children>
+                  <GridPane alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" minWidth="700.0" vgap="32.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="50.0" vgrow="NEVER" />
+                        <RowConstraints fillHeight="false" maxHeight="100.0" minHeight="10.0" prefHeight="50.0" valignment="CENTER" vgrow="NEVER" />
+                        <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="100.0" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="500.0" prefHeight="160.0" valignment="CENTER" vgrow="ALWAYS" />
+                     </rowConstraints>
+                     <children>
+                        <GridPane alignment="CENTER" GridPane.halignment="CENTER">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label fx:id="degreeName" alignment="CENTER" text="Third Degree" textFill="#28f984">
+                                 <font>
+                                    <Font name="Noto Sans Math Regular" size="32.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
+                        <HBox alignment="CENTER" fillHeight="false" spacing="16.0" GridPane.rowIndex="1">
+                           <children>
+                              <AnchorPane style="-fx-border-color: #D97A85; -fx-border-width: 2px; -fx-border-radius: 16; -fx-background-radius: 24;">
+                                 <children>
+                                    <TextArea fx:id="textArea_A" wrapText="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
+                                       <font>
+                                          <Font name="Noto Sans Math Regular" size="24.0" />
+                                       </font>
+                                    </TextArea>
+                                 </children>
+                              </AnchorPane>
+                              <Label minWidth="30.0" text="𝑥³" textFill="WHITE">
+                                 <font>
+                                    <Font name="Noto Sans Math Regular" size="32.0" />
+                                 </font>
+                              </Label>
+                              <Label minWidth="20.0" text="+" textFill="WHITE">
+                                 <font>
+                                    <Font name="Noto Sans Math Regular" size="32.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane style="-fx-border-color: #D97A85; -fx-border-width: 2px; -fx-border-radius: 16; -fx-background-radius: 24;">
+                                 <children>
+                                    <TextArea fx:id="textArea_B" wrapText="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
+                                       <font>
+                                          <Font name="Noto Sans Math Regular" size="24.0" />
+                                       </font>
+                                    </TextArea>
+                                 </children>
+                              </AnchorPane>
+                              <Label minWidth="30.0" text="𝑥²" textFill="WHITE">
+                                 <font>
+                                    <Font name="Noto Sans Math Regular" size="32.0" />
+                                 </font>
+                              </Label>
+                              <Label minWidth="20.0" text="+" textFill="WHITE">
+                                 <font>
+                                    <Font name="Noto Sans Math Regular" size="32.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane style="-fx-border-color: #F6BD00; -fx-border-width: 2px; -fx-border-radius: 16; -fx-background-radius: 24;">
+                                 <children>
+                                    <TextArea fx:id="textArea_C" wrapText="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
+                                       <font>
+                                          <Font name="Noto Sans Math Regular" size="24.0" />
+                                       </font>
+                                    </TextArea>
+                                 </children>
+                              </AnchorPane>
+                              <Label minWidth="16.0" text="𝑥" textFill="WHITE">
+                                 <font>
+                                    <Font name="Noto Sans Math Regular" size="32.0" />
+                                 </font>
+                              </Label>
+                              <Label minWidth="19.0" text="+" textFill="WHITE">
+                                 <font>
+                                    <Font name="Noto Sans Math Regular" size="32.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane style="-fx-border-color: #F6BD00; -fx-border-width: 2px; -fx-border-radius: 16; -fx-background-radius: 24;">
+                                 <children>
+                                    <TextArea fx:id="textArea_D" wrapText="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
+                                       <font>
+                                          <Font name="Noto Sans Math Regular" size="24.0" />
+                                       </font>
+                                    </TextArea>
+                                 </children>
+                              </AnchorPane>
+                              <ChoiceBox fx:id="operatorChoiceBox" maxWidth="-Infinity" prefWidth="250.0" style="-fx-font-size: 30; -fx-font-family: Noto Sans Math; -fx-background-radius: 16;" />
+                              <Label minWidth="20.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Noto Sans Math Regular" size="32.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <GridPane alignment="CENTER" GridPane.rowIndex="2">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label alignment="CENTER" disable="true" text="Solution" textFill="#28f984" visible="false">
+                                 <font>
+                                    <Font name="Noto Sans Math Regular" size="32.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="solveButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-background-radius: 16; -fx-border-radius: 16; -fx-border-width: 2; -fx-border-color: #28F984;" textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <graphic>
+                                    <Label text="SOLVE" textFill="WHITE">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </GridPane>
+                        <AnchorPane style="-fx-border-color: #28F984; -fx-border-width: 2px; -fx-border-radius: 16; -fx-background-radius: 24;" GridPane.rowIndex="3">
+                           <children>
+                              <TextArea fx:id="solutionTextArea" wrapText="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
+                                 <font>
+                                    <Font name="Noto Sans Math Regular" size="32.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                     <padding>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                     </padding>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

@@ -1,5 +1,6 @@
 package UI;
 
+import UI.Equation.FirstDegreeController;
 import UI.Equation.GraphController;
 import UI.components.PrimaryButton;
 import UI.components.ToggleSwitch;
@@ -8,6 +9,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.binding.ObjectBinding;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -61,11 +63,11 @@ public class Controller3 implements Initializable {
     private AnchorPane equation;
     private AnchorPane firstDegree;
     private AnchorPane secondDegree;
+    private AnchorPane thirdDegree;
     private AnchorPane graph;
 
     @FXML
     private AnchorPane variable;
-
 
     @FXML
     private AnchorPane matrix;
@@ -86,8 +88,13 @@ public class Controller3 implements Initializable {
     private AnchorPane timeConversion;
     private AnchorPane weightConversion;
 
-    @FXML
-    private AnchorPane financial;
+    //    @FXML
+    //    private AnchorPane financial;
+
+    private AnchorPane BMI;
+    private AnchorPane bankInterestWithoutPeriod;
+    private AnchorPane bankInterestWithPeriod;
+    private AnchorPane compoundInterest;
 
     //    function buttons
     @FXML
@@ -162,6 +169,7 @@ public class Controller3 implements Initializable {
             this.firstDegree = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Equation/FirstDegreeEquation.fxml")));
             this.secondDegree = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Equation" +
                     "/SecondDegreeEquation.fxml")));
+            this.thirdDegree = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Equation" + "/ThirdDegreeEquation.fxml")));
             this.graph = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Equation" + "/Graph.fxml")));
 
             //            Conversion
@@ -184,10 +192,21 @@ public class Controller3 implements Initializable {
             this.weightConversion = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Conversion" +
                     "/WeightConversion.fxml")));
 
+            //              Health anđ financial
+            this.BMI = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/HealthAndFinancial" +
+                    "/BMI.fxml")));
+            this.bankInterestWithoutPeriod = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/HealthAndFinancial" +
+                    "/BankInterestWithoutPeriod.fxml")));
+            this.bankInterestWithPeriod = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/HealthAndFinancial" +
+                    "/BankInterestWithPeriod.fxml")));
+            this.compoundInterest = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/HealthAndFinancial" +
+                    "/CompoundInterest.fxml")));
+
             mainStackPane.getChildren().add(standard);
 
             mainStackPane.getChildren().add(firstDegree);
             mainStackPane.getChildren().add(secondDegree);
+            mainStackPane.getChildren().add(thirdDegree);
             mainStackPane.getChildren().add(graph);
 
             mainStackPane.getChildren().add(lengthConversion);
@@ -200,6 +219,11 @@ public class Controller3 implements Initializable {
             mainStackPane.getChildren().add(pressureConversion);
             mainStackPane.getChildren().add(timeConversion);
             mainStackPane.getChildren().add(weightConversion);
+
+            mainStackPane.getChildren().add(BMI);
+            mainStackPane.getChildren().add(bankInterestWithoutPeriod);
+            mainStackPane.getChildren().add(bankInterestWithPeriod);
+            mainStackPane.getChildren().add(compoundInterest);
 
             for (int i = 1; i < mainStackPane.getChildren().size(); i++) {
                 mainStackPane.getChildren().get(i).setVisible(false);
@@ -223,12 +247,15 @@ public class Controller3 implements Initializable {
         TreeItem <String> equation = new TreeItem <>("Equation");
         TreeItem <String> firstDegree = new TreeItem <>("First Degree");
         TreeItem <String> secondDegree = new TreeItem <>("Second Degree");
+        TreeItem <String> thirdDegree = new TreeItem <>("Third Degree");
         TreeItem <String> graph = new TreeItem <>("Graph");
         panes.put(firstDegree , this.firstDegree);
         panes.put(secondDegree , this.secondDegree);
+        panes.put(thirdDegree , this.thirdDegree);
         panes.put(graph , this.graph);
         equation.getChildren().add(firstDegree);
         equation.getChildren().add(secondDegree);
+        equation.getChildren().add(thirdDegree);
         equation.getChildren().add(graph);
         //        panes.put(equation , this.equation);
         //        TreeItem <String> variable = new TreeItem <>("Variable");
@@ -263,12 +290,12 @@ public class Controller3 implements Initializable {
         panes.put(areaConversion , this.areaConversion);
         panes.put(volumeConversion , this.volumeConversion);
         panes.put(speedConversion , this.speedConversion);
-        panes.put(dataConversion, this.dataConversion);
-        panes.put(energyConversion, this.energyConversion);
-        panes.put(powerConversion, this.powerConversion);
-        panes.put(pressureConversion, this.pressureConversion);
-        panes.put(timeConversion, this.timeConversion);
-        panes.put(weightConversion, this.weightConversion);
+        panes.put(dataConversion , this.dataConversion);
+        panes.put(energyConversion , this.energyConversion);
+        panes.put(powerConversion , this.powerConversion);
+        panes.put(pressureConversion , this.pressureConversion);
+        panes.put(timeConversion , this.timeConversion);
+        panes.put(weightConversion , this.weightConversion);
 
         conversion.getChildren().add(lengthConversion);
         conversion.getChildren().add(areaConversion);
@@ -283,8 +310,28 @@ public class Controller3 implements Initializable {
 
         root.getChildren().add(conversion);
 
-        TreeItem <String> financial = new TreeItem <>("Financial");
-        panes.put(financial , this.financial);
+        TreeItem <String> healthAndFinancial = new TreeItem <>("Health And Financial");
+        TreeItem <String> BMI = new TreeItem <>("BMI");
+        TreeItem <String> bankInterest = new TreeItem <>("Bank Interest");
+        TreeItem <String> bankInterestWithoutPeriod = new TreeItem <>("Without Period");
+        TreeItem <String> bankInterestWithPeriod = new TreeItem <>("With Period");
+        TreeItem <String> compoundInterest = new TreeItem <>("Compound Interest");
+
+        panes.put(BMI , this.BMI);
+        panes.put(bankInterestWithoutPeriod , this.bankInterestWithoutPeriod);
+        panes.put(bankInterestWithPeriod , this.bankInterestWithPeriod);
+        panes.put(compoundInterest , this.compoundInterest);
+
+        healthAndFinancial.getChildren().add(BMI);
+        healthAndFinancial.getChildren().add(bankInterest);
+        bankInterest.getChildren().add(bankInterestWithoutPeriod);
+        bankInterest.getChildren().add(bankInterestWithPeriod);
+        bankInterest.getChildren().add(compoundInterest);
+
+        root.getChildren().add(healthAndFinancial);
+
+        //        TreeItem <String> financial = new TreeItem <>("Financial");
+        //        panes.put(financial , this.financial);
         //            root.getChildren().add(financial);
 
         treeView.setRoot(root);
@@ -362,13 +409,38 @@ public class Controller3 implements Initializable {
         });
     }
 
+    public static TextArea inputTextArea;
+    public static TextArea outputTextArea;
+
     public void initBottomRightPane() {
+        inputTextArea = StandardController.mainInputTextArea;
+        outputTextArea = StandardController.mainOutputTextArea;
+        treeView.addEventHandler(MouseEvent.MOUSE_CLICKED , event -> {
+            if (treeView.getSelectionModel().getSelectedItem() != null) {
+                TreeItem <String> item = (TreeItem <String>) treeView.getSelectionModel().getSelectedItem();
+                try {
+                    if (panes.get(item) != null) {
+                        switch (item.getValue()) {
+                            case "Standard":
+                                inputTextArea = StandardController.mainInputTextArea;
+                                outputTextArea = StandardController.mainOutputTextArea;
+                                break;
+                            case "First Degree":
+                                inputTextArea = FirstDegreeController.mainInputTextArea;
+
+                                break;
+                            default:
+
+                        }
+                    }
+                } catch (Exception e) {
+                    //                e.printStackTrace();
+                }
+            }
+        });
         BottomRightPane bottomRightPane = new BottomRightPane();
         this.bottomRightPane.getChildren().add(bottomRightPane);
     }
-
-    public static TextArea inputTextArea;
-    public static TextArea outputTextArea;
 
     public static class BottomRightPane extends AnchorPane {
         public VBox vBox;
@@ -380,10 +452,10 @@ public class Controller3 implements Initializable {
             initConstantsPane();
             initToggleSwitch();
             setPrefWidth(Control.USE_COMPUTED_SIZE);
-            AnchorPane.setTopAnchor(this, 4.0);
-            AnchorPane.setBottomAnchor(this, 0.0);
-            AnchorPane.setLeftAnchor(this, 0.0);
-            AnchorPane.setRightAnchor(this, 0.0);
+            AnchorPane.setTopAnchor(this , 4.0);
+            AnchorPane.setBottomAnchor(this , 0.0);
+            AnchorPane.setLeftAnchor(this , 0.0);
+            AnchorPane.setRightAnchor(this , 0.0);
         }
 
         private void initToggleSwitch() {
@@ -391,7 +463,7 @@ public class Controller3 implements Initializable {
             toggleSwitch.switchOnProperty().addListener((obs , oldValue , newValue) -> {
                 Platform.runLater(() -> {
                     try {
-                        Operation.calculate(inputTextArea, outputTextArea);
+                        Operation.calculate(inputTextArea , outputTextArea);
                     } catch (Exception e) {
                         //                    e.printStackTrace();
                     }
@@ -405,10 +477,10 @@ public class Controller3 implements Initializable {
         private void initVBox() {
             vBox = new VBox();
             vBox.setSpacing(16);
-            AnchorPane.setTopAnchor(vBox, 0.0);
-            AnchorPane.setBottomAnchor(vBox, 0.0);
-            AnchorPane.setLeftAnchor(vBox, 0.0);
-            AnchorPane.setRightAnchor(vBox, 0.0);
+            AnchorPane.setTopAnchor(vBox , 0.0);
+            AnchorPane.setBottomAnchor(vBox , 0.0);
+            AnchorPane.setLeftAnchor(vBox , 0.0);
+            AnchorPane.setRightAnchor(vBox , 0.0);
             this.getChildren().add(vBox);
         }
 
@@ -417,7 +489,7 @@ public class Controller3 implements Initializable {
             int constantsCount = 20;
             //        if (tabTracker[1]) {
             VBox constantsButtonsContainer = new VBox(8);
-//            constantsButtonsContainer.setAlignment(Pos.CENTER);
+            //            constantsButtonsContainer.setAlignment(Pos.CENTER);
             constantsButtonsContainer.setFillWidth(true);
             for (int i = 0; i < constantsCount / buttonPerRow + 1; i++) {
                 HBox hBox = new HBox();
@@ -429,11 +501,11 @@ public class Controller3 implements Initializable {
                     primaryButton.setColor(UIConfig.colorYellow);
                     Constants.Constant constant = Constants.constants.get(i * buttonPerRow + j);
                     button.setText(constant.symbol);
-//                    button.setPrefWidth(100);
-//                    button.setPrefHeight(40);
+                    //                    button.setPrefWidth(100);
+                    //                    button.setPrefHeight(40);
                     button.setStyle(primaryButton.defaultStyle);
                     button.setOnAction(event -> {
-                        inputTextArea.appendText(constant.symbol);
+                        inputTextArea.insertText(inputTextArea.getCaretPosition(), constant.symbol);
                         inputTextArea.requestFocus();
                     });
                     Tooltip tooltip = new Tooltip(constant.name);

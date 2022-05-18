@@ -62,6 +62,9 @@ public class StandardController {
     @FXML
     private HBox tabsButtonContainer;
 
+    public static TextArea mainInputTextArea;
+    public static TextArea mainOutputTextArea;
+
     //    PrimaryButton pb;
 
     Expressions expressions;
@@ -100,8 +103,10 @@ public class StandardController {
         expressions = new Expressions();
         specials = new Specials();
         addFunctionButtons();
-        Controller3.inputTextArea = inputTextArea;
-        Controller3.outputTextArea = tempOutputTextArea;
+//        Controller3.inputTextArea = inputTextArea;
+//        Controller3.outputTextArea = tempOutputTextArea;
+        mainInputTextArea = inputTextArea;
+        mainOutputTextArea = tempOutputTextArea;
     }
 
     private void initTextArea() {
