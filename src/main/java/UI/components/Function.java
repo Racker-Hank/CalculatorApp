@@ -14,6 +14,7 @@ import javafx.scene.shape.Circle;
 
 public class Function extends GridPane {
     TextArea function = new TextArea("sin(x)");
+//    TextArea function = new TextArea("x");
     Button removeButton = new Button();
     Expr expr;
     Color color;
@@ -24,6 +25,7 @@ public class Function extends GridPane {
         function.setMaxHeight(50);
         GridPane.setHgrow(function, Priority.ALWAYS);
         function.setWrapText(true);
+        function.setStyle("-fx-font-size: " + 16 + "px;");
 //            function.setPrefWidth(100);
         Label label = new Label("f(x) =");
         label.setStyle("-fx-text-fill: white; -fx-font-size: 16");

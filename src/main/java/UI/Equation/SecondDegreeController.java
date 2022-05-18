@@ -72,6 +72,7 @@ public class SecondDegreeController {
                 }
             } catch (Exception ex) {
 //                ex.printStackTrace();
+                solutionTextArea.clear();
             }
         });
     }

@@ -13,6 +13,7 @@ public class FirstDegree extends Degree{
         if (a.toDouble() == 0) {
 //            throw Exception;
 //            System.out.println("a cannot be zero");
+            solutionString = "a cannot be zero";
         }
         else {
             solutions.add((MathUtil.divide(MathUtil.multiply(new Fraction(-1),b), a)).simplify());
